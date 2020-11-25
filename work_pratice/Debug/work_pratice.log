@@ -1,3 +1,3 @@
 ﻿  work_pratice.c
-D:\bite\Practice\work_pratice\work_pratice.c(35): warning C4715: “Guess”: 不是所有的控件路径都返回值
-  work_pratice.vcxproj -> D:\bite\Practice\work_pratice\Debug\work_pratice.exe
+D:\bite\bite——pratice\pratice\work_pratice\work_pratice.c(34): warning C4715: “Guess”: 不是所有的控件路径都返回值
+  work_pratice.vcxproj -> D:\bite\bite——pratice\pratice\work_pratice\Debug\work_pratice.exe
