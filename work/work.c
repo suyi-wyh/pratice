@@ -1,0 +1,67 @@
+﻿// work.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
+//
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int Compare(int num[],int n)
+{
+	int x = 0;
+	for (int i = 0; i < n; i++)
+		x ^= num[i];
+	return x;
+}
+
+void Delete(int num[],int n)
+{
+	int a;
+	printf("需要删除多少个数字：\n");
+	scanf_s("%d", &a);
+	printf("请输入%d个数字:\n", a);
+	int number[20];
+	for (int i = 0; i < a; i++)
+		scanf_s("%d", &number[i]);
+	printf("\n");
+	for (int j = 0; j < n; j++)
+	{
+		int f = 0;
+		for (int i = 0; i < a; i++)
+		{
+			if (num[j] == number[i])
+				f++;
+		}
+		if (0 == f)
+			printf("%d ",num[j]);
+	}
+	printf("\n");
+	printf("\n");
+}
+int main()
+{
+	int xx[] = { 1,2,3,4,5,6,5,4,3,2,1 };
+	printf("%d\n",Compare(xx,11));
+	int a;
+	printf("需要输入多少个数字：\n");
+	scanf_s("%d",&a);
+	printf("请输入%d个数字:\n", a);
+	int num[20];
+	for (int i = 0; i < a; i++)
+		scanf_s("%d",&num[i]);
+	printf("%d\n",a);
+	for (int i = 0; i < a; i++)
+		printf("%d ", num[i]);
+	printf("\n");
+	Delete(num,a);
+	return 0;
+}
+
+// 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
+// 调试程序: F5 或调试 >“开始调试”菜单
+
+// 入门使用技巧: 
+//   1. 使用解决方案资源管理器窗口添加/管理文件
+//   2. 使用团队资源管理器窗口连接到源代码管理
+//   3. 使用输出窗口查看生成输出和其他消息
+//   4. 使用错误列表窗口查看错误
+//   5. 转到“项目”>“添加新项”以创建新的代码文件，或转到“项目”>“添加现有项”以将现有代码文件添加到项目
+//   6. 将来，若要再次打开此项目，请转到“文件”>“打开”>“项目”并选择 .sln 文件
