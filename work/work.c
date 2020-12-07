@@ -4,6 +4,39 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+void Merge(int* num1, int m, int* num2, int n)
+{
+	int max = m + n - 1;
+	int i = m - 1;
+	int j = n - 1;
+	while (i >= 0 && j >= 0)
+	{
+		if (*(num1 + i) > *(num2 + j))
+		{
+			*(num1 + max) = *(num1 + i);
+			--i;
+		}
+		else
+		{
+			*(num1 + max) = *(num2 + j);
+			--j;
+		}
+		--max;
+	}
+	while (i >= 0)
+	{
+		*(num1 + max) = *(num1 + i);
+		max--;
+		i--;
+	}
+	while (j >= 0)
+	{
+		*(num1 + max) = *(num2 + j);
+		max--;
+		j--;
+	}
+}
+
 int Compare(int num[],int n)
 {
 	int x = 0;
@@ -38,7 +71,12 @@ void Delete(int num[],int n)
 }
 int main()
 {
-	int xx[] = { 1,2,3,4,5,6,5,4,3,2,1 };
+	int num1[] = { 1,2,3,0,0,0 };
+	int num2[] = { 2,5,6 };
+	Merge(num1, 3, num2, 3);
+	for(int i=0;i<6;i++)
+		printf("%d  ",num1[i]);
+	/*int xx[] = { 1,2,3,4,5,6,5,4,3,2,1 };
 	printf("%d\n",Compare(xx,11));
 	int a;
 	printf("需要输入多少个数字：\n");
@@ -52,7 +90,8 @@ int main()
 		printf("%d ", num[i]);
 	printf("\n");
 	Delete(num,a);
-	return 0;
+	return 0;*/
+
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
