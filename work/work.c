@@ -69,13 +69,63 @@ void Delete(int num[],int n)
 	printf("\n");
 	printf("\n");
 }
+int* addToArrayForm(int* A, int ASize, int K, int* returnSize)
+{
+	int KNum = K;
+	int KSize = 0;
+	int carrybit = 0, i = ASize - 1;
+	while (KNum)
+	{
+		++KSize;
+		KNum /= 10;
+	}
+	int AKSize = (ASize > KSize ? ASize + 1 : KSize + 1);
+	int qwe = AKSize;
+	int* AK = (int*)malloc(AKSize * sizeof(int));
+	while (AKSize-1)
+	{
+		int Y = K % 10;
+		K /= 10;
+		if (i >= 0)
+		{
+			*(AK + AKSize - 1) = Y + *(A + i) + carrybit;
+			i--;
+		}
+		else
+		{
+			*(AK + AKSize - 1) = Y + carrybit;
+		}
+		if (*(AK + AKSize - 1) >= 10)
+		{
+			*(AK + AKSize - 1) = *(AK + AKSize - 1) % 10;
+			carrybit = 1;
+		}
+		else
+			carrybit = 0;
+		--AKSize;
+	}
+	if (carrybit == 0)
+	{
+		AK = AK + 1;
+		--qwe;
+	}
+	for (int aas = 0; aas < qwe; ++aas)
+		printf("%d ", *(AK + aas));
+	return returnSize;
+}
 int main()
 {
-	int num1[] = { 1,2,3,0,0,0 };
+
+	int A[] = { 1,2,3,4};
+	int K = 234;
+	int ASize = 4;
+	int* returnSize = (int *)1;
+	addToArrayForm( A,ASize, K, returnSize);
+	/*int num1[] = { 1,2,3,0,0,0 };
 	int num2[] = { 2,5,6 };
 	Merge(num1, 3, num2, 3);
-	for(int i=0;i<6;i++)
-		printf("%d  ",num1[i]);
+	for (int i = 0; i < 6; i++)
+		printf("%d  ", num1[i]);*/
 	/*int xx[] = { 1,2,3,4,5,6,5,4,3,2,1 };
 	printf("%d\n",Compare(xx,11));
 	int a;
