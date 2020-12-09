@@ -71,9 +71,9 @@ void Delete(int num[],int n)
 }
 int* addToArrayForm(int* A, int ASize, int K, int* returnSize)
 {
-	int KNum = K;
 	int KSize = 0;
 	int carrybit = 0, i = ASize - 1;
+	int KNum = K;
 	while (KNum)
 	{
 		++KSize;
@@ -109,15 +109,18 @@ int* addToArrayForm(int* A, int ASize, int K, int* returnSize)
 		AK = AK + 1;
 		--qwe;
 	}
+	else
+		*AK = 1;
 	for (int aas = 0; aas < qwe; ++aas)
 		printf("%d ", *(AK + aas));
 	return returnSize;
 }
+
 int main()
 {
 
-	int A[] = { 1,2,3,4};
-	int K = 234;
+	int A[] = { 8,2,3,4};
+	int K = 4234;
 	int ASize = 4;
 	int* returnSize = (int *)1;
 	addToArrayForm( A,ASize, K, returnSize);
