@@ -6,6 +6,16 @@
 
 #define MAX 50
 
+int ForgsStep(int stepsnum)
+{
+	if (1 == stepsnum)
+		return 1;
+	else if (2 == stepsnum)
+		return 2;
+	else
+		return ForgsStep(stepsnum - 1) + ForgsStep(stepsnum - 2);
+}
+
 typedef struct comparestack
 {
 	char* top;
@@ -59,13 +69,15 @@ int CheckingCompare(stack* p, char* chr)
 int main()
 {
 	
-	char* chr = "{fsd{fasd{ds{f{sf}sd}f}dsfs}f}sdfa";
+	/*char* chr = "{fsd{fasd{ds{f{sf}sd}f}dsfs}f}sdfa";
 	stack p;
 	Initstack(&p);
 	if (CheckingCompare(&p, chr))
 		printf("okk");
 	else
-		printf("noo");
+		printf("noo");*/
+
+	printf("\n\n%d\n",ForgsStep(8));
 	return 0;
 }
 
