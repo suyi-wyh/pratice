@@ -112,6 +112,45 @@ SNelem* RetBack(SNelem *h)    //翻转链表
     return p;
 }
 
+
+bool CheckHuiwen(SNelem* h)  //判断链表的回文结构
+{
+    SNelem* fast, * slow;
+    fast = slow = h;
+    while (fast && fast->next)
+    {
+        fast = fast->next->next;
+        slow = slow->next;
+    }
+
+    SNelem* t, * p;
+    p = NULL;
+    t = slow;
+    while (t)
+    {
+        SNelem* newnode = t->next;
+        t->next = p;
+        p = t;
+        t = newnode;
+    }
+
+    SNelem* tmp = h;
+    while (tmp != slow)
+    {
+        if (tmp->date == p->date)
+        {
+            tmp = tmp->next;
+            p = p->next;
+        }
+        else
+            break;
+    }
+    if (tmp == slow)
+        return true;
+    else
+        return false;
+}
+
 int main()
 {
    /* Seqlist L;
