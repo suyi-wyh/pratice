@@ -167,9 +167,9 @@ int main()
     SNelem* head;
     head = Init(a,8);
     if (CheckHuiwen(head))
-        printf("111111");
+        printf("YES");
     else
-        printf("222222");
+        printf("NO");
     /*SNelemPrint(head);
     head = RetBack(head);
     SNelemPrint(head);*/
