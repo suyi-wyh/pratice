@@ -96,6 +96,19 @@ void PostInsert(SNelem* h, int date)  //尾插
     newnode->next = NULL;
     tmp->next = newnode;
 }
+int CompareMax(SNelem* h)   // 递归寻找链表最大值
+{
+    int max;
+    if (h->next == NULL)
+        return h->date;
+    else
+    {
+        max = CompareMax(h->next);
+        if (h->date > max)
+            max = h->date;
+    }
+    return max;
+}
 
 SNelem* RetBack(SNelem *h)    //翻转链表
 {
@@ -151,6 +164,26 @@ bool CheckHuiwen(SNelem* h)  //判断链表的回文结构
         return false;
 }
 
+
+int ForgJump(int n)   //青蛙跳台阶
+{
+    if (n == 0)
+        return 0;
+    if (n == 1)
+        return 1;
+    if (n == 2)
+        return 2;
+    else
+        return ForgJump(n-1) + ForgJump(n-2);
+}
+//栈
+typedef struct stack
+{
+    int top;
+    int* date;
+    int maxsize;
+}stack;
+//
 int main()
 {
    /* Seqlist L;
@@ -170,6 +203,8 @@ int main()
         printf("YES");
     else
         printf("NO");
+    printf("\n\n\n");
+    printf("最大值是%d\n",CompareMax(head));
     /*SNelemPrint(head);
     head = RetBack(head);
     SNelemPrint(head);*/
