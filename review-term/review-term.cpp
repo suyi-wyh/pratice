@@ -164,6 +164,31 @@ bool CheckHuiwen(SNelem* h)  //判断链表的回文结构
         return false;
 }
 
+SNelem *NPrint(SNelem *h,int k)  //输出链表倒数第k个节点
+{
+    SNelem* slow, * fast;
+    slow = fast = h;
+    for (int i = 1; i < k; i++)
+    {
+        if (fast == NULL)
+            return NULL;
+        fast = fast->next;
+    }
+    while (fast->next!=NULL)
+    {
+        slow = slow->next;
+        fast = fast->next;
+    }
+    return slow;
+}
+
+//栈
+typedef struct stack
+{
+    int top;
+    int* date;
+    int maxsize;
+}stack;
 
 int ForgJump(int n)   //青蛙跳台阶
 {
@@ -174,15 +199,64 @@ int ForgJump(int n)   //青蛙跳台阶
     if (n == 2)
         return 2;
     else
-        return ForgJump(n-1) + ForgJump(n-2);
+        return ForgJump(n - 1) + ForgJump(n - 2);
 }
-//栈
-typedef struct stack
+
+
+int Feibonanci(int n)    //斐波那契数列
+// 0   1  1  2   3   5   8    13
+
 {
-    int top;
-    int* date;
-    int maxsize;
-}stack;
+    //用来存放前100项斐波那契数列
+    if (n == 1)
+        return 0;
+    if (n == 2)
+        return 1;
+    else
+        return Feibonanci(n - 1) + Feibonanci(n - 2);
+}
+
+int  Feibonanci_t(int n)   //斐波那契数列非递归
+
+//   1    1   2  3  5  8  13
+{
+	int front, rear,nums;
+	nums = front = rear = 1;
+    for (; n > 2; n--)
+    {
+        nums = front + rear;
+        front = rear;
+        rear = nums;
+    }
+    return nums;
+}
+
+
+int  ChkBrackets(char *str)             // 花括号匹配
+{
+    int top = -1;
+    char* stack = (char *)malloc(10 *sizeof(char));
+    while (*str != '\0')
+    {
+        if (*str == '(')
+        {
+            ++top;
+            *(stack + top) = *str;
+        }
+        else if (*str == ')')
+        {
+            if (top == -1)
+                return -1;
+            else
+                --top;
+        }
+        *(str++);
+    }
+    if (top == -1)
+        return 1;
+    else if (top >= 0)
+        return -1;
+}
 //
 int main()
 {
@@ -196,15 +270,19 @@ int main()
     Print(&L);
     printf("\n\n\n\n\n");*/
 
-    int a[8] = {1,2,3,4,4,3,2,1};
+    int a[8] = {8,7,6,5,4,3,2,1};
     SNelem* head;
     head = Init(a,8);
-    if (CheckHuiwen(head))
+    /*if (CheckHuiwen(head))
         printf("YES");
     else
         printf("NO");
     printf("\n\n\n");
-    printf("最大值是%d\n",CompareMax(head));
+    printf("最大值是%d\n",CompareMax(head));*/
+    SNelemPrint(head);
+    printf("倒数第三个是：%d\n", NPrint(head, 3)->date);
+    printf("第五项%d\n", Feibonanci(8));
+    printf("第五项%d\n", Feibonanci_t(8));
     /*SNelemPrint(head);
     head = RetBack(head);
     SNelemPrint(head);*/
