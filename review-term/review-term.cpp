@@ -283,6 +283,9 @@ int main()
     printf("倒数第三个是：%d\n", NPrint(head, 3)->date);
     printf("第五项%d\n", Feibonanci(8));
     printf("第五项%d\n", Feibonanci_t(8));
+
+    char str[] = "(((111))))";
+    printf("%d\n", ChkBrackets(str));
     /*SNelemPrint(head);
     head = RetBack(head);
     SNelemPrint(head);*/
