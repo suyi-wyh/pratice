@@ -61,7 +61,7 @@ typedef struct Node
 {
     int date;
     struct Node* next;
-}SNelem;
+}SNelem,ListNode;
 
 SNelem* Init(int a[], int n)
 {
@@ -162,6 +162,42 @@ bool CheckHuiwen(SNelem* h)  //判断链表的回文结构
         return true;
     else
         return false;
+}
+
+ListNode* partition(ListNode* pHead, int x) {
+    // write code here
+    ListNode* small, * psmall;
+    ListNode* big, * pbig;
+    ListNode* cur = pHead;
+    psmall = small = pbig = big = NULL;
+    while (cur)
+    {
+        if (cur->date < x)
+        {
+            if (small == NULL)
+                small = psmall = cur;
+            else
+            {
+                psmall = psmall->next = cur;
+            }
+        }
+        else
+        {
+            if (big == NULL)
+                big = pbig = cur;
+            else
+            {
+                pbig = pbig->next = cur;
+            }
+        }
+        cur = cur->next;
+    }
+
+    pbig->next = NULL;
+    psmall->next = big;
+
+    return small;
+
 }
 
 SNelem *NPrint(SNelem *h,int k)  //输出链表倒数第k个节点
