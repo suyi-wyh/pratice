@@ -266,7 +266,47 @@ int  Feibonanci_t(int n)   //斐波那契数列非递归
     }
     return nums;
 }
+//括号匹配
+bool isValid(char* s)
+{
 
+    int top = -1;
+    char* stack = (char*)malloc(10 * sizeof(char));
+    int i = 0;
+    while (s[i] != '\0')
+    {
+        //入栈
+        if (s[i] == '(' || s[i] == '{' || s[i] == '[')
+            stack[++top] = s[i];
+        //出栈
+        else if (s[i] == ')')
+        {
+            if (stack[top] == '(')
+                top--;
+            else
+                return false;
+        }
+        else if (s[i] == ']')
+        {
+            if (stack[top] == '[')
+                top--;
+            else
+                return false;
+        }
+        else if (s[i] == '}')
+        {
+            if (stack[top] == '{')
+                top--;
+            else
+                return false;
+        }
+        i++;
+    }
+    if (top == -1)
+        return true;
+    else
+        return false;
+}
 
 int  ChkBrackets(char *str)             // 花括号匹配
 {
@@ -315,13 +355,17 @@ int main()
         printf("NO");
     printf("\n\n\n");
     printf("最大值是%d\n",CompareMax(head));*/
-    SNelemPrint(head);
-    printf("倒数第三个是：%d\n", NPrint(head, 3)->date);
-    printf("第五项%d\n", Feibonanci(8));
-    printf("第五项%d\n", Feibonanci_t(8));
+    
+    //SNelemPrint(head);
+    //printf("倒数第三个是：%d\n", NPrint(head, 3)->date);
+    //printf("第五项%d\n", Feibonanci(8));
+    // printf("第五项%d\n", Feibonanci_t(8));
 
-    char str[] = "(((111))))";
-    printf("%d\n", ChkBrackets(str));
+    char str[] = "((((111))))";
+    if (isValid(str))
+        printf("YES");
+    else
+        printf("NO");
     /*SNelemPrint(head);
     head = RetBack(head);
     SNelemPrint(head);*/

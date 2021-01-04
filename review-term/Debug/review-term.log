@@ -1,3 +1,3 @@
 ﻿  review-term.cpp
-D:\bite\bite——pratice\pratice\review-term\review-term.cpp(259): warning C4715: “ChkBrackets”: 不是所有的控件路径都返回值
+D:\bite\bite——pratice\pratice\review-term\review-term.cpp(335): warning C4715: “ChkBrackets”: 不是所有的控件路径都返回值
   review-term.vcxproj -> D:\bite\bite——pratice\pratice\review-term\Debug\review-term.exe
