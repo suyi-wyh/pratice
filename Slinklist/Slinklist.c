@@ -9,7 +9,7 @@ typedef struct node
 {
     SLdatatype val;
     struct node* next;
-}LINKList;
+}LINKList,ListNode;
 
 LINKList* Init(int a[],int n)
 {
@@ -61,6 +61,50 @@ void Print(LINKList *h)
         printf("%d  ",p->val);
 }
 
+ListNode* deleteDuplication(ListNode* pHead)    //原地删除所有重复节点
+{
+
+    if (!pHead || !pHead->next)
+        return pHead;
+
+    ListNode* cur = pHead->next;
+    ListNode* pre = pHead;
+
+
+    while (cur && cur->val == pre->val)
+    {
+        while (cur && cur->val == pre->val)
+            cur = cur->next;
+        if (!cur)
+            return NULL;
+        pre = pHead = cur;
+        if (!pHead)
+            return NULL;
+        cur = pre->next;
+    }
+    if (!cur)
+        return pHead;
+    cur = cur->next;
+    while (cur)
+    {
+        if (cur->val == pre->next->val)
+        {
+            while (cur && cur->val == pre->next->val)
+            {
+                cur = cur->next;
+            }
+            pre->next = cur;
+            if (cur != NULL)
+                cur = cur->next;
+        }
+        else
+        {
+            cur = cur->next;
+            pre = pre->next;
+        }
+    }
+    return pHead;
+}
 int main()
 {
     int a[] = { 1,2,3,4,5,6,7,8 };
