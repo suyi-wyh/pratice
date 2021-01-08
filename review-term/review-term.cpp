@@ -326,12 +326,35 @@ int  ChkBrackets(char *str)             // 花括号匹配
             else
                 --top;
         }
-        *(str++);
+        str++;
     }
     if (top == -1)
         return 1;
     else if (top >= 0)
         return -1;
+}
+
+void HeapSort(int *a, int n)
+{
+
+}
+
+void AdjustDown(int *a,int n,int root)  //向下调整
+{
+    int parent = root;
+    int child = parent * 2 + 1;
+    if (child > n)
+        return;
+    if (child + 1 > n && a[child + 1] < a[child])
+        ++child;
+    if (a[parent] < a[child])
+    {
+        int nums = a[parent];
+        a[parent] = a[child];
+        a[child] = nums;
+    }
+    AdjustDown(a, n, root * 2 + 1);
+    AdjustDown(a, n, root * 2 + 2);
 }
 //
 int main()
