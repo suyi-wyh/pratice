@@ -1,7 +1,0 @@
-D:\bite\bite——pratice\pratice\binary_search\bin\Debug\binary_search.exe.config
-D:\bite\bite——pratice\pratice\binary_search\bin\Debug\binary_search.exe
-D:\bite\bite——pratice\pratice\binary_search\bin\Debug\binary_search.pdb
-D:\bite\bite——pratice\pratice\binary_search\obj\Debug\binary_search.csprojAssemblyReference.cache
-D:\bite\bite——pratice\pratice\binary_search\obj\Debug\binary_search.csproj.CoreCompileInputs.cache
-D:\bite\bite——pratice\pratice\binary_search\obj\Debug\binary_search.exe
-D:\bite\bite——pratice\pratice\binary_search\obj\Debug\binary_search.pdb
