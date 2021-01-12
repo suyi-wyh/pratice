@@ -1,7 +1,0 @@
-D:\VSoutside\c#\Queue_1\Queue_1\bin\Debug\Queue_1.exe.config
-D:\VSoutside\c#\Queue_1\Queue_1\bin\Debug\Queue_1.exe
-D:\VSoutside\c#\Queue_1\Queue_1\bin\Debug\Queue_1.pdb
-D:\VSoutside\c#\Queue_1\Queue_1\obj\Debug\Queue_1.csprojAssemblyReference.cache
-D:\VSoutside\c#\Queue_1\Queue_1\obj\Debug\Queue_1.csproj.CoreCompileInputs.cache
-D:\VSoutside\c#\Queue_1\Queue_1\obj\Debug\Queue_1.exe
-D:\VSoutside\c#\Queue_1\Queue_1\obj\Debug\Queue_1.pdb
