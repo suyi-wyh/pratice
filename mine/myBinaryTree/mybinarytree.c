@@ -13,7 +13,8 @@ BinaryTreeNode* InitTree(int *a,int nums)  //建树
 {
 	BinaryTreeNode* root;
 	root = NULL;
-	while ()
+
+	for(int i=0;i<nums;++i)
 	{
 
 	}
@@ -56,6 +57,15 @@ int TreeSize(BinaryTreeNode *root)  //求树大小
 		return 0;
 	return TreeSize(root->_right)+TreeSize(root->_left)+1;
 
+}
+
+int TreeLeafSize(BinaryTreeNode *root)   //叶子数
+{
+	if (root == NULL)
+		return 0;
+	if (root->_left == NULL && root->_right == NULL)
+		return 1;
+	return TreeLeafSize(root->_left) + TreeLeafSize(root->_right);
 }
 
 int main()
