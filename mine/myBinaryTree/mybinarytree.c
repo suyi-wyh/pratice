@@ -146,6 +146,28 @@ BOOL isBalanced(struct TreeNode* root)  //判断平衡二叉树
 	return isBalanced(root->_left) && isBalanced(root->_right);
 }
 
+BOOL _isBalanced(BinaryTreeNode* root,int *flag)   //判断平衡二叉树  O(n)   flag用于记录高度
+{
+	if (!root)
+	{
+		*flag = 0;
+		return TRUE;
+	}
+	else
+	{
+		int leftdepth = 0;
+		if(_isBalanced(root->_left, &leftdepth) == FALSE)
+			return FALSE;
+		int rightdepth = 0;
+		if (_isBalanced(root->_right, &rightdepth) == FALSE)
+			return FALSE;
+		if (abs(leftdepth - rightdepth) > 1)
+			return FALSE;
+		*flag = leftdepth > rightdepth ? leftdepth + 1 : rightdepth + 1;
+		return TRUE;
+	}
+}
+
 struct TreeNode* invertTree(struct TreeNode* root) {  //翻转二叉树
 
 	if (root != NULL)
