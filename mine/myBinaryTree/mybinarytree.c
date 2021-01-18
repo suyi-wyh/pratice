@@ -88,6 +88,21 @@ int maxDepth(struct TreeNode* root)   //  ¶ş²æÊ÷Éî¶È
 	right = maxDepth(root->_right);
 	return left > right ? left + 1 : right + 1;
 }
+
+
+struct TreeNode* invertTree(struct TreeNode* root) {
+
+	if (root != NULL)
+	{
+		struct TreeNode* newnode;
+		newnode = root->_left;
+		root->_left = root->_right;
+		root->_right = newnode;
+		invertTree(root->_left);
+		invertTree(root->_right);
+	}
+	return root;
+}
 int main()
 {
 	return 0;
