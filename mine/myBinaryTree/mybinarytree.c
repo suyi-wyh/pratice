@@ -1,12 +1,10 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
 
-typedef struct BinaryTreeNode
+#include"mybinarytree.h"
+typedef struct TreeNode
 {
 	int _val;
-	struct BinaryTreeNode* _left;
-	struct BinaryTreeNode* _right;
+	struct TreeNode* _left;
+	struct TreeNode* _right;
 }BinaryTreeNode;
 
 BinaryTreeNode* InitTree(int *a,int nums)  //建树
@@ -68,6 +66,17 @@ int TreeLeafSize(BinaryTreeNode *root)   //叶子数
 	return TreeLeafSize(root->_left) + TreeLeafSize(root->_right);
 }
 
+BOOL isUnivalTree(struct TreeNode* root)  // 单值二叉树
+{
+	if (!root)
+		return TRUE;
+	int flag = root->_val;
+	if (root->_left != NULL && root->_left->_val != flag)
+		return FALSE;
+	if (root->_right != NULL && root->_right->_val != flag)
+		return FALSE;
+	return isUnivalTree(root->_left) && isUnivalTree(root->_right);
+}
 int main()
 {
 	return 0;
