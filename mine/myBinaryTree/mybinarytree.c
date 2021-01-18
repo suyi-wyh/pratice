@@ -136,6 +136,15 @@ int maxDepth(struct TreeNode* root)   //  二叉树深度
 	return left > right ? left + 1 : right + 1;
 }
 
+BOOL isBalanced(struct TreeNode* root)  //判断平衡二叉树
+{
+	if (NULL == root)
+		return TRUE;
+	int flag = abs(maxDepth(root->_left) - maxDepth(root->_right));
+	if (flag > 1)
+		return FALSE;
+	return isBalanced(root->_left) && isBalanced(root->_right);
+}
 
 struct TreeNode* invertTree(struct TreeNode* root) {  //翻转二叉树
 
