@@ -77,6 +77,17 @@ BOOL isUnivalTree(struct TreeNode* root)  // 单值二叉树
 		return FALSE;
 	return isUnivalTree(root->_left) && isUnivalTree(root->_right);
 }
+
+int maxDepth(struct TreeNode* root)   //  二叉树深度
+{
+
+	int left, right;
+	if (!root)
+		return 0;
+	left = maxDepth(root->_left);
+	right = maxDepth(root->_right);
+	return left > right ? left + 1 : right + 1;
+}
 int main()
 {
 	return 0;
