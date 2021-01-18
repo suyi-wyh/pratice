@@ -2,30 +2,66 @@
 #include"mybinarytree.h"
 typedef struct TreeNode
 {
-	int _val;
+	BTtype _val;
 	struct TreeNode* _left;
 	struct TreeNode* _right;
 }BinaryTreeNode;
 
-BinaryTreeNode* InitTree(int *a,int nums)  //建树
+BinaryTreeNode* InitTree(BTtype *a,int nums)  //建树
 {
 	BinaryTreeNode* root;
 	root = NULL;
-
-	for(int i=0;i<nums;++i)
+	BinaryTreeNode* cur,*prev;
+	for (int i = 0; i < nums; ++i)
 	{
-
+		BinaryTreeNode* newnode = (BinaryTreeNode*)malloc(sizeof(BinaryTreeNode));
+		newnode->_val = a[i];
+		newnode->_left = NULL;
+		newnode->_right = NULL;
+		if (NULL == root)
+		{
+			root = cur = newnode;
+		}
+		else
+		{
+			
+			while (TRUE)
+			{
+				if (cur != NULL)
+				{
+					prev = cur;
+					if (newnode->_val < cur->_val)
+					{
+						cur = cur->_left;
+					}
+					else if (newnode->_val > cur->_val)
+					{
+						
+						cur = cur->_right;
+					}
+				}
+				else
+				{
+					if (prev->_val > newnode->_val)
+						prev->_left = newnode;
+					else
+						prev->_right = newnode;
+					break;
+				}
+			}
+			cur = root;
+		}
 	}
 	return root;
 }
 
-void Inorder(BinaryTreeNode *root)    //中序遍历
+void InOrder(BinaryTreeNode *root)    //中序遍历
 {
 	if (root != NULL)
 	{
-		Inorder(root->_left);
+		InOrder(root->_left);
 		printf("%d\n",root->_val);
-		Inorder(root->_right);
+		InOrder(root->_right);
 	}
 }
 
@@ -66,6 +102,17 @@ int TreeLeafSize(BinaryTreeNode *root)   //叶子数
 	return TreeLeafSize(root->_left) + TreeLeafSize(root->_right);
 }
 
+void TreeDestory(BinaryTreeNode **root)   //二叉树的销毁
+{
+	if (*root != NULL)
+	{
+		TreeDestory(&((*root)->_left));
+		TreeDestory(&((*root)->_right));
+	}
+	free(*root);
+	*root = NULL;
+}
+
 BOOL isUnivalTree(struct TreeNode* root)  // 单值二叉树
 {
 	if (!root)
@@ -90,7 +137,7 @@ int maxDepth(struct TreeNode* root)   //  二叉树深度
 }
 
 
-struct TreeNode* invertTree(struct TreeNode* root) {
+struct TreeNode* invertTree(struct TreeNode* root) {  //翻转二叉树
 
 	if (root != NULL)
 	{
@@ -103,7 +150,14 @@ struct TreeNode* invertTree(struct TreeNode* root) {
 	}
 	return root;
 }
+
+
 int main()
 {
+	int a[6] = { 4,3,5,2,1,6 };
+	BinaryTreeNode* root = InitTree(a,6);
+	InOrder(root);
+	TreeDestory(&root);
+	InOrder(root);
 	return 0;
 }
