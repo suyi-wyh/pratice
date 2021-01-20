@@ -3,7 +3,7 @@
 
 
 
-int QueueEmpty(queue *que)
+int QueueEmpty(queue* que)
 {
 	if (NULL == que)
 		return 1;
@@ -11,26 +11,26 @@ int QueueEmpty(queue *que)
 		return 0;
 }
 
-void QueueInit(queue *que)
+void QueueInit(queue* que)
 {
-	que = (QUEUE_TYPE*)malloc(sizeof(QUEUE_TYPE));
+	que = (queue*)malloc(sizeof(queue));
 	que = NULL;
 }
 
-void QueuePush(queue *que,QUEUE_TYPE num)
+void QueuePush(queue* que, QUEUE_TYPE num)
 {
 	if (NULL == que->_front)
 		que->_front = num;
 	else
 	{
-		queue* newnode=(queue*)malloc(sizeof(queue));
+		queue* newnode = (queue*)malloc(sizeof(queue));
 		newnode->_front = num;
 		newnode->next = NULL;
 		que->next = newnode;
 	}
 }
 
-void QueuePop(queue *que)
+void QueuePop(queue* que)
 {
 	if (!QueueEmpty(que))
 		return;
@@ -38,7 +38,7 @@ void QueuePop(queue *que)
 		que = que->next;
 }
 
-QUEUE_TYPE QueueFront(queue *que)
+QUEUE_TYPE QueueFront(queue* que)
 {
 	return que->_front;
 }
@@ -52,7 +52,7 @@ int QueueNums(queue* que)
 	}
 	return nums;
 }
-QUEUE_TYPE QueueBack(queue *que)
+QUEUE_TYPE QueueBack(queue* que)
 {
 	queue* newnode = que;
 	while (newnode->next)
@@ -62,7 +62,7 @@ QUEUE_TYPE QueueBack(queue *que)
 	return newnode->_front;
 }
 
-void QueueDestory(queue *que)
+void QueueDestory(queue* que)
 {
 	if (NULL == que)
 		return;
