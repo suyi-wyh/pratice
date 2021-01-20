@@ -1,0 +1,7 @@
+D:\VSoutside\c#\TREE\Threaded_Binary_Tree\bin\Debug\Threaded_Binary_Tree.exe.config
+D:\VSoutside\c#\TREE\Threaded_Binary_Tree\bin\Debug\Threaded_Binary_Tree.exe
+D:\VSoutside\c#\TREE\Threaded_Binary_Tree\bin\Debug\Threaded_Binary_Tree.pdb
+D:\VSoutside\c#\TREE\Threaded_Binary_Tree\obj\Debug\Threaded_Binary_Tree.csprojAssemblyReference.cache
+D:\VSoutside\c#\TREE\Threaded_Binary_Tree\obj\Debug\Threaded_Binary_Tree.csproj.CoreCompileInputs.cache
+D:\VSoutside\c#\TREE\Threaded_Binary_Tree\obj\Debug\Threaded_Binary_Tree.exe
+D:\VSoutside\c#\TREE\Threaded_Binary_Tree\obj\Debug\Threaded_Binary_Tree.pdb
