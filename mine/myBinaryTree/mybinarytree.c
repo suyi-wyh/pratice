@@ -1,11 +1,7 @@
 
 #include"mybinarytree.h"
-typedef struct TreeNode
-{
-	BTtype _val;
-	struct TreeNode* _left;
-	struct TreeNode* _right;
-}BinaryTreeNode;
+#include"myqueue.h"
+
 
 BinaryTreeNode* InitTree(BTtype *a,int nums)  //建树
 {
@@ -55,6 +51,26 @@ BinaryTreeNode* InitTree(BTtype *a,int nums)  //建树
 	return root;
 }
 
+BinaryTreeNode* CreatTree(char* str, int* num)   //字符建树
+{
+	if ('#' == str[*num])    // '#'代表null
+	{
+		*num += 1;
+		return NULL;
+	}
+	else
+	{
+		BinaryTreeNode* root = (BinaryTreeNode*)malloc(sizeof(BinaryTreeNode));
+		root->_val = str[*num];
+		root->_left = NULL;
+		root->_right = NULL;
+		*num += 1;
+		root->_left = CreatTree(str, num);
+		root->_right = CreatTree(str, num);
+		return root;
+	}
+}
+
 void InOrder(BinaryTreeNode *root)    //中序遍历
 {
 	if (root != NULL)
@@ -75,7 +91,7 @@ void PrevOrder(BinaryTreeNode *root)   // 前序遍历
 	}
 }
 
-void PostOrder(BinaryTreeNode *root)  // 后序遍历
+void PostOrder(BinaryTreeNode* root)  // 后序遍历
 {
 	if (NULL != root)
 	{
@@ -84,6 +100,34 @@ void PostOrder(BinaryTreeNode *root)  // 后序遍历
 		printf("%d\n", root->_val);
 	}
 }
+int BinaryTreeLevelKSize(BinaryTreeNode* root,int k)   //第k层节点个数
+{
+	if (!root)
+		return 0;
+	if (1 == k)
+		return 1;
+	return BinaryTreeLevelKSize(root->_left, k - 1) + BinaryTreeLevelKSize(root->_right,k-1);
+}
+
+//void LevelOrder(BinaryTreeNode* root) //层序遍历
+//{                                    // 利用队列根入队，孩子进队， 出队时带孩子入队 队列空时遍历结束
+//	if (!root)
+//		return;
+//	queue* treeque;
+//	QueueInit(treeque);
+//	QueuePush(treeque, root->_val);
+//	while (!QueueEmpty(treeque))
+//	{
+//		BinaryTreeNode* front = QueueFront(treeque);
+//		printf("%d \n", treeque->_front);
+//		QueuePop(treeque);
+//		if (NULL != root->_left)
+//			QueuePush(treeque, front->_left);
+//		if (NULL != root->_right)
+//			QueuePush(treeque, front->_right);
+//	}
+//}
+
 
 int TreeSize(BinaryTreeNode *root)  //求树大小
 {
