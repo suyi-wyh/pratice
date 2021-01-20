@@ -3,7 +3,12 @@
 
 int QueueEmpty(queue* que)
 {
-	if (NULL == que->_front)
+	if (!que)
+	{
+		printf("未构建队列");
+		exit(0);
+	}
+	if (NULL == que->_front&&que->_front == que->_tail)
 		return 1;
 	else
 		return 0;
@@ -18,7 +23,7 @@ queue* QueueInit()
 
 void QueuePush(queue* que, QUEUE_TYPE num)        //入队
 { 
-	if (que->_front == NULL)
+	if (QueueEmpty(que))
 	{
 		que->_front = (queuenode*)malloc(sizeof(queuenode));
 		que->_front->_data = num;
@@ -38,7 +43,7 @@ void QueuePush(queue* que, QUEUE_TYPE num)        //入队
 
 void QueuePop(queue* que)     //出队
 {
-	if (NULL == que->_front && que->_front == que->_tail)
+	if (QueueEmpty(que))
 		return;
 
 	if (NULL != que->_front && que->_front == que->_tail)
@@ -53,6 +58,8 @@ void QueuePop(queue* que)     //出队
 
 queuenode* QueueFront(queue* que)    //获取队首元素
 {
+	if (QueueEmpty(que))
+		return NULL;
 	return que->_front;
 }
 
