@@ -1,0 +1,2 @@
+C:\Users\mydell\Desktop\ConsoleApplication1\Debug\ConsoleApplication1.exe
+C:\Users\mydell\Desktop\ConsoleApplication1\Debug\ConsoleApplication1.pdb
