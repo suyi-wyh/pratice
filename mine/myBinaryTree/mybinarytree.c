@@ -168,6 +168,24 @@ BOOL _isBalanced(BinaryTreeNode* root,int *flag)   //ÅÐ¶ÏÆ½ºâ¶þ²æÊ÷  O(n)   flag
 	}
 }
 
+BOOL isSameTree(struct TreeNode* s, struct TreeNode* t)  //ÅÐ¶ÏÊ÷ÊÇ·ñÏàÍ¬
+{
+	if (NULL == s && NULL == t)
+		return TRUE;
+	return s && t &&
+		s->_val == t->_val && 
+		isSameTree(s->_left, t->_left) && isSameTree(s->_right, t->_right);
+}
+BOOL isSubtree(struct TreeNode* s, struct TreeNode* t)    //ÅÐ¶ÏtÊÇ·ñÎªsµÄ×ÓÊ÷
+{
+	if (NULL == s && NULL == t)
+		return TRUE;
+	if (NULL == s && NULL != t)
+		return FALSE;
+	return isSameTree(s, t)
+		|| isSubtree(s->_left, t)
+		|| isSubtree(s->_right, t);
+}
 struct TreeNode* invertTree(struct TreeNode* root) {  //·­×ª¶þ²æÊ÷
 
 	if (root != NULL)
@@ -182,13 +200,31 @@ struct TreeNode* invertTree(struct TreeNode* root) {  //·­×ª¶þ²æÊ÷
 	return root;
 }
 
-
+BOOL isdef(struct TreeNode* left, struct TreeNode* right)  //ÅÐ¶Ï×óÓÒÊÇ·ñÏàµÈÊ÷
+{
+	if (left == NULL && right == NULL)
+		return TRUE;
+	if (left == NULL || right == NULL)
+		return FALSE;
+	if (left->_val == right->_val)
+		return isdef(left->_left, right->_right) && isdef(left->_right, right->_left);
+	return FALSE;
+}
+BOOL isSymmetric(struct TreeNode* root)   //ÅÐ¶ÏÊÇ·ñ¾µÏñÊ÷¡£
+{
+	if (!root)
+		return TRUE;
+	return isdef(root->_left, root->_right);
+}
 int main()
 {
 	int a[6] = { 4,3,5,2,1,6 };
-	BinaryTreeNode* root = InitTree(a,6);
+	BinaryTreeNode* root = InitTree(a, 6);
 	InOrder(root);
-	TreeDestory(&root);
-	InOrder(root);
+	int b[6] = { 4,3,5,2,1,6 };
+	BinaryTreeNode* root1 = InitTree(b, 6);
+	InOrder(root1);
+	printf("%d\n",isSameTree(root, root1));
+
 	return 0;
 }
