@@ -80,6 +80,27 @@ void InOrder(BinaryTreeNode *root)    //中序遍历
 	}
 }
 
+
+void _InOrder(BinaryTreeNode* root)   // 非递归中序遍历
+{
+	if (!root)
+		return;
+	BinaryTreeNode** stack = (BinaryTreeNode**)malloc(1000 * sizeof(BinaryTreeNode*));
+	int top = 0;
+	while (root !=NULL||top>0)
+	{
+		while (root!=NULL)
+		{
+			stack[top++] = root;
+			root = root->_left;
+		}
+		root = stack[--top];
+		printf("%d \n",root->_val);
+		root = root->_right;
+	}
+}
+
+
 void PrevOrder(BinaryTreeNode *root)   // 前序遍历
 {
 	if (NULL != root)
@@ -90,6 +111,25 @@ void PrevOrder(BinaryTreeNode *root)   // 前序遍历
 	}
 }
 
+void _PrevOrder(BinaryTreeNode* root)  //迭代前序遍历
+{
+	BinaryTreeNode** stack = (BinaryTreeNode**)malloc(sizeof(BinaryTreeNode*) * 100);
+	int top = 0;
+	while (root != NULL || top > 0)
+	{
+		while(root!=NULL){
+			printf("%d \n", root->_val);
+			stack[top++] = root;
+			root = root->_left;
+
+		}
+		root = stack[--top];
+		root = root->_right;
+	}
+}
+
+
+
 void PostOrder(BinaryTreeNode* root)  // 后序遍历
 {
 	if (NULL != root)
@@ -99,6 +139,42 @@ void PostOrder(BinaryTreeNode* root)  // 后序遍历
 		printf("%d\n", root->_val);
 	}
 }
+
+
+void _PostOrder(struct TreeNode* root)   //迭代后续遍历
+{
+	
+	if (root == NULL) 
+		return;	
+
+	struct TreeNode** stack = (BinaryTreeNode**)malloc(100 * sizeof(struct TreeNode*));
+	int top = 0;
+	struct TreeNode* prev = NULL;
+
+	while (root != NULL || top > 0) 
+	{
+		while (root != NULL) 
+		{
+			stack[top++] = root;
+			root = root->_left;
+		}
+
+		root = stack[--top];
+
+		if (root->_right == NULL || root->_right == prev) 
+		{
+			printf("%d \n",root->_val);
+			prev = root;
+			root = NULL;
+		}
+		else 
+		{
+			stack[top++] = root;
+			root = root->_right;
+		}
+	}
+}
+
 int BinaryTreeLevelKSize(BinaryTreeNode* root,int k)   //第k层节点个数
 {
 	if (!root)
@@ -210,6 +286,7 @@ BOOL _isBalanced(BinaryTreeNode* root,int *flag)   //判断平衡二叉树  O(n)   flag
 	}
 }
 
+
 BOOL isSameTree(struct TreeNode* s, struct TreeNode* t)  //判断树是否相同
 {
 	if (NULL == s && NULL == t)
@@ -242,7 +319,7 @@ struct TreeNode* invertTree(struct TreeNode* root) {  //翻转二叉树
 	return root;
 }
 
-BOOL isdef(struct TreeNode* left, struct TreeNode* right)  //判断左右是否相等树
+BOOL isdef(struct TreeNode* left, struct TreeNode* right)  //判断左右是否是镜像
 {
 	if (left == NULL && right == NULL)
 		return TRUE;
@@ -252,22 +329,13 @@ BOOL isdef(struct TreeNode* left, struct TreeNode* right)  //判断左右是否相等树
 		return isdef(left->_left, right->_right) && isdef(left->_right, right->_left);
 	return FALSE;
 }
+
+
 BOOL isSymmetric(struct TreeNode* root)   //判断是否镜像树。
 {
 	if (!root)
 		return TRUE;
 	return isdef(root->_left, root->_right);
 }
-int main()
-{
-	int a[6] = { 4,3,5,2,1,6 };
-	BinaryTreeNode* root = InitTree(a, 6);
-	InOrder(root);
-	LevelOrder(root);
-	//int b[6] = { 4,3,5,2,1,6 };
-	//BinaryTreeNode* root1 = InitTree(b, 6);
-	//InOrder(root1);
-	//printf("%d\n",isSameTree(root, root1));
 
-	return 0;
-}
+

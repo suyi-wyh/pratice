@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="mybinarytree.c" />
     <ClCompile Include="myqueue.c" />
+    <ClCompile Include="test.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mybinarytree.h" />
