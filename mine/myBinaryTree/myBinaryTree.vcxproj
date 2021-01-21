@@ -140,9 +140,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="mybinarytree.c" />
+    <ClCompile Include="myqueue.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mybinarytree.h" />
+    <ClInclude Include="myqueue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

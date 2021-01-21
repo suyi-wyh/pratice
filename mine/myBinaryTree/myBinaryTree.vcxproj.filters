@@ -18,9 +18,15 @@
     <ClCompile Include="mybinarytree.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="myqueue.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mybinarytree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="myqueue.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
