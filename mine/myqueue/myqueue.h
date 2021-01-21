@@ -23,6 +23,6 @@ int QueueEmpty(queue *que);
 void QueuePush(queue *que ,QUEUE_TYPE num);
 void QueuePop(queue *que);
 void QueueDestory(queue *que);
-queuenode* QueueFront(queue* que);
-queuenode* QueueBack(queue *que);
+QUEUE_TYPE QueueFront(queue* que);
+QUEUE_TYPE QueueBack(queue *que);
 int QueueNums(queue* que);

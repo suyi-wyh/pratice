@@ -56,11 +56,11 @@ void QueuePop(queue* que)     //出队
 		que->_front = que->_front->_next;
 }
 
-queuenode* QueueFront(queue* que)    //获取队首元素
+QUEUE_TYPE QueueFront(queue* que)    //获取队首元素
 {
 	if (QueueEmpty(que))
 		return NULL;
-	return que->_front;
+	return que->_front->_data;
 }
 
 
@@ -76,15 +76,14 @@ int QueueNums(queue* que)   //获取队列长度
 	return nums;
 }
 
-
-queuenode* QueueBack(queue* que)    //获取队尾元素
+QUEUE_TYPE QueueBack(queue* que)    //获取队尾元素
 {
 	queuenode* cur = que->_front;
 	while (cur->_next)
 	{
 		cur = cur->_next;
 	}
-	return cur;
+	return cur->_data;
 }
 
 void QueueDestory(queue* que)   //销毁队列
@@ -108,12 +107,12 @@ int main()
 	queue* q = QueueInit();
 	QueuePush(q,1);
 	QueuePush(q,2);
-	printf("%d  \n",QueueFront(q)->_data);
-	printf("%d  \n",QueueFront(q)->_data);
+	printf("%d  \n",QueueFront(q));
+	printf("%d  \n",QueueFront(q));
 	QueuePop(q);
-	printf("%d  \n", QueueFront(q)->_data);
+	printf("%d  \n", QueueFront(q));
 	QueuePop(q);
-	printf("%d  \n", QueueFront(q)->_data);
+	printf("%d  \n", QueueFront(q));
 	QueuePop(q);
 	return 0;
 }
