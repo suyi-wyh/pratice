@@ -3,11 +3,11 @@
 
 int main()
 {
-	int num[] = { 1,2,3,4,5,6,7,8,9 };
+	int num[] = {4,67,3,7,23,7,28,23,785};
 	int nums[] = {9,8,7,6,5,4,3,2,1 };
-	SelectSort(nums, 9);
+	ShellSort(num, 9);
 	for (int i = 0; i < 9; i++)
-		printf("%d \n", nums[i]);
+		printf("%d \n", num[i]);
 	int a = 1;
 	int b = 2;
 	printf("%d  %d\n", a, b);

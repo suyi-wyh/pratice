@@ -7,6 +7,8 @@
 
 void Swap(int* a, int* b)
 {
+	if (*a = *b)
+		return;
 	*a = *a ^ *b;
 	*b = *a ^ *b;
 	*a = *a ^ *b;
@@ -57,6 +59,32 @@ int* SelectSort(int* data,int nums)     //选择排序
 		}
 		if(cur != i)
 			Swap(&data[cur], &data[i]);
+	}
+	return data;
+}
+
+int* ShellSort(int* data, int nums)
+{
+	int gap = nums;
+	while (gap > 1)
+	{
+		gap = gap / 3 + 1;
+		for (int i = 0; i < nums - gap; ++i)
+		{
+			int end = i;
+			int tmp = data[end + gap];
+			while (end >= 0)
+			{
+				if (tmp < data[end])
+				{
+					data[end + gap] = data[end];
+					end -= gap;
+				}
+				else
+					break;
+			}
+			data[end + gap] = tmp;
+		}
 	}
 	return data;
 }
