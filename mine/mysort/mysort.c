@@ -90,6 +90,63 @@ int* ShellSort(int* data, int nums)
 }
 
 
+
+Heap* HeapInit(DATATYPE* data, int n)
+{
+	Heap* heap = (Heap*)malloc( sizeof(Heap));
+	heap->_val = (DATATYPE*)malloc(sizeof(DATATYPE) * n);
+	heap->_capacity = heap->_size = n;
+	for (int i = (n - 1 - 1) / 2; i >= 0; --i)
+		AdJustDown(heap->_val,heap->_size,i);
+
+}
+
+void AdJustDown(DATATYPE* data, int n, int root)   //向下调整  小堆
+{
+	int parent = root;
+	int child = parent * 2 + 1;
+
+	while (child < n)
+	{
+		if (child + 1 >= n);
+		else if (data[child + 1] < data[child])
+		{
+			child += 1;
+		}
+
+		if (data[child] < data[parent])
+		{
+			Swap(&data[child], &data[parent]);
+			parent = child;
+			child = parent * 2 + 1;
+		}
+		else
+			break;
+	}
+}
+
+void AdjustUp(DATATYPE* data,int n, int child)  // 末尾向上调整
+{
+	int parent = (child-1)/2;
+	while (parent >= 0)
+	{
+		if (data[parent] > data[child])
+		{
+			Swap(&data[parent], &data[child]);
+			child = parent;
+			parent = (child - 1) / 2;
+		}
+		else
+			break;
+	}
+}
+
+DATATYPE HeapTop(Heap *heap)
+{
+	return heap->_val[0];
+}
+
+
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
 // 调试程序: F5 或调试 >“开始调试”菜单
 

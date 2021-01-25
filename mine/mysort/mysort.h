@@ -4,12 +4,28 @@
 #include<stdlib.h>
 #include<string.h>
 
-void Swap(int* a,int* b);
+#define DATATYPE int
 
-int* BubbleSort(int* data, int nums);
+typedef struct Heap
+{
+	DATATYPE* _val;
+	DATATYPE _size;
+	DATATYPE _capacity;
+}Heap;
 
-int* InsertSort(int* data, int nums);
+void Swap(DATATYPE* a,DATATYPE* b);
 
-int* SelectSort(int* data, int nums);
+DATATYPE* BubbleSort(DATATYPE* data, DATATYPE nums);
 
-int* ShellSort(int* data, int nums);
+DATATYPE* InsertSort(DATATYPE* data, DATATYPE nums);
+
+DATATYPE* SelectSort(DATATYPE* data, DATATYPE nums);
+
+DATATYPE* ShellSort(DATATYPE* data, DATATYPE nums);
+
+
+void AdJustDown(DATATYPE* data, int n, int root);
+void AdJustUp(DATATYPE* dat, int n, int root);
+Heap* HeapInit(DATATYPE* data, int n);
+DATATYPE HeapTop(Heap* heap);
+void  HeapPop(Heap* heap);
