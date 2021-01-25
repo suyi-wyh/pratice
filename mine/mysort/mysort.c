@@ -98,7 +98,7 @@ Heap* HeapInit(DATATYPE* data, int n)
 	heap->_capacity = heap->_size = n;
 	for (int i = (n - 1 - 1) / 2; i >= 0; --i)
 		AdJustDown(heap->_val,heap->_size,i);
-
+	return heap;
 }
 
 void AdJustDown(DATATYPE* data, int n, int root)   //向下调整  小堆
@@ -125,7 +125,7 @@ void AdJustDown(DATATYPE* data, int n, int root)   //向下调整  小堆
 	}
 }
 
-void AdjustUp(DATATYPE* data,int n, int child)  // 末尾向上调整
+void AdJustUp(DATATYPE* data,int n, int child)  // 末尾向上调整
 {
 	int parent = (child-1)/2;
 	while (parent >= 0)
@@ -141,9 +141,37 @@ void AdjustUp(DATATYPE* data,int n, int child)  // 末尾向上调整
 	}
 }
 
+DATATYPE HeapPop(Heap* heap)
+{
+	DATATYPE tmp = heap->_val[0];
+	Swap(&(heap->_val[0]), &(heap->_val[heap->_size - 1]));
+	heap->_size--;
+	AdJustDown(heap->_val, heap->_size, 0);
+	return tmp;
+}
+
+void HeapPush(Heap* heap, DATATYPE val)
+{
+	if (heap->_capacity == heap->_size)
+	{
+		heap->_capacity *= 2;
+		heap->_val = (DATATYPE*)realloc(heap->_val, heap->_capacity * sizeof(DATATYPE));
+	}
+	heap->_size++;
+	heap->_val[heap->_size-1] = val;
+	AdJustUp(heap->_val, heap->_size, heap->_size - 1);
+}
+
 DATATYPE HeapTop(Heap *heap)
 {
 	return heap->_val[0];
+}
+
+void HeapDestory(Heap *heap)
+{
+	free(heap->_val);
+	heap->_val = NULL;
+	heap->_capacity = heap->_size = 0;
 }
 
 

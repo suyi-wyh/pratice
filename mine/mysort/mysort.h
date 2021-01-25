@@ -25,7 +25,8 @@ DATATYPE* ShellSort(DATATYPE* data, DATATYPE nums);
 
 
 void AdJustDown(DATATYPE* data, int n, int root);
-void AdJustUp(DATATYPE* dat, int n, int root);
+void AdJustUp(DATATYPE* data, int n, int child);
 Heap* HeapInit(DATATYPE* data, int n);
 DATATYPE HeapTop(Heap* heap);
-void  HeapPop(Heap* heap);
+DATATYPE HeapPop(Heap* heap);
+void HeapPush(Heap* heap, int val);
