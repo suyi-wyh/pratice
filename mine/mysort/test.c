@@ -3,9 +3,9 @@
 
 int main()
 {
-	int num[] = {4,67,3,7,23,7,28,23,785};
+	int num[] = {25,67,3,7,23,7,28,23,785};
 	int nums[] = {9,8,7,6,5,4,3,2,1 };
-	ShellSort(num, 9);
+	QuickSort(num, 0,8);
 	for (int i = 0; i < 9; i++)
 		printf("%d \n", num[i]);
 	int a = 1;

@@ -30,3 +30,5 @@ Heap* HeapInit(DATATYPE* data, int n);
 DATATYPE HeapTop(Heap* heap);
 DATATYPE HeapPop(Heap* heap);
 void HeapPush(Heap* heap, int val);
+
+DATATYPE* QuickSort(DATATYPE* data,int left,int right);

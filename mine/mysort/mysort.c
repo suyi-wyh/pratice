@@ -7,7 +7,7 @@
 
 void Swap(int* a, int* b)
 {
-	if (*a = *b)
+	if (*a == *b)
 		return;
 	*a = *a ^ *b;
 	*b = *a ^ *b;
@@ -174,7 +174,27 @@ void HeapDestory(Heap *heap)
 	heap->_capacity = heap->_size = 0;
 }
 
-
+DATATYPE* QuickSort(DATATYPE* data, int left, int right)
+{
+	if (left >= right)
+		return data;
+	int tmp = data[left];
+	int nleft = left;
+	int nright = right;
+	while (left < right)
+	{
+		while (data[right] >= tmp && left < right)
+			right--;
+		while (data[left] <= tmp && left < right)
+			left++;
+		if (left < right)
+			Swap(&data[left],&data[right]);
+	}
+	Swap(&data[nleft], &data[left]);
+	QuickSort(data, nleft, left - 1);
+	QuickSort(data, right + 1, nright);
+	return data;
+}
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
 // 调试程序: F5 或调试 >“开始调试”菜单
 
