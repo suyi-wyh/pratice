@@ -178,6 +178,15 @@ DATATYPE* QuickSort(DATATYPE* data, int left, int right)
 {
 	if (left >= right)
 		return data;
+	int mid = (left + right) / 2;
+	// 三数取中
+	if ((data[left] <= data[right] && data[right] <= data[mid])
+		|| (data[mid] <= data[right] && data[right] <= data[left]))
+		Swap(&data[left], &data[right]);
+	else if ((data[left] <= data[mid] && data[mid] <= data[right])
+		|| (data[right] <= data[mid] && data[mid] <= data[left]))
+		Swap(&data[mid], &data[left]);
+	//  三数取中
 	int tmp = data[left];
 	int nleft = left;
 	int nright = right;
@@ -193,9 +202,10 @@ DATATYPE* QuickSort(DATATYPE* data, int left, int right)
 	Swap(&data[nleft], &data[left]);
 	QuickSort(data, nleft, left - 1);
 	QuickSort(data, right + 1, nright);
-	return data;
+	return data; 
 }
-// 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
+
+// 运行程序: Ctrl F5 或调试 >“开始执行(不调试)”菜单
 // 调试程序: F5 或调试 >“开始调试”菜单
 
 // 入门使用技巧: 
