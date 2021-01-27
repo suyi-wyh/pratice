@@ -139,7 +139,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="mystack.cpp" />
+    <ClCompile Include="mystack.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="mystack.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
