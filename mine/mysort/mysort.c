@@ -3,7 +3,7 @@
 
 
 #include"mysort.h"
-
+#include"mystack.h"
 
 void Swap(int* a, int* b)
 {
@@ -205,6 +205,48 @@ DATATYPE* QuickSort(DATATYPE* data, int left, int right)
 	return data; 
 }
 
+DATATYPE* _QuickSort(DATATYPE* data, int left, int right)
+{
+	stack* st = StackInit();
+	StackPush(st, left);
+	StackPush(st, right);
+
+	while (StackEmpty(st))
+	{
+		int nright = StackPop(st);
+		int nleft = StackPop(st);
+
+
+		int tmp = data[nleft];
+		int pleft = nleft;
+		int pright = nright;
+
+
+		while (pleft < pright)
+		{
+			while (tmp <= data[pright] && pleft < pright)
+				pright--;
+			while (tmp >= data[pleft] && pleft < pright)
+				pleft++;
+			if (pleft < pright)
+				Swap(&data[pright], &data[pleft]);
+		}
+
+		Swap(&data[nleft], &data[pleft]);
+		
+		if (nleft  <  pleft-1)
+		{
+			StackPush(st,nleft);
+			StackPush(st, pleft-1);
+		}
+		if (pright + 1 < nright)
+		{
+			StackPush(st,pright + 1);
+			StackPush(st, nright);
+		}
+	}
+	return data;
+}
 // 运行程序: Ctrl F5 或调试 >“开始执行(不调试)”菜单
 // 调试程序: F5 或调试 >“开始调试”菜单
 

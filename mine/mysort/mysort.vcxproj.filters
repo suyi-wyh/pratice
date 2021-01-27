@@ -21,9 +21,15 @@
     <ClCompile Include="mysort.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="mystack.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mysort.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mystack.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

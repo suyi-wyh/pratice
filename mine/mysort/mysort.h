@@ -32,3 +32,4 @@ DATATYPE HeapPop(Heap* heap);
 void HeapPush(Heap* heap, int val);
 
 DATATYPE* QuickSort(DATATYPE* data,int left,int right);
+DATATYPE* _QuickSort(DATATYPE* data, int left, int right);
