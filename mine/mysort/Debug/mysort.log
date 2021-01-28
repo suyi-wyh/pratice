@@ -1,2 +1,4 @@
-﻿  test.c
+﻿  mysort.c
+D:\bite\bite——pratice\pratice\mine\mysort\mysort.c(255,3): warning C4033: “MergeSort”必须返回值
+D:\bite\bite——pratice\pratice\mine\mysort\mysort.c(282): warning C4715: “MergeSort”: 不是所有的控件路径都返回值
   mysort.vcxproj -> D:\bite\bite——pratice\pratice\mine\mysort\Debug\mysort.exe

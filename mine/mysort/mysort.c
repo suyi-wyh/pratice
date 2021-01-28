@@ -247,6 +247,41 @@ DATATYPE* _QuickSort(DATATYPE* data, int left, int right)
 	}
 	return data;
 }
+
+DATATYPE* MergeSort(DATATYPE* data, int left, int right, DATATYPE* newdata)
+{
+	int mid = (left + right) / 2;
+	if (left >= right)
+		return;
+
+
+	MergeSort(data, left, mid, newdata);
+	MergeSort(data, mid + 1, right, newdata);
+
+	memcpy(newdata + left, data + left, (right - left + 1) * sizeof(int));
+
+
+	int nleft = left;
+	int nright = right;
+	int i = left;
+	int j = mid;
+	int nmid = mid;
+	while (nleft <= mid && nmid + 1 <= nright)
+	{
+		if (newdata[nleft] < newdata[nmid + 1])
+			data[i++] = newdata[nleft++];
+		else
+			data[i++] = newdata[(nmid++) + 1];
+	}
+
+	while (nleft <= mid)
+		data[i++] = newdata[nleft++];
+	while (nmid + 1 <= nright)
+		data[i++] = newdata[(nmid++) + 1];
+
+	return data;
+}
+
 // 运行程序: Ctrl F5 或调试 >“开始执行(不调试)”菜单
 // 调试程序: F5 或调试 >“开始调试”菜单
 
