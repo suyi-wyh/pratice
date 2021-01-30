@@ -1,0 +1,2 @@
+D:\VSoutside\c\SQLIST\SQLIST\Debug\SQLIST.exe
+D:\VSoutside\c\SQLIST\SQLIST\Debug\SQLIST.pdb
