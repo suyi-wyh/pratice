@@ -3,6 +3,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include<math.h>
+
 /// <summary>
 /// 634 子数组最大平均数
 /// </summary>
@@ -26,12 +28,14 @@ double findMaxAverage(int* nums, int numsSize, int k)
     return returnNums;
 }
 /// <summary>
-/// 
+/// 634 子数组最大平均数
 /// </summary>
 /// <returns></returns>
 int main()
 {
-    
+    double a = 1.0;
+    double b = 2.0;
+    printf("%f", fmax(a, b));
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
