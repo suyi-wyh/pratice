@@ -55,7 +55,7 @@ void QuickSort(int* data, int left, int right)
     int mid = (left + right) / 2;
     // 三数取中
     if ((data[left] <= data[right] && data[right] <= data[mid])
-        || (data[mid] <= data[right] && data[right] <= data[left]))
+          || (data[mid] <= data[right] && data[right] <= data[left]))
         Swap(&data[left], &data[right]);
     else if ((data[left] <= data[mid] && data[mid] <= data[right])
         || (data[right] <= data[mid] && data[mid] <= data[left]))
@@ -139,22 +139,41 @@ char* Sort(char* str,int n)
 }
 
 
-void _Sort(int* nums, int numsSize)
-{
-    int i = 0;
-    while (i < numsSize)
-    {
-        int cur = i;
-        for (int j = cur + 1; j < numsSize; j++)
-        {
-            if (nums[j] < nums[cur])
-                cur = j;
-        }
-        Swap(&nums[cur], &nums[i]);
-        i++;
-    }
-}
+//void _Sort(int* nums, int numsSize)
+//{
+//    int i = 0;
+//    while (i < numsSize)
+//    {
+//        int cur = i;
+//        for (int j = cur + 1; j < numsSize; j++)
+//        {
+//            if (nums[j] < nums[cur])
+//                cur = j;
+//        }
+//        Swap(&nums[cur], &nums[i]);
+//        i++;
+//    }
+//}
 
+double findMaxAverage(int* nums, int numsSize, int k)
+{
+    double returnNums = 0;
+    for (int i = 0; i < k; i++)
+        returnNums += nums[i];
+    returnNums = (double)returnNums / (double)k;
+    printf("%f\n", returnNums);
+    double tmp = returnNums;
+    printf("%f\n", tmp);
+    for (int i = 0; i < numsSize - k - 1; ++i)
+    {
+        printf("%f\n", tmp);
+        tmp = (double)((double)(tmp * k) - (double)nums[i] + (double)nums[i + k + 1]) / (double)k;
+        if (returnNums < tmp)
+            returnNums = tmp;
+        printf("这是循环里的%f\n", returnNums);
+    }
+    return returnNums;
+}
 int main()
 {
  /*   char str[21];
@@ -164,7 +183,7 @@ int main()
     char* str1=Sort(str, n);
     for(int i=0;i<n;i++)
         printf("%c", str1[i]);*/
-    int a = 1;
+    /*int a = 1;
     int* x = &a;
     printf("%d\n", *x);
     *x++;
@@ -172,7 +191,10 @@ int main()
     int nums[10] = {5,4,3,65,7,65,32,13,67,41};
     _Sort(nums, 10);
     for(int i=0;i<10;i++)
-        printf("%d  ", nums[i]);
+        printf("%d  ", nums[i]);*/
+    int nums[6] = { 1,12,-5,-6,50,3 };
+    double cur = findMaxAverage(nums, 6, 4);
+    printf("\n这是输出cur%f\n", cur);
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
