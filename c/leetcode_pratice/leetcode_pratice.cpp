@@ -28,14 +28,58 @@ double findMaxAverage(int* nums, int numsSize, int k)
     return returnNums;
 }
 /// <summary>
-/// 634 子数组最大平均数
+/// 1208  尽可能使字符串相等
 /// </summary>
+/// <param name="s"></param>
+/// <param name="t"></param>
+/// <param name="maxCost"></param>
 /// <returns></returns>
+int equalSubstring(char* s, char* t, int maxCost) {
+    int returnNums = 0;
+    int cur = 0;
+    int cost = 0;
+
+    int i = 0;
+    int j = 0;
+    while (s && i < strlen(s))
+    {
+
+        if (cost <= maxCost)
+        {
+            cost += abs(s[i] - t[i]);
+            i++;
+            cur++;
+        }
+        else if (i > j)
+        {
+            cost -= abs(s[j] - t[j]);
+            j++;
+            cur--;
+        }
+        else {
+            j++;
+            i++;
+        }
+
+
+        if (cost <= maxCost && cur > returnNums)
+            returnNums = cur;
+    }
+    return returnNums;
+}
+
+
 int main()
 {
-    double a = 1.0;
-    double b = 2.0;
-    printf("%f", fmax(a, b));
+    int a = abs('r' - 'j');
+    printf("%d\n", a);
+    int b = abs('r' - 'x');
+    printf("%d\n", b);
+    printf("%d\n", a + b);
+    
+    double aa = 1.0;
+    double bb = 2.0;
+    printf("%f", fmax(aa, bb));
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
