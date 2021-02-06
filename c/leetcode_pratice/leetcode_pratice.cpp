@@ -68,6 +68,31 @@ int equalSubstring(char* s, char* t, int maxCost) {
     return returnNums;
 }
 
+/// <summary>
+/// 1423 可获得的最大点数
+/// </summary>
+/// <param name="cardPoints"></param>
+/// <param name="cardPointsSize"></param>
+/// <param name="k"></param>
+/// <returns></returns>
+int maxScore(int* cardPoints, int cardPointsSize, int k)
+{
+    int numSize = cardPointsSize - k;
+    int nums = 0;
+    for (int i = 0; i < numSize; ++i)
+        nums += cardPoints[i];
+    int sum = nums;
+    int cur = nums;
+    for (int i = 0; i < k; ++i)
+    {
+        sum += cardPoints[i + numSize];
+        nums = nums - cardPoints[i] + cardPoints[i + numSize];
+        if (cur > nums)
+            cur = nums;
+    }
+    return sum - cur;
+}
+
 
 int main()
 {
