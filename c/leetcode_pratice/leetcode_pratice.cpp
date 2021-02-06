@@ -6,6 +6,31 @@
 #include<math.h>
 
 /// <summary>
+/// 1 两数之和
+/// </summary>
+/// <param name="nums"></param>
+/// <param name="numsSize"></param>
+/// <param name="target"></param>
+/// <param name="returnSize"></param>
+/// <returns></returns>
+int* twoSum(int* nums, int numsSize, int target, int* returnSize)
+{
+    int* arg = (int*)malloc(sizeof(int) * 2);
+    for (int i = 0; i < numsSize; ++i)
+        for (int j = i + 1; j < numsSize; ++j)
+        {
+            if (nums[i] + nums[j] == target)
+            {
+                arg[0] = i;
+                arg[1] = j;
+                *returnSize = 2;
+                return arg;
+            }
+        }
+    *returnSize = 0;
+    return NULL;
+}
+/// <summary>
 /// 634 子数组最大平均数
 /// </summary>
 /// <param name="nums"></param>
