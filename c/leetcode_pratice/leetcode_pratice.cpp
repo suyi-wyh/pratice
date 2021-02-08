@@ -97,6 +97,40 @@ bool checkPossibility(int* nums, int numsSize) {
     else
         return false;
 }
+
+/// <summary>
+/// 978 最长湍流子数组
+/// </summary>
+/// <param name="arr"></param>
+/// <param name="arrSize"></param>
+/// <returns></returns>
+int maxTurbulenceSize(int* arr, int arrSize) {
+    if (arrSize == 1)
+        return 1;
+    int left = 0, ret = 1, right = 0;
+
+    while (right < arrSize - 1)
+    {
+        if (left == right)
+        {
+            if (arr[left] == arr[left + 1])
+                left++;
+            right++;
+        }
+        else
+        {
+            if (arr[right - 1]<arr[right] && arr[right]>arr[right + 1])
+                right++;
+            else if (arr[right - 1] > arr[right] && arr[right] < arr[right + 1])
+                right++;
+            else
+                left = right;
+        }
+
+        ret = fmax(ret, right - left + 1);
+    }
+    return ret;
+}
 /// <summary>
 /// 1208  尽可能使字符串相等
 /// </summary>
