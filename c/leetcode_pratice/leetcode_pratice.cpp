@@ -52,6 +52,51 @@ double findMaxAverage(int* nums, int numsSize, int k)
     }
     return returnNums;
 }
+
+/// <summary>
+/// 665  非递减数列
+/// </summary>
+/// <param name="nums"></param>
+/// <param name="numsSize"></param>
+/// <returns></returns>
+bool checkPossibility(int* nums, int numsSize) {
+    if (numsSize == 1)
+        return true;
+    int flag;
+    int i = 0;
+    for (; i < numsSize - 1; ++i)
+    {
+        if (nums[i] > nums[i + 1])
+        {
+            flag = i;
+            break;
+        }
+    }
+
+    if (i == numsSize - 1)
+        return true;
+    int tmp = nums[flag];
+    nums[flag] = nums[flag + 1];
+    int j = 0;
+    for (; j < numsSize - 1; j++)
+    {
+        if (nums[j] > nums[j + 1])
+            break;
+    }
+    if (j == numsSize - 1)
+        return true;
+    int z = 0;
+    nums[flag] = nums[flag + 1] = tmp;
+    for (; z < numsSize - 1; z++)
+    {
+        if (nums[z] > nums[z + 1])
+            break;
+    }
+    if (z == numsSize - 1)
+        return true;
+    else
+        return false;
+}
 /// <summary>
 /// 1208  尽可能使字符串相等
 /// </summary>
