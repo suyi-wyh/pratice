@@ -30,6 +30,43 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize)
     *returnSize = 0;
     return NULL;
 }
+
+/// <summary>
+/// 567  字符串的排列
+/// </summary>
+/// <param name="a"></param>
+/// <param name="b"></param>
+/// <returns></returns>
+bool arrcmp(int* a, int* b)
+{
+    for (int i = 0; i < 26; ++i)
+        if (a[i] != b[i])
+            return false;
+    return true;
+}
+bool checkInclusion(char* s1, char* s2) {
+    int s1len = strlen(s1), s2len = strlen(s2);
+    if (s1len > s2len)
+        return false;
+    int s1arr[26], s2arr[26];
+    memset(s1arr, 0, sizeof(s1arr));
+    memset(s2arr, 0, sizeof(s2arr));
+    for (int i = 0; i < s1len; ++i)
+    {
+        ++s2arr[s2[i] - 'a'];
+        ++s1arr[s1[i] - 'a'];
+    }
+    if (arrcmp(s1arr, s2arr))
+        return true;
+    for (int i = 0; i < s2len - s1len; ++i)
+    {
+        --s2arr[s2[i] - 'a'];
+        ++s2arr[s2[i + s1len] - 'a'];
+        if (arrcmp(s1arr, s2arr))
+            return true;
+    }
+    return false;
+}
 /// <summary>
 /// 634 子数组最大平均数
 /// </summary>
