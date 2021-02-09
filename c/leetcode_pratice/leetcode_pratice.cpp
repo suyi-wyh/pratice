@@ -132,6 +132,42 @@ int maxTurbulenceSize(int* arr, int arrSize) {
     return ret;
 }
 /// <summary>
+/// 992  k个不同整数的子数组
+/// </summary>
+/// <param name="A"></param>
+/// <param name="ASize"></param>
+/// <param name="K"></param>
+/// <returns></returns>
+int _subarraysWithKDistinct(int* A, int ASize, int K) {
+
+    int* Fre = (int*)malloc((ASize + 1) * sizeof(int));
+    memset(Fre, 0, sizeof(int) * (ASize + 1));
+    int right = 0, left = 0;
+    int count = 0, res = 0;
+    while (right < ASize)
+    {
+        if (Fre[A[right]] == 0)
+            ++count;
+        ++Fre[A[right]];
+        ++right;
+
+        while (count > K)
+        {
+            Fre[A[left]]--;
+            if (Fre[A[left]] == 0)
+                count--;
+            left++;
+        }
+        res += right - left;
+    }
+    return res;
+}
+
+int subarraysWithKDistinct(int* A, int ASize, int K) {
+    return _subarraysWithKDistinct(A, ASize, K) - _subarraysWithKDistinct(A, ASize, K - 1);
+}
+
+/// <summary>
 /// 1208  尽可能使字符串相等
 /// </summary>
 /// <param name="s"></param>
