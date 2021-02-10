@@ -32,6 +32,42 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize)
 }
 
 /// <summary>
+/// 14 最长公共前缀
+/// </summary>
+/// <param name="strs"></param>
+/// <param name="strsSize"></param>
+/// <returns></returns>
+char* longestCommonPrefix(char** strs, int strsSize) {
+    int flag = 0;
+    if (!strs || strsSize == 0)
+        return NULL;    //  在oj在线时需要将 NULL 改为 ""
+    while (*(*strs + flag))
+    {
+        int g = 0;
+        for (int i = 0; i < strsSize - 1; ++i)
+        {
+            if (!*(strs[i] + flag) || !*(strs[i] + flag) ||
+                (*(strs[i] + flag) != *(strs[i + 1] + flag)))
+            {
+                g = 1;
+                break;
+            }
+        }
+        if (g == 1)
+            break;
+        ++flag;
+    }
+    char* returnStr = (char*)malloc((flag + 1) * sizeof(char));
+    memset(returnStr, 0, (flag + 1) * sizeof(char));
+    for (int i = 0; i < flag; ++i)
+    {
+        returnStr[i] = *(strs[0] + i);
+    }
+    return returnStr;
+
+}
+
+/// <summary>
 /// 567  字符串的排列
 /// </summary>
 /// <param name="a"></param>
