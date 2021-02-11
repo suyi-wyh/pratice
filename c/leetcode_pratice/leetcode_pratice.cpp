@@ -66,7 +66,23 @@ char* longestCommonPrefix(char** strs, int strsSize) {
     return returnStr;
 
 }
+/// <summary>
+/// 119 杨辉三角
+/// </summary>
+/// <param name="rowIndex"></param>
+/// <param name="returnSize"></param>
+/// <returns></returns>
 
+int* getRow(int rowIndex, int* returnSize) {
+    *returnSize = rowIndex + 1;
+    int* returnNums = (int*)malloc(*returnSize * sizeof(int));
+    memset(returnNums, 0, *returnSize * sizeof(int));
+    returnNums[0] = 1;
+    for (int i = 1; i < rowIndex + 1; i++)
+        for (int j = i; j > 0; --j)
+            returnNums[j] += returnNums[j - 1];
+    return returnNums;
+}
 /// <summary>
 /// 567  字符串的排列
 /// </summary>
