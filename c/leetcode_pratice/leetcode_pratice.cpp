@@ -170,7 +170,70 @@ bool checkPossibility(int* nums, int numsSize) {
     else
         return false;
 }
+/// <summary>
+/// 703 数据流中的第k大元素
+/// </summary>
+typedef struct {
+    int* data;
+    int size;
+    int cnt;
+} KthLargest;
 
+KthLargest* Init(int k)
+{
+    KthLargest* Kth = (KthLargest*)malloc(sizeof(KthLargest));
+    Kth->data = (int*)malloc(k * sizeof(int));
+    //memset(Kth->data,0,sizeof(int)*k);
+    for (int i = 0; i < k; i++)
+        Kth->data[i] = -100000;            // 这里因为测试用例偷懒了 这个数比所有测试用例数据小
+    Kth->size = k;
+    Kth->cnt = 0;
+    return Kth;
+}
+
+void adJustDown(int* data, int n, int root)
+{
+    int parent = root;
+    int child = 2 * parent + 1;
+    while (child < n)
+    {
+        if (child + 1 >= n);
+        else if (data[child + 1] < data[child])
+            child++;
+
+        if (data[child] < data[parent])
+        {
+            int tmp = data[child];
+            data[child] = data[parent];
+            data[parent] = tmp;
+            parent = child;
+            child = 2 * child + 1;
+        }
+        else
+            break;
+    }
+}
+KthLargest* kthLargestCreate(int k, int* nums, int numsSize) {
+    KthLargest* Kth = Init(k);
+    for (int i = 0; i < numsSize; ++i)
+        kthLargestAdd(Kth, nums[i]);
+    return Kth;
+}
+
+int kthLargestAdd(KthLargest* obj, int val) {
+    if (val > obj->data[0])
+    {
+        obj->data[0] = val;
+        adJustDown(obj->data, obj->size, 0);
+    }
+    return obj->data[0];
+
+}
+
+void kthLargestFree(KthLargest* obj) {
+    free(obj->data);
+    free(obj);
+}
 /// <summary>
 /// 978 最长湍流子数组
 /// </summary>
