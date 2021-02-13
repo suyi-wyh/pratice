@@ -84,6 +84,25 @@ int* getRow(int rowIndex, int* returnSize) {
     return returnNums;
 }
 /// <summary>
+/// 448 找到所有数组中消失的数字
+/// </summary>
+/// <param name="nums"></param>
+/// <param name="numsSize"></param>
+/// <param name="returnSize"></param>
+/// <returns></returns>
+int* findDisappearedNumbers(int* nums, int numsSize, int* returnSize) {
+    *returnSize = 0;
+    for (int i = 0; i < numsSize; ++i)
+        nums[(nums[i] - 1) % numsSize] += numsSize;
+    int* returnNums = (int*)malloc(numsSize * sizeof(int));
+    for (int i = 0; i < numsSize; ++i)
+    {
+        if (nums[i] <= numsSize)
+            returnNums[(*returnSize)++] = i + 1;
+    }
+    return returnNums;
+}
+/// <summary>
 /// 567  字符串的排列
 /// </summary>
 /// <param name="a"></param>
