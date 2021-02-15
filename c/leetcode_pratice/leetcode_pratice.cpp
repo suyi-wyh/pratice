@@ -125,6 +125,25 @@ int findMaxConsecutiveOnes(int* nums, int numsSize) {
     }
     return flag;
 }
+
+/// <summary>
+/// 561  数组拆分
+/// </summary>
+/// <param name="a"></param>
+/// <param name="b"></param>
+/// <returns></returns>
+int cmp(int* a, int* b) {
+    return *a - *b;
+}
+
+int arrayPairSum(int* nums, int numsSize) {
+
+    qsort(nums, numsSize, sizeof(int), cmp);
+    int sum = 0;
+    for (int i = 0; i < numsSize; i += 2)
+        sum += nums[i];
+    return sum;
+}
 /// <summary>
 /// 567  字符串的排列
 /// </summary>
