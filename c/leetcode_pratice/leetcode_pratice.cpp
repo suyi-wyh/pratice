@@ -102,6 +102,29 @@ int* findDisappearedNumbers(int* nums, int numsSize, int* returnSize) {
     }
     return returnNums;
 }
+
+/// <summary>
+/// 485 最大连续1的个数
+/// </summary>
+/// <param name="nums"></param>
+/// <param name="numsSize"></param>
+/// <returns></returns>
+int findMaxConsecutiveOnes(int* nums, int numsSize) {
+    int flag = 0;
+    for (int i = 0; i < numsSize;)
+    {
+        int  Nums = 0;
+        while (i < numsSize && nums[i] != 0)
+        {
+            ++Nums;
+            ++i;
+        }
+        ++i;
+        flag = fmax(flag, Nums);
+        Nums = 0;
+    }
+    return flag;
+}
 /// <summary>
 /// 567  字符串的排列
 /// </summary>
