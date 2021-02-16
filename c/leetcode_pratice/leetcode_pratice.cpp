@@ -127,23 +127,39 @@ int findMaxConsecutiveOnes(int* nums, int numsSize) {
 }
 
 /// <summary>
-/// 561  数组拆分
+/// 566 重塑矩阵
 /// </summary>
-/// <param name="a"></param>
-/// <param name="b"></param>
+/// <param name="nums"></param>
+/// <param name="numsSize"></param>
+/// <param name="numsColSize"></param>
+/// <param name="r"></param>
+/// <param name="c"></param>
+/// <param name="returnSize"></param>
+/// <param name="returnColumnSizes"></param>
 /// <returns></returns>
-int cmp(int* a, int* b) {
-    return *a - *b;
+int** matrixReshape(int** nums, int numsSize, int* numsColSize, int r, int c, int* returnSize, int** returnColumnSizes) {
+    int m = numsSize;
+    int n = numsColSize[0];
+    if (m * n != r * c) {
+        *returnSize = numsSize;
+        *returnColumnSizes = numsColSize;
+        return nums;
+    }
+    *returnSize = r;
+    *returnColumnSizes = (int*)malloc(sizeof(int) * r);
+    int** ans = (int**)malloc(sizeof(int*) * r);
+
+    for (int i = 0; i < r; i++) {
+        (*returnColumnSizes)[i] = c;
+        ans[i] = (int*)malloc(sizeof(int) * c);
+    }
+    for (int x = 0; x < m * n; ++x) {
+        ans[x / c][x % c] = nums[x / n][x % n];
+    }
+    return ans;
 }
 
-int arrayPairSum(int* nums, int numsSize) {
 
-    qsort(nums, numsSize, sizeof(int), cmp);
-    int sum = 0;
-    for (int i = 0; i < numsSize; i += 2)
-        sum += nums[i];
-    return sum;
-}
 /// <summary>
 /// 567  字符串的排列
 /// </summary>
