@@ -397,6 +397,32 @@ int subarraysWithKDistinct(int* A, int ASize, int K) {
 }
 
 /// <summary>
+/// 995 k连续位的最小翻转次数
+/// </summary>
+/// <param name="A"></param>
+/// <param name="ASize"></param>
+/// <param name="K"></param>
+/// <returns></returns>
+int minKBitFlips(int* A, int ASize, int K) {
+    int ans = 0, revCnt = 0;
+    for (int i = 0; i < ASize; ++i) {
+        if (i >= K && A[i - K] > 1) {
+            revCnt ^= 1;
+            A[i - K] -= 2;  // 复原数组元素，若允许修改数组 A，则可以省略
+        }
+        if (A[i] == revCnt) {
+            if (i + K > ASize) {
+                return -1;
+            }
+            ++ans;
+            revCnt ^= 1;
+            A[i] += 2;
+        }
+    }
+    return ans;
+}
+
+/// <summary>
 /// 1208  尽可能使字符串相等
 /// </summary>
 /// <param name="s"></param>
