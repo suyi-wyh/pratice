@@ -421,6 +421,36 @@ int minKBitFlips(int* A, int ASize, int K) {
     }
     return ans;
 }
+/// <summary>
+/// 1004 最大连续1的个数 Ⅲ
+/// </summary>
+/// <param name="A"></param>
+/// <param name="ASize"></param>
+/// <param name="K"></param>
+/// <returns></returns>
+int longestOnes(int* A, int ASize, int K) {
+    int KNum = 0;
+    int left = 0, right = 0, FirstZero = 0;
+    int returnSize = 0;
+    while (right < ASize)
+    {
+        if (A[right] == 0)
+        {
+            KNum++;
+        }
+        if (KNum > K)
+        {
+            returnSize = fmax(right - left, returnSize);
+            while (A[left] == 1)
+                ++left;
+            left++;
+            KNum--;
+        }
+        right++;
+    }
+    returnSize = fmax(right - left, returnSize);
+    return returnSize;
+}
 
 /// <summary>
 /// 1208  尽可能使字符串相等
