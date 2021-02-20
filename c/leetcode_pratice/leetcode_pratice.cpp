@@ -263,6 +263,39 @@ bool checkPossibility(int* nums, int numsSize) {
     else
         return false;
 }
+
+/// <summary>
+/// 697 数组的度
+/// </summary>
+/// <param name="nums"></param>
+/// <param name="numsSize"></param>
+/// <returns></returns>
+int findShortestSubArray(int* nums, int numsSize) {
+    int  Nums[50000], First[50000], Last[50000];
+    memset(Nums, 0, sizeof(Nums));
+    for (int i = 0; i < numsSize; ++i)
+    {
+        ++Nums[nums[i]];
+        if (Nums[nums[i]] == 1)
+            First[nums[i]] = Last[nums[i]] = i;
+        else
+            Last[nums[i]] = i;
+    }
+
+    int flag = 0;
+    int returnSize = numsSize;
+
+    for (int i = 0; i < 50000; ++i)
+        flag = fmax(flag, Nums[i]);
+
+    for (int i = 0; i < 50000; ++i)
+    {
+        if (flag == Nums[i])
+            returnSize = fmin(returnSize, Last[i] - First[i] + 1);
+    }
+
+    return returnSize;
+}
 /// <summary>
 /// 703 数据流中的第k大元素
 /// </summary>
