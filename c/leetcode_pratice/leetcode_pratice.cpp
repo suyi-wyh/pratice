@@ -550,7 +550,43 @@ int maxScore(int* cardPoints, int cardPointsSize, int k)
     }
     return sum - cur;
 }
-
+/// <summary>
+/// 1438  绝对差不超过限制的最长连续子数组
+/// </summary>
+/// <param name="nums"></param>
+/// <param name="numsSize"></param>
+/// <param name="limit"></param>
+/// <returns></returns>
+int longestSubarray(int* nums, int numsSize, int limit) {
+    int* queMax = (int*)malloc(numsSize * sizeof(int));
+    int* queMin=(int*)malloc(numsSize*sizeof(int));
+    int leftMax = 0, rightMax = 0;
+    int leftMin = 0, rightMin = 0;
+    int left = 0, right = 0;
+    int ret = 0;
+    while (right < numsSize) {
+        while (leftMax < rightMax && queMax[rightMax - 1] < nums[right]) {
+            rightMax--;
+        }
+        while (leftMin < rightMin && queMin[rightMin - 1] > nums[right]) {
+            rightMin--;
+        }
+        queMax[rightMax++] = nums[right];
+        queMin[rightMin++] = nums[right];
+        while (leftMax < rightMax && leftMin < rightMin && queMax[leftMax] - queMin[leftMin] > limit) {
+            if (nums[left] == queMin[leftMin]) {
+                leftMin++;
+            }
+            if (nums[left] == queMax[leftMax]) {
+                leftMax++;
+            }
+            left++;
+        }
+        ret = fmax(ret, right - left + 1);
+        right++;
+    }
+    return ret;
+}
 
 int main()
 {
