@@ -1,0 +1,11 @@
+﻿  leetcode_pratice.cpp
+D:\bite\bite——pratice\pratice\c\leetcode_pratice\leetcode_pratice.cpp(123,20): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+D:\bite\bite——pratice\pratice\c\leetcode_pratice\leetcode_pratice.cpp(177,27): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+D:\bite\bite——pratice\pratice\c\leetcode_pratice\leetcode_pratice.cpp(177,47): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+D:\bite\bite——pratice\pratice\c\leetcode_pratice\leetcode_pratice.cpp(289,20): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+D:\bite\bite——pratice\pratice\c\leetcode_pratice\leetcode_pratice.cpp(294,30): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+D:\bite\bite——pratice\pratice\c\leetcode_pratice\leetcode_pratice.cpp(411,19): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+D:\bite\bite——pratice\pratice\c\leetcode_pratice\leetcode_pratice.cpp(495,30): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+D:\bite\bite——pratice\pratice\c\leetcode_pratice\leetcode_pratice.cpp(503,22): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+D:\bite\bite——pratice\pratice\c\leetcode_pratice\leetcode_pratice.cpp(604,19): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+  leetcode_pratice.vcxproj -> D:\bite\bite——pratice\pratice\c\leetcode_pratice\x64\Debug\leetcode_pratice.exe

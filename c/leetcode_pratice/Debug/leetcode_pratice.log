@@ -1,0 +1,4 @@
+﻿  leetcode_pratice.cpp
+D:\bite\bite——pratice\pratice\c\leetcode_pratice\leetcode_pratice.cpp(203,19): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+D:\bite\bite——pratice\pratice\c\leetcode_pratice\leetcode_pratice.cpp(257,19): warning C4018: “<”: 有符号/无符号不匹配
+  leetcode_pratice.vcxproj -> D:\bite\bite——pratice\pratice\c\leetcode_pratice\Debug\leetcode_pratice.exe
