@@ -340,7 +340,7 @@ void adJustDown(int* data, int n, int root)
     }
 }
 
-int kthLargestAdd(KthLargest* obj, int val) {
+int kthLargestAdd(KthLargest* obj, int val) {  
     if (val > obj->data[0])
     {
         obj->data[0] = val;
