@@ -339,12 +339,6 @@ void adJustDown(int* data, int n, int root)
             break;
     }
 }
-KthLargest* kthLargestCreate(int k, int* nums, int numsSize) {
-    KthLargest* Kth = Init(k);
-    for (int i = 0; i < numsSize; ++i)
-        kthLargestAdd(Kth, nums[i]);
-    return Kth;
-}
 
 int kthLargestAdd(KthLargest* obj, int val) {
     if (val > obj->data[0])
@@ -353,12 +347,37 @@ int kthLargestAdd(KthLargest* obj, int val) {
         adJustDown(obj->data, obj->size, 0);
     }
     return obj->data[0];
-
 }
+
+KthLargest* kthLargestCreate(int k, int* nums, int numsSize) {
+    KthLargest* Kth = Init(k);
+    for (int i = 0; i < numsSize; ++i)
+        kthLargestAdd(Kth, nums[i]);
+    return Kth;
+}
+
+
 
 void kthLargestFree(KthLargest* obj) {
     free(obj->data);
     free(obj);
+}
+
+/// <summary>
+/// 766 托普利茨矩阵
+/// </summary>
+/// <param name="matrix"></param>
+/// <param name="matrixSize"></param>
+/// <param name="matrixColSize"></param>
+/// <returns></returns>
+bool isToeplitzMatrix(int** matrix, int matrixSize, int* matrixColSize) {
+    for (int i = 0; i < matrixSize - 1; ++i)
+        for (int j = 0; j < *matrixColSize - 1; ++j)
+        {
+            if (matrix[i][j] != matrix[i + 1][j + 1])
+                return false;
+        }
+    return true;
 }
 /// <summary>
 /// 978 最长湍流子数组
