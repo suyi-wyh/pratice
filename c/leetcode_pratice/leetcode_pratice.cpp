@@ -349,6 +349,7 @@ int kthLargestAdd(KthLargest* obj, int val) {
     return obj->data[0];
 }
 
+
 KthLargest* kthLargestCreate(int k, int* nums, int numsSize) {
     KthLargest* Kth = Init(k);
     for (int i = 0; i < numsSize; ++i)
