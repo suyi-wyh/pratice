@@ -506,6 +506,34 @@ int longestOnes(int* A, int ASize, int K) {
 }
 
 /// <summary>
+/// 1052 爱生气的书店老板
+/// </summary>
+/// <param name="customers"></param>
+/// <param name="customersSize"></param>
+/// <param name="grumpy"></param>
+/// <param name="grumpySize"></param>
+/// <param name="X"></param>
+/// <returns></returns>
+int maxSatisfied(int* customers, int customersSize, int* grumpy, int grumpySize, int X) {
+    int returnSize = 0, flag = 0, nflag = 0;
+    for (int i = 0; i < customersSize; ++i)
+        if (grumpy[i] == 0)
+            flag += customers[i];
+    returnSize = flag;
+    for (int i = 0; i < customersSize; ++i)
+    {
+        if (grumpy[i] == 1)
+        {
+            nflag = flag;
+            for (int j = i; j < i + X && j < customersSize; j++)
+                if (grumpy[j] == 1)
+                    nflag += customers[j];
+            returnSize = fmax(returnSize, nflag);
+        }
+    }
+    return returnSize;
+}
+/// <summary>
 /// 1208  尽可能使字符串相等
 /// </summary>
 /// <param name="s"></param>
