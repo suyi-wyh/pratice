@@ -380,6 +380,38 @@ bool isToeplitzMatrix(int** matrix, int matrixSize, int* matrixColSize) {
         }
     return true;
 }
+
+
+/// <summary>
+/// 832  翻转图像
+/// </summary>
+/// <param name="A"></param>
+/// <param name="ASize"></param>
+/// <param name="AColSize"></param>
+/// <param name="returnSize"></param>
+/// <param name="returnColumnSizes"></param>
+/// <returns></returns>
+int** flipAndInvertImage(int** A, int ASize, int* AColSize, int* returnSize, int** returnColumnSizes) {
+    *returnSize = ASize;
+    *returnColumnSizes = AColSize;
+    for (int i = 0; i < ASize; ++i)
+    {
+        int left = 0, right = *AColSize - 1;
+        while (left <= right)
+        {
+            if (A[i][left] == A[i][right])
+            {
+                if (A[i][left] == 1)
+                    A[i][left] = A[i][right] = 0;
+                else
+                    A[i][left] = A[i][right] = 1;
+            }
+            left++;
+            right--;
+        }
+    }
+    return  A;
+}
 /// <summary>
 /// 978 最长湍流子数组
 /// </summary>
