@@ -412,6 +412,34 @@ int** flipAndInvertImage(int** A, int ASize, int* AColSize, int* returnSize, int
     }
     return  A;
 }
+
+
+/// <summary>
+/// 867 转置矩阵
+/// </summary>
+/// <param name="matrix"></param>
+/// <param name="matrixSize"></param>
+/// <param name="matrixColSize"></param>
+/// <param name="returnSize"></param>
+/// <param name="returnColumnSizes"></param>
+/// <returns></returns>
+int** transpose(int** matrix, int matrixSize, int* matrixColSize, int* returnSize, int** returnColumnSizes) {
+    int m = matrixSize, n = matrixColSize[0];
+    int** returnmatrix = (int**)malloc(sizeof(int*) * n);
+    *returnSize = n;
+    *returnColumnSizes = (int*)malloc(sizeof(int) * n);
+    for (int i = 0; i < n; i++) {
+        returnmatrix[i] = (int*)malloc(sizeof(int) * m);
+        (*returnColumnSizes)[i] = m;
+    }
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            returnmatrix[j][i] = matrix[i][j];
+        }
+    }
+    return returnmatrix;
+}
+
 /// <summary>
 /// 978 最长湍流子数组
 /// </summary>
