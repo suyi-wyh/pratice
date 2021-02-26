@@ -4,6 +4,7 @@
 #include<stdlib.h>
 #include<string.h>
 #include<math.h>
+#include"uthash.h"
 
 /// <summary>
 /// 1 两数之和
@@ -592,6 +593,63 @@ int maxSatisfied(int* customers, int customersSize, int* grumpy, int grumpySize,
         }
     }
     return returnSize;
+}
+
+
+/// <summary>
+/// 
+/// </summary>
+struct unordered_map {
+    int key, val;
+    UT_hash_handle hh;
+};
+
+int* findNumOfValidWords(char** words, int wordsSize, char** puzzles, int puzzlesSize, int* returnSize) {
+    struct unordered_map* frequency = NULL;
+
+    for (int i = 0; i < wordsSize; i++) {
+        int n = strlen(words[i]);
+        int mask = 0;
+        for (int j = 0; j < n; j++) {
+            mask |= (1 << (words[i][j] - 'a'));
+        }
+        if (__builtin_popcount(mask) <= 7) {
+            struct unordered_map* tmp;
+            HASH_FIND_INT(frequency, &mask, tmp);
+            if (tmp == NULL) {
+                tmp = (unordered_map*)malloc(sizeof(struct unordered_map));
+                tmp->key = mask;
+                tmp->val = 1;
+                HASH_ADD_INT(frequency, key, tmp);
+            }
+            else {
+                tmp->val++;
+            }
+        }
+    }
+
+    int* ans =(int*)malloc(sizeof(int) * puzzlesSize);
+    *returnSize = 0;
+
+    for (int i = 0; i < puzzlesSize; i++) {
+        int total = 0;
+        int mask = 0;
+        for (int j = 1; j < 7; ++j) {
+            mask |= (1 << (puzzles[i][j] - 'a'));
+        }
+        int subset = mask;
+        do {
+            int s = subset | (1 << (puzzles[i][0] - 'a'));
+            struct unordered_map* tmp;
+            HASH_FIND_INT(frequency, &s, tmp);
+            if (tmp != NULL) {
+                total += tmp->val;
+            }
+            subset = (subset - 1) & mask;
+        } while (subset != mask);
+        ans[(*returnSize)++] = total;
+    }
+    return ans;
 }
 /// <summary>
 /// 1208  尽可能使字符串相等
