@@ -84,6 +84,53 @@ int* getRow(int rowIndex, int* returnSize) {
             returnNums[j] += returnNums[j - 1];
     return returnNums;
 }
+
+/// <summary>
+/// 395 至少有K歌重复字符的最长子串 
+/// </summary>
+/// <param name="s"></param>
+/// <param name="l"></param>
+/// <param name="r"></param>
+/// <param name="k"></param>
+/// <returns></returns>
+int dfs(char* s, int l, int r, int k)
+{
+    int cnt[26] = { 0 };
+
+    for (int i = l; i <= r; ++i)
+        ++cnt[s[i] - 'a'];
+
+    int split = 0;
+    for (int i = 0; i < 26; ++i)
+        if (cnt[i] > 0 && cnt[i] < k)
+        {
+            split = i + 'a';
+            break;
+        }
+
+    if (split == 0)
+        return r - l + 1;
+
+    int i = l;
+    int returnSize = 0;
+
+    while (i <= r)
+    {
+        while (i <= r && s[i] == (char)split)
+            i++;
+        if (i > r)
+            break;
+        int start = i;
+        while (i <= r && s[i] != (char)split)
+            ++i;
+        returnSize = fmax(returnSize, dfs(s, start, i - 1, k));
+    }
+    return returnSize;
+}
+
+int longestSubstring(char* s, int k) {
+    return dfs(s, 0, strlen(s) - 1, k);
+}
 /// <summary>
 /// 448 找到所有数组中消失的数字
 /// </summary>
