@@ -86,7 +86,7 @@ int* getRow(int rowIndex, int* returnSize) {
 }
 
 /// <summary>
-/// 395 至少有K歌重复字符的最长子串 
+/// 395 至少有K歌重复字符的最长子串  
 /// </summary>
 /// <param name="s"></param>
 /// <param name="l"></param>
