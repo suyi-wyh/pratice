@@ -489,6 +489,31 @@ int** transpose(int** matrix, int matrixSize, int* matrixColSize, int* returnSiz
 }
 
 /// <summary>
+/// 896 单调数列
+/// </summary>
+/// <param name="A"></param>
+/// <param name="ASize"></param>
+/// <returns></returns>
+bool isMonotonic(int* A, int ASize) {
+    int k = 1;
+    if (ASize <= 2)
+        return true;
+    for (int i = 0; i < ASize - 1; ++i)
+    {
+        if (A[i] > A[i + 1])
+        {
+            k = -1;
+            break;
+        }
+    }
+    for (int i = 0; i < ASize - 1; ++i)
+    {
+        if (k * A[i] > k * A[i + 1])
+            return false;
+    }
+    return true;
+}
+/// <summary>
 /// 978 最长湍流子数组
 /// </summary>
 /// <param name="arr"></param>
