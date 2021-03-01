@@ -86,6 +86,33 @@ int* getRow(int rowIndex, int* returnSize) {
 }
 
 /// <summary>
+/// 303 区域和检索-数组不可变
+/// </summary>
+typedef struct {
+    int* nums;
+} NumArray;
+
+
+NumArray* numArrayCreate(int* nums, int numsSize) {
+    NumArray* numsArray = (NumArray*)malloc(sizeof(NumArray));
+    numsArray->nums = (int*)malloc((numsSize + 1) * sizeof(int));
+    numsArray->nums[0] = 0;
+    for (int i = 0; i < numsSize; ++i)
+        numsArray->nums[i + 1] = numsArray->nums[i] + nums[i];
+    return numsArray;
+}
+
+int numArraySumRange(NumArray* obj, int i, int j) {
+    return obj->nums[j + 1] - obj->nums[i];
+}
+
+void numArrayFree(NumArray* obj) {
+    free(obj->nums);
+    free(obj);
+}
+
+
+/// <summary>
 /// 395 至少有K歌重复字符的最长子串  
 /// </summary>
 /// <param name="s"></param>
