@@ -150,6 +150,25 @@ void numMatrixFree(NumMatrix* obj) {
         free(obj->nums[i]);
     free(obj->nums);
 }
+
+/// <summary>
+/// 338 比特位计数
+/// </summary>
+/// <param name="num"></param>
+/// <param name="returnSize"></param>
+/// <returns></returns>
+int* countBits(int num, int* returnSize) {
+    *returnSize = num + 1;
+    int* returnNum = (int*)malloc(*returnSize * sizeof(int));
+    memset(returnNum, 0, *returnSize * sizeof(int));
+    for (int i = 0; i <= num / 2; ++i)
+    {
+        returnNum[2 * i] = returnNum[i];
+        if (2 * i + 1 < *returnSize)
+            returnNum[2 * i + 1] = returnNum[i] + 1;
+    }
+    return returnNum;
+}
 /// <summary>
 /// 395 至少有K歌重复字符的最长子串  
 /// </summary>
