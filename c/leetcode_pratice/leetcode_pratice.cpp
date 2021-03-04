@@ -152,6 +152,40 @@ void numMatrixFree(NumMatrix* obj) {
 }
 
 /// <summary>
+/// 354 俄罗斯套娃信封
+/// </summary>
+/// <param name="a"></param>
+/// <param name="b"></param>
+/// <returns></returns>
+int cmp(const int**  a, const int**  b) {
+    return (*a)[0] == (*b)[0] ? (*b)[1] - (*a)[1] : (*a)[0] - (*b)[0];
+}
+
+int maxEnvelopes(int** envelopes, int envelopesSize, int* envelopesColSize) {
+
+    if (envelopesSize == 0)
+        return 0;
+
+    qsort(envelopes, envelopesSize, sizeof(int*), cmp);
+    int n = envelopesSize;
+    int* f = (int*)malloc(n * sizeof(int));
+
+    for (int i = 0; i < n; ++i)
+        f[i] = 1;
+    int ret = 1;
+
+    for (int i = 1; i < n; ++i)
+    {
+        for (int j = 0; j < i; ++j)
+        {
+            if (envelopes[j][1] < envelopes[i][1])
+                f[i] = fmax(f[i], f[j] + 1);
+        }
+        ret = fmax(f[i], ret);
+    }
+    return ret;
+}
+/// <summary>
 /// 338 比特位计数
 /// </summary>
 /// <param name="num"></param>
