@@ -86,6 +86,80 @@ int* getRow(int rowIndex, int* returnSize) {
 }
 
 /// <summary>
+/// 232 用栈实现队列
+/// </summary>
+typedef struct {
+    int* _stack;
+    int size;
+}mystack;
+
+typedef struct {
+    mystack* stack_in;
+    mystack* stack_out;
+} MyQueue;
+
+/** Initialize your data structure here. */
+
+MyQueue* myQueueCreate() {
+    MyQueue* queue = (MyQueue*)malloc(sizeof(MyQueue));
+    queue->stack_in = (mystack*)malloc(sizeof(mystack));
+    queue->stack_out = (mystack*)malloc(sizeof(mystack));
+    queue->stack_in->_stack = (int*)malloc(sizeof(int) * 100);
+    queue->stack_out->_stack = (int*)malloc(sizeof(int) * 100);
+    queue->stack_in->size = queue->stack_out->size = -1;
+    printf("%d,%d\n", queue->stack_in->size, queue->stack_out->size);
+    return queue;
+}
+
+/** Push element x to the back of queue. */
+void myQueuePush(MyQueue* obj, int x) {
+    obj->stack_in->size++;
+    obj->stack_in->_stack[obj->stack_in->size] = x;
+}
+
+/** Removes the element from in front of queue and returns that element. */
+int myQueuePop(MyQueue* obj) {
+    if (obj->stack_out->size != -1)
+    {
+        --obj->stack_out->size;
+        return obj->stack_out->_stack[obj->stack_out->size + 1];
+    }
+    else
+    {
+        while (obj->stack_in->size != -1)
+        {
+            obj->stack_out->size++;
+            obj->stack_out->_stack[obj->stack_out->size] = obj->stack_in->_stack[obj->stack_in->size--];
+        }
+        obj->stack_out->size--;
+        return obj->stack_in->_stack[0];
+    }
+}
+
+/** Get the front element. */
+int myQueuePeek(MyQueue* obj) {
+    if (obj->stack_out->size != -1)
+        return obj->stack_out->_stack[obj->stack_out->size];
+    else
+        return obj->stack_in->_stack[0];
+}
+
+/** Returns whether the queue is empty. */
+bool myQueueEmpty(MyQueue* obj) {
+    if (obj->stack_out->size == obj->stack_in->size && obj->stack_out->size == -1)
+        return true;
+    else
+        return false;
+}
+
+void myQueueFree(MyQueue* obj) {
+    free(obj->stack_out->_stack);
+    free(obj->stack_in->_stack);
+    free(obj->stack_out);
+    free(obj->stack_in);
+}
+
+/// <summary>
 /// 303 区域和检索-数组不可变
 /// </summary>
 typedef struct {
