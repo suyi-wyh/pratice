@@ -67,6 +67,29 @@ char* longestCommonPrefix(char** strs, int strsSize) {
     return returnStr;
 
 }
+
+
+/// <summary>
+/// 70 爬楼梯
+/// </summary>
+/// <param name="n"></param>
+/// <returns></returns>
+int climbStairs(int n) {
+    int a = 1;
+    int b = 2;
+    if (n == 1 || n == 0)
+        return 1;
+    else if (n == 2)
+        return 2;
+    int c;
+    for (int i = 2; i < n; ++i)
+    {
+        c = (a + b);
+        a = b;
+        b = c;
+    }
+    return c;
+}
 /// <summary>
 /// 119 杨辉三角
 /// </summary>
