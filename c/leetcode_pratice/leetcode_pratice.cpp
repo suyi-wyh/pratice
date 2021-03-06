@@ -367,6 +367,35 @@ int findMaxConsecutiveOnes(int* nums, int numsSize) {
 }
 
 /// <summary>
+/// 503 下一个更大元素Ⅱ
+/// </summary>
+/// <param name="nums"></param>
+/// <param name="numsSize"></param>
+/// <param name="returnSize"></param>
+/// <returns></returns>
+
+int* nextGreaterElements(int* nums, int numsSize, int* returnSize) {
+    *returnSize = numsSize;
+    if (numsSize == 0)
+        return NULL;
+    int* returnNum = (int*)malloc(sizeof(int) * numsSize);
+    int* stk = (int*)malloc(sizeof(int) * (numsSize * 2 - 1));
+    int top = 0;
+    memset(returnNum, -1, sizeof(int) * numsSize);
+    for (int i = 0; i < numsSize * 2 - 1; ++i)
+    {
+        while (top > 0 && nums[stk[top - 1]] < nums[i % numsSize])
+        {
+            returnNum[stk[top - 1]] = nums[i % numsSize];
+            --top;
+        }
+        stk[top++] = i % numsSize;
+    }
+    return returnNum;
+}
+
+
+/// <summary>
 /// 566 重塑矩阵
 /// </summary>
 /// <param name="nums"></param>
