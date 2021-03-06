@@ -7,6 +7,27 @@ class Solution {
 public:
 
     /// <summary>
+    /// Offer 10-Ⅱ
+    /// </summary>
+    /// <param name="n"></param>
+    /// <returns></returns>
+    int numWays(int n) {
+        int a = 1;
+        int b = 2;
+        if (n == 1 || n == 0)
+            return 1;
+        else if (n == 2)
+            return 2;
+        int c;
+        for (int i = 2; i < n; ++i)
+        {
+            c = (a + b) % 1000000007;
+            a = b;
+            b = c;
+        }
+        return c % 1000000007;
+    }
+    /// <summary>
     /// Offer 64
     /// </summary>
     /// <param name="n"></param>
@@ -16,6 +37,8 @@ public:
         n && (ret += sumNums(n - 1));
         return ret;
     }
+
+
 };
 
 
