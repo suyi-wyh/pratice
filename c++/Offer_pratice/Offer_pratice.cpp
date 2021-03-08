@@ -40,6 +40,23 @@ public:
     }
 
 
+
+    /// <summary>
+    /// 387 字符串中的唯一字符
+    /// </summary>
+    /// <param name="s"></param>
+    /// <returns></returns>
+    int firstUniqChar(string s) {
+        int Size[26] = { 0 };
+        for (auto ch : s)
+        {
+            Size[ch - 'a']++;
+        }
+        for (size_t i = 0; i < s.size(); ++i)
+            if (Size[s[i] - 'a'] == 1)
+                return i;
+        return -1;
+    }
     /// <summary>
     /// 917 仅仅翻转字母
     /// </summary>
