@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+using namespace std;
 
 class Solution {
 public:
@@ -39,6 +40,26 @@ public:
     }
 
 
+    /// <summary>
+    /// 917 仅仅翻转字母
+    /// </summary>
+    /// <param name="S"></param>
+    /// <returns></returns>
+    string reverseOnlyLetters(string S) {
+        int begin = 0;
+        int end = S.size() - 1;
+        while (begin < end)
+        {
+            while (begin < end && !((S[begin] >= 'a' && S[begin] <= 'z') || (S[begin] >= 'A' && S[begin] <= 'Z')))
+                begin++;
+            while (begin < end && !((S[end] >= 'a' && S[end] <= 'z') || (S[end] >= 'A' && S[end] <= 'Z')))
+                end--;
+            swap(S[begin], S[end]);
+            begin++;
+            end--;
+        }
+        return S;
+    }
 };
 
 
