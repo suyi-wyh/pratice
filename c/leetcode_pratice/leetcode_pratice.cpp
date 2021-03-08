@@ -109,12 +109,18 @@ int* getRow(int rowIndex, int* returnSize) {
 }
 
 
-
-/**
- * Return an array of arrays of size *returnSize.
- * The sizes of the arrays are returned as *returnColumnSizes array.
- * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().
- */
+/// <summary>
+/// 131 分割回文串Ⅱ
+/// </summary>
+/// <param name="s"></param>
+/// <param name="n"></param>
+/// <param name="i"></param>
+/// <param name="f"></param>
+/// <param name="ret"></param>
+/// <param name="retSize"></param>
+/// <param name="retColSize"></param>
+/// <param name="ans"></param>
+/// <param name="ansSize"></param>
 void dfs_1(char* s, int n, int i, int** f, char*** ret, int* retSize, int* retColSize, char** ans, int* ansSize) {
     if (i == n) {
         char** tmp = (char **)malloc(sizeof(char*) * (*ansSize));
@@ -164,6 +170,44 @@ char*** partition(char* s, int* returnSize, int** returnColumnSizes) {
     dfs_1(s, n, 0, f, ret, returnSize, *returnColumnSizes, ans, &ansSize);
     return ret;
 }
+
+
+/// <summary>
+/// 131 分割回文串Ⅱ
+/// </summary>
+/// <param name="s"></param>
+/// <returns></returns>
+int minCut(char* s) {
+    int n = strlen(s);
+    bool g[n][n];
+    memset(g, 1, sizeof(g));
+
+    for (int i = n - 1; i >= 0; --i) {
+        for (int j = i + 1; j < n; ++j) {
+            g[i][j] = (s[i] == s[j]) && g[i + 1][j - 1];
+        }
+    }
+
+    int f[n];
+    for (int i = 0; i < n; ++i) {
+        f[i] = INT_MAX;
+    }
+    for (int i = 0; i < n; ++i) {
+        if (g[0][i]) {
+            f[i] = 0;
+        }
+        else {
+            for (int j = 0; j < i; ++j) {
+                if (g[j + 1][i]) {
+                    f[i] = fmin(f[i], f[j] + 1);
+                }
+            }
+        }
+    }
+
+    return f[n - 1];
+}
+
 /// <summary>
 /// 232 用栈实现队列
 /// </summary>
