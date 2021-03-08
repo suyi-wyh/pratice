@@ -174,7 +174,7 @@ char*** partition(char* s, int* returnSize, int** returnColumnSizes) {
 
 /// <summary>
 /// 131 分割回文串Ⅱ
-/// </summary>
+/// </summary>    
 /// <param name="s"></param>
 /// <returns></returns>
 int minCut(char* s) {
