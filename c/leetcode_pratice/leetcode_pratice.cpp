@@ -983,6 +983,27 @@ int longestOnes(int* A, int ASize, int K) {
 }
 
 /// <summary>
+/// 1047 删除字符串中的所有相邻重复项
+/// </summary>
+/// <param name="S"></param>
+/// <returns></returns>
+char* removeDuplicates(char* S) {
+    int n = strlen(S);
+    char* stk = (char*)malloc(sizeof(char) * (n + 1));
+    int retSize = 0;
+    for (int i = 0; i < n; i++) {
+        if (retSize > 0 && stk[retSize - 1] == S[i]) {
+            retSize--;
+        }
+        else {
+            stk[retSize++] = S[i];
+        }
+    }
+    stk[retSize] = '\0';
+    return stk;
+}
+
+/// <summary>
 /// 1052 爱生气的书店老板
 /// </summary>
 /// <param name="customers"></param>
