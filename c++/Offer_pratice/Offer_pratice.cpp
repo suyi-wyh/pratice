@@ -77,6 +77,23 @@ public:
         }
         return S;
     }
+
+	/// <summary>
+	/// 1047 删除字符串中的所有相邻重复项
+	/// </summary>
+	/// <param name="S"></param>
+	/// <returns></returns>
+	string removeDuplicates(string S) {
+		string stk;
+		for (auto ch : S)
+		{
+			if (!stk.empty() && stk.back() == ch)
+				stk.pop_back();
+			else
+				stk.push_back(ch);
+		}
+		return stk;
+	}
 };
 
 
