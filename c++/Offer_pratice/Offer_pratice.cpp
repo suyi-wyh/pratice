@@ -2,6 +2,9 @@
 //
 
 #include <iostream>
+#include<StlLock.h>
+#include <stack>
+
 using namespace std;
 
 class Solution {
@@ -39,8 +42,45 @@ public:
         return ret;
     }
 
+    /// <summary>
+    /// 224 基础计算器
+    /// </summary>
+    /// <param name="s"></param>
+    /// <returns></returns>
+    int calculate(string s) {
+        stack<int> stk;
+        stk.push(1);
+        int sum = 0;
+        int flag = 1;
+        for (int i = 0; i < s.length();)
+        {
+            if (s[i] >= '0' && s[i] <= '9')
+            {
+                long int relit = 0;
+                while (i < s.length() && s[i] >= '0' && s[i] <= '9') {
+                    relit = relit * 10 + s[i] - '0';
+                    i++;
+                }
+                sum += (flag * relit);
 
-
+            }
+            else
+            {
+                if (s[i] == '(')
+                    stk.push(flag);
+                else if (s[i] == ')')
+                    stk.pop();
+                else if (s[i] == '+')
+                    flag = stk.top();
+                else if (s[i] == '-')
+                {
+                    flag = -stk.top();
+                }
+                ++i;
+            }
+        }
+        return sum;
+    }
     /// <summary>
     /// 387 字符串中的唯一字符
     /// </summary>
