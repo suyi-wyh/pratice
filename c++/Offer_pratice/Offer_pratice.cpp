@@ -81,6 +81,59 @@ public:
         }
         return sum;
     }
+
+    /// <summary>
+    /// 227 基本计算器
+    /// </summary>
+    /// <param name="s"></param>
+    /// <returns></returns>
+    int calculate(string s) {
+        stack<int> stk;
+        int num = 0;
+        char flag = '+';
+
+        for (int i = 0; i < s.length();) {
+            if (s[i] == ' ')
+                ++i;
+
+            if (s[i] >= '0' && s[i] <= '9') {
+                num = 0;
+                while (i < s.length() && s[i] >= '0' && s[i] <= '9') {
+                    num = num * 10 + (s[i] - '0');
+                    ++i;
+                }
+            }
+
+            if (i >= s.length() - 1 || (!(s[i] >= '0' && s[i] <= '9') && s[i] != ' '))
+            {
+                if (flag == '+')
+                    stk.push(num);
+                else if (flag == '-')
+                    stk.push(0 - num);
+                else if (flag == '*') {
+                    flag = '*';
+                    num = stk.top() * num;
+                    stk.pop();
+                    stk.push(num);
+                }
+                else if (flag == '/') {
+                    flag = '/';
+                    num = stk.top() / num;
+                    stk.pop();
+                    stk.push(num);
+                }
+                flag = s[i];
+                i++;
+                num = 0;
+            }
+        }
+        int ret = 0;
+        while (!stk.empty()) {
+            ret += stk.top();
+            stk.pop();
+        }
+        return ret;
+    }
     /// <summary>
     /// 387 字符串中的唯一字符
     /// </summary>
