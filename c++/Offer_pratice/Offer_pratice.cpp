@@ -134,6 +134,41 @@ public:
         }
         return ret;
     }
+
+    /// <summary>
+    /// 331 验证二叉树的前序序列化
+    /// </summary>
+    /// <param name="preorder"></param>
+    /// <returns></returns>
+    bool isValidSerialization(string preorder) {
+        int x = 0;
+        int i = 0;
+        int n = preorder.length();
+        if (preorder[i] == '#' && n == 1)
+            return true;
+        else if (preorder[i] == '#')
+            return false;
+        while (i < n - 1) {
+            if (preorder[i] == '#') {
+                if (x == 0)
+                    return false;
+                else
+                    x--;
+                ++i;
+            }
+            else
+            {
+                int num = 0;
+                while (i < n && preorder[i] != ',') {
+                    num = num * 10 + preorder[i] - '0';
+                    ++i;
+                }
+                x++;
+            }
+            ++i;
+        }
+        return x == 0 && preorder[n - 1] == '#';
+    }
     /// <summary>
     /// 387 字符串中的唯一字符
     /// </summary>
