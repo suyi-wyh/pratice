@@ -4,8 +4,55 @@
 #include <iostream>
 #include<StlLock.h>
 #include <stack>
+#include <list>
+#include<StlLock.h>
+#include<vector>
 
 using namespace std;
+/// <summary>
+/// 705 设计哈希集合
+/// </summary>
+class MyHashSet {
+private:
+    vector<list<int>> data;
+    static const int base = 769;
+    static int hash(int key) {
+        return key % base;
+    }
+public:
+    /** Initialize your data structure here. */
+    MyHashSet() :data(base) {
+
+    }
+
+    void add(int key) {
+        int flag = hash(key);
+        for (auto cur = data[flag].begin(); cur != data[flag].end(); ++cur)
+            if (*cur == key)
+                return;
+        data[flag].push_back(key);
+    }
+
+    void remove(int key) {
+        int flag = hash(key);
+        for (auto cur = data[flag].begin(); cur != data[flag].end(); ++cur)
+            if (*cur == key) {
+                data[flag].erase(cur);
+                return;
+            }
+    }
+
+    /** Returns true if this set contains the specified element */
+    bool contains(int key) {
+        int flag = hash(key);
+        for (auto cur = data[flag].begin(); cur != data[flag].end(); ++cur)
+            if (*cur == key)
+                return true;
+        return false;
+    }
+
+};
+
 
 class Solution {
 public:
