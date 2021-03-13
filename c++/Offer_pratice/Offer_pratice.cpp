@@ -12,7 +12,7 @@ using namespace std;
 /// <summary>
 /// 705 设计哈希集合
 /// </summary>
-class MyHashSet {
+class MyHashSet {   
 private:
     vector<list<int>> data;
     static const int base = 769;
