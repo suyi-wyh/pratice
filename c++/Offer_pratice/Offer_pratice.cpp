@@ -28,7 +28,7 @@ public:
     void add(int key) {
         int flag = hash(key);
         for (auto cur = data[flag].begin(); cur != data[flag].end(); ++cur)
-            if (*cur == key)
+            if (*cur == key)  
                 return;    
         data[flag].push_back(key);
     }
