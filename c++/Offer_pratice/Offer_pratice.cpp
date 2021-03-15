@@ -165,6 +165,34 @@ public:
         }
         return returnMatrix;
     }
+
+    /// <summary>
+    /// 59  螺旋矩阵Ⅱ
+    /// </summary>
+    /// <param name="n"></param>
+    /// <returns></returns>
+    vector<vector<int>> generateMatrix(int n) {
+        vector<vector<int>> returnNum(n, vector<int>(n));
+        int left = 0, top = 0;
+        int right = n - 1, bottom = n - 1;
+        int flag = 1;
+        while (left <= right && top <= bottom) {
+            for (int i = left; i <= right; ++i)
+                returnNum[top][i] = flag++;
+            for (int i = top + 1; i <= bottom; ++i)
+                returnNum[i][right] = flag++;
+            for (int i = right - 1; i >= left && top < bottom; --i)
+                returnNum[bottom][i] = flag++;
+            for (int i = bottom - 1; i >= top + 1 && left < right; --i)
+                returnNum[i][left] = flag++;
+
+            top++;
+            bottom--;
+            left++;
+            right--;
+        }
+        return returnNum;
+    }
     /// <summary>
     /// 224 基础计算器
     /// </summary>
