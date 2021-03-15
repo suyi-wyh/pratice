@@ -140,6 +140,32 @@ public:
     }
 
     /// <summary>
+    /// 54 螺旋矩阵
+    /// </summary>
+    /// <param name="matrix"></param>
+    /// <returns></returns>
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        vector<int> returnMatrix;
+        int bottom = matrix.size() - 1;
+        int right = matrix[0].size() - 1;
+        int left = 0, top = 0;
+        while (left <= right && top <= bottom) {
+            for (int i = left; i <= right; ++i)
+                returnMatrix.push_back(matrix[top][i]);
+            for (int i = top + 1; i <= bottom; ++i)
+                returnMatrix.push_back(matrix[i][right]);
+            for (int i = right - 1; i >= left && top < bottom; --i)
+                returnMatrix.push_back(matrix[bottom][i]);
+            for (int i = bottom - 1; i >= top + 1 && left < right; --i)
+                returnMatrix.push_back(matrix[i][left]);
+            ++top;
+            --bottom;
+            right--;
+            left++;
+        }
+        return returnMatrix;
+    }
+    /// <summary>
     /// 224 基础计算器
     /// </summary>
     /// <param name="s"></param>
