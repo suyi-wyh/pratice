@@ -7,6 +7,7 @@
 #include <list>
 #include<StlLock.h>
 #include<vector>
+#include <unordered_set>
 
 using namespace std;
 /// <summary>
@@ -139,6 +140,30 @@ public:
         return ret;
     }
 
+    /// <summary>
+    /// 3 无重复字符的最长子串
+    /// </summary>
+    /// <param name="s"></param>
+    /// <returns></returns>
+    int lengthOfLongestSubstring(string s) {
+        unordered_set<char> t_hash;
+        int  left = 0, right = 0;
+        int returnNum = 0;
+        while (right < s.size()) {
+            while (right < s.length() && !t_hash.count(s[right])) {
+                t_hash.insert(s[right]);
+                right++;
+            }
+            returnNum = fmax(right - left, returnNum);
+            while (right < s.length() && s[left] != s[right]) {
+                t_hash.erase(s[left]);
+                left++;
+            }
+            t_hash.erase(s[left]);
+            left++;
+        }
+        return returnNum;
+    }
     /// <summary>
     /// 54 螺旋矩阵
     /// </summary>
