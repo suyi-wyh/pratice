@@ -218,6 +218,49 @@ public:
         }
         return returnNum;
     }
+
+    /// <summary>
+    /// 115 不同的子序列
+    /// </summary>
+    /// <param name="s"></param>
+    /// <param name="t"></param>
+    /// <returns></returns>
+    int numDistinct(string s, string t) {
+        int n = s.length();
+        int m = t.length();
+        if (n < m)
+            return 0;
+        long cur = 0;
+        long nums[m][n];
+        memset(nums, 0, sizeof(nums));
+
+        for (int i = n - 1; i >= 0; i--) {
+            if (s[i] == t[m - 1])
+                nums[m - 1][i] = 1.0;
+        }
+
+        for (int i = m - 2; i >= 0; i--)
+        {
+            int cur = n - 1;
+            int ans = 0;
+            while (s[cur] != t[i]) {
+                ans += nums[i + 1][cur];
+                cur--;
+            }
+            for (int j = cur; j >= 0; --j) {
+                if (s[j] == t[i]) {
+                    nums[i][j] = ans;
+                }
+                ans += nums[i + 1][j];
+            }
+        }
+        int sum = 0;
+
+        for (int i = 0; i < n; ++i) {
+            sum += nums[0][i];
+        }
+        return sum;
+    }
     /// <summary>
     /// 224 基础计算器
     /// </summary>
