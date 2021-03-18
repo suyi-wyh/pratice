@@ -224,8 +224,8 @@ public:
             bottom--;
             left++;
             right--;
-        }
-        return returnNum;
+        }  
+        return returnNum;  
     }
 
     /// <summary>
