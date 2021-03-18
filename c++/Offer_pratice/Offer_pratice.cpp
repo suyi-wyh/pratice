@@ -195,7 +195,7 @@ public:
             ++top;
             --bottom;
             right--;
-            left++;
+            left++;   
         }
         return returnMatrix;
     }
