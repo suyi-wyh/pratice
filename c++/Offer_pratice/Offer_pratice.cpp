@@ -222,7 +222,7 @@ public:
 
             top++;
             bottom--;
-            left++;
+            left++;  
             right--;
         }  
         return returnNum;  
