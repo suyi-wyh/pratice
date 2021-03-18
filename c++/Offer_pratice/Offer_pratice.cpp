@@ -10,6 +10,15 @@
 #include <unordered_set>
 
 using namespace std;
+
+struct ListNode {
+    int val;
+    ListNode* next;
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode* next) : val(x), next(next) {}
+    
+};
 /// <summary>
 /// 705 设计哈希集合
 /// </summary>
@@ -219,6 +228,48 @@ public:
         return returnNum;
     }
 
+    /// <summary>
+    /// 92 反转链表Ⅱ
+    /// </summary>
+    /// <param name="head"></param>
+    /// <param name="left"></param>
+    /// <param name="right"></param>
+    /// <returns></returns>
+    ListNode* reverseBetween(ListNode* head, int left, int right) {
+        if (left == right)
+            return head;
+        int preleft = 1;
+        ListNode* pre = head;
+        while (preleft < left - 1) {
+            pre = pre->next;
+            preleft++;
+        }
+
+        if (left == 1) {
+            ListNode* tmp = new ListNode(0);
+            tmp->next = head;
+            pre = tmp;
+        }
+
+        int i = 0;
+        ListNode* curleft = pre->next;
+        ListNode* cur = curleft->next;
+
+        while (i < right - left) {
+            ListNode* n = cur->next;
+            cur->next = pre->next;
+            curleft->next = n;
+            pre->next = cur;
+            cur = curleft->next;
+            ++i;
+        }
+
+        if (left == 1) {
+            head = pre->next;
+        }
+
+        return head;
+    }
     /// <summary>
     /// 115 不同的子序列
     /// </summary>
