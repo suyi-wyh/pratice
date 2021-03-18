@@ -378,7 +378,7 @@ public:
             {
                 if (flag == '+')
                     stk.push(num);
-                else if (flag == '-')
+                else if (flag == '-') 
                     stk.push(0 - num);
                 else if (flag == '*') {
                     flag = '*';
