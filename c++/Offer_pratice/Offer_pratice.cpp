@@ -20,6 +20,49 @@ struct ListNode {
     
 };
 /// <summary>
+/// 1603 设计停车系统
+/// </summary>
+class ParkingSystem {
+private:
+    int _bigSize;
+    int _mediumSize;
+    int _smallSize;
+
+    int _bigCapacity;
+    int _mediumCapacity;
+    int _smallCapacity;
+public:
+
+    ParkingSystem(int big, int medium, int small) :
+        _bigCapacity(big), _mediumCapacity(medium), _smallCapacity(small)
+    {
+        _bigSize = _mediumSize = _smallSize = 0;
+    }
+
+    bool addCar(int carType) {
+        if (carType == 1) {
+            if (_bigSize < _bigCapacity) {
+                _bigSize++;
+                return true;
+            }
+        }
+        else if (carType == 2) {
+            if (_mediumSize < _mediumCapacity) {
+                _mediumSize++;
+                return true;
+            }
+        }
+        else if (carType == 3) {
+            if (_smallSize < _smallCapacity) {
+                _smallSize++;
+                return true;
+            }
+        }
+
+        return false;
+    }
+};
+/// <summary>
 /// 705 设计哈希集合
 /// </summary>
 class MyHashSet {   
@@ -495,10 +538,6 @@ public:
 };
 
 
-int main()
-{
-    std::cout << "Hello World!\n";
-}
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
 // 调试程序: F5 或调试 >“开始调试”菜单
