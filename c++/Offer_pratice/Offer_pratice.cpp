@@ -19,49 +19,7 @@ struct ListNode {
     ListNode(int x, ListNode* next) : val(x), next(next) {}
     
 };
-/// <summary>
-/// 1603 设计停车系统
-/// </summary>
-class ParkingSystem {
-private:
-    int _bigSize;
-    int _mediumSize;
-    int _smallSize;
 
-    int _bigCapacity;
-    int _mediumCapacity;
-    int _smallCapacity;
-public:
-
-    ParkingSystem(int big, int medium, int small) :
-        _bigCapacity(big), _mediumCapacity(medium), _smallCapacity(small)
-    {
-        _bigSize = _mediumSize = _smallSize = 0;
-    }
-
-    bool addCar(int carType) {
-        if (carType == 1) {
-            if (_bigSize < _bigCapacity) {
-                _bigSize++;
-                return true;
-            }
-        }
-        else if (carType == 2) {
-            if (_mediumSize < _mediumCapacity) {
-                _mediumSize++;
-                return true;
-            }
-        }
-        else if (carType == 3) {
-            if (_smallSize < _smallCapacity) {
-                _smallSize++;
-                return true;
-            }
-        }
-
-        return false;
-    }
-};
 /// <summary>
 /// 705 设计哈希集合
 /// </summary>
@@ -156,6 +114,50 @@ public:
     }
 };
 
+
+/// <summary>
+/// 1603 设计停车系统
+/// </summary>
+class ParkingSystem {
+private:
+    int _bigSize;
+    int _mediumSize;
+    int _smallSize;
+
+    int _bigCapacity;
+    int _mediumCapacity;
+    int _smallCapacity;
+public:
+
+    ParkingSystem(int big, int medium, int small) :
+        _bigCapacity(big), _mediumCapacity(medium), _smallCapacity(small)
+    {
+        _bigSize = _mediumSize = _smallSize = 0;
+    }
+
+    bool addCar(int carType) {
+        if (carType == 1) {
+            if (_bigSize < _bigCapacity) {
+                _bigSize++;
+                return true;
+            }
+        }
+        else if (carType == 2) {
+            if (_mediumSize < _mediumCapacity) {
+                _mediumSize++;
+                return true;
+            }
+        }
+        else if (carType == 3) {
+            if (_smallSize < _smallCapacity) {
+                _smallSize++;
+                return true;
+            }
+        }
+
+        return false;
+    }
+};
 
 class Solution {
 public:
@@ -355,6 +357,42 @@ public:
         }
         return sum;
     }
+
+    /// <summary>
+    /// 150 逆波兰表达式求值
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
+    bool isNumbers(string str) {
+        return !(str == "+" || str == "-" || str == "/" || str == "*");
+    }
+
+
+    int evalRPN(vector<string>& tokens) {
+        stack<int> stk;
+        for (auto ch : tokens) {
+            if (isNumbers(ch))
+                stk.push(atoi(ch.c_str()));
+            else {
+                int x = stk.top();
+                stk.pop();
+                int y = stk.top();
+                stk.pop();
+                if (ch == "+")
+                    stk.push(x + y);
+                else if (ch == "-")
+                    stk.push(y - x);
+                else if (ch == "*")
+                    stk.push(x * y);
+                else if (ch == "/")
+                    stk.push(y / x);
+            }
+
+        }
+
+        return stk.top();
+    }
+
     /// <summary>
     /// 224 基础计算器
     /// </summary>
