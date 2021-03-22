@@ -478,6 +478,22 @@ public:
     }
 
     /// <summary>
+    /// 191 位1的个数
+    /// </summary>
+    /// <param name="n"></param>
+    /// <returns></returns>
+    int hammingWeight(uint32_t n) {
+        int ret = 0;
+        while (n) {
+            n &= n - 1;
+            ret++;
+
+        }
+        return ret;
+    }
+
+
+    /// <summary>
     /// 227 基本计算器
     /// </summary>
     /// <param name="s"></param>
