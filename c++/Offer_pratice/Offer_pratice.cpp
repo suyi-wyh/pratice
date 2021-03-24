@@ -596,6 +596,32 @@ public:
                 return i;
         return -1;
     }
+
+    /// <summary>
+    /// 456 132模式
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    bool find132pattern(vector<int>& nums) {
+        int n = nums.size();
+            stack<int> stk;
+        stk.push(nums[n - 1]);
+        int max_2 = INT_MIN;
+
+        for (int i = n - 2; i >= 0; i--) {
+            if (nums[i] < max_2)
+                return true;
+
+            while (!stk.empty() && nums[i] > stk.top()) {
+                max_2 = stk.top();
+                stk.pop();
+            }
+
+            if (nums[i] > max_2)
+                stk.push(nums[i]);
+        }
+        return true;
+    }
     /// <summary>
     /// 917 仅仅翻转字母
     /// </summary>
