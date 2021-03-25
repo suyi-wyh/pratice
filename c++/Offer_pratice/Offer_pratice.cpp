@@ -317,6 +317,45 @@ public:
                 matrix[i][0] = 0;
         }
     }
+
+    /// <summary>
+    /// 82 删除排序链表中的重复元素
+    /// </summary>
+    /// <param name="head"></param>
+    /// <returns></returns>
+    ListNode* deleteDuplicates(ListNode* head) {
+
+        if (head == nullptr || head->next == nullptr)
+            return head;
+
+        while (head && head->next && head->val == head->next->val) {
+            ListNode* p = head->next;
+            while (p != nullptr && head->val == p->val)
+                p = p->next;
+            head = p;
+        }
+
+        if (head == nullptr || head->next == nullptr)
+            return head;
+        ListNode* cur = head;
+        ListNode* tmp = head->next;
+
+        while (cur->next && cur->next->next != nullptr) {
+            if (tmp->val == tmp->next->val) {
+                ListNode* pre = tmp->next;
+                while (pre != nullptr && tmp->val == pre->val)
+                    pre = pre->next;
+                cur->next = pre;
+                tmp = cur->next;
+            }
+            else {
+                cur = cur->next;
+                tmp = tmp->next;
+            }
+        }
+        return head;
+
+    }
     /// <summary>
     /// 92 反转链表Ⅱ
     /// </summary>
