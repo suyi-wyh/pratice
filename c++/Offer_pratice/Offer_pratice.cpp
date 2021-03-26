@@ -356,6 +356,28 @@ public:
         return head;
 
     }
+
+
+    /// <summary>
+    /// 83 删除排序链表中的重复元素
+    /// </summary>
+    /// <param name="head"></param>
+    /// <returns></returns>
+    ListNode* deleteDuplicates(ListNode* head) {
+
+        if (head == nullptr || head->next == nullptr)
+            return head;
+
+        ListNode* cur = head;
+        while (cur->next != nullptr) {
+            if (cur->val == cur->next->val)
+                cur->next = cur->next->next;
+            else
+                cur = cur->next;
+        }
+
+        return head;
+    }
     /// <summary>
     /// 92 反转链表Ⅱ
     /// </summary>
