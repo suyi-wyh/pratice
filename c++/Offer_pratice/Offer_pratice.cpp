@@ -274,6 +274,31 @@ public:
     }
 
     /// <summary>
+    /// 61 旋转链表
+    /// </summary>
+    /// <param name="head"></param>
+    /// <param name="k"></param>
+    /// <returns></returns>
+    ListNode* rotateRight(ListNode* head, int k) {
+        ListNode* tmp = head;
+        int nums = 1;
+        if (!head || !head->next)
+            return head;
+        while (tmp->next != nullptr) {
+            tmp = tmp->next;
+            ++nums;
+        }
+        tmp->next = head;
+        int n = nums - k % nums;
+
+        for (int i = 0; i < n; ++i) {
+            tmp = tmp->next;
+        }
+        head = tmp->next;
+        tmp->next = nullptr;
+        return head;
+    }
+    /// <summary>
     /// 73 矩阵置零
     /// </summary>
     /// <param name="matrix"></param>
