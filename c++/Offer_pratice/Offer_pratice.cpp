@@ -20,6 +20,53 @@ struct ListNode {
     
 };
 
+
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode() : val(0), left(nullptr), right(nullptr) {}
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+    TreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {}
+    
+};
+
+
+/// <summary>
+/// 173 二叉搜索树迭代器
+/// </summary>
+class BSTIterator {
+private:
+    vector<int> ret;
+    int nums;
+
+    void inorder(TreeNode* root, vector<int>& arr) {
+        if (root) {
+            inorder(root->left, arr);
+            arr.push_back(root->val);
+            inorder(root->right, arr);
+        }
+    }
+
+    vector<int> TreeNodeinorder(TreeNode* root) {
+        vector<int> arr;
+        inorder(root, arr);
+        return arr;
+    }
+public:
+    BSTIterator(TreeNode* root) :ret(TreeNodeinorder(root)), nums(0)
+    {
+    }
+
+    int next() {
+        return ret[nums++];
+    }
+
+    bool hasNext() {
+        return nums < ret.size();
+    }
+};
+
 /// <summary>
 /// 705 设计哈希集合
 /// </summary>
