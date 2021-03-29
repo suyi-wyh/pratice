@@ -569,7 +569,19 @@ public:
 
         return stk.top();
     }
-
+    /// <summary>
+    /// 190 颠倒二进制位
+    /// </summary>
+    /// <param name="n"></param>
+    /// <returns></returns>
+    uint32_t reverseBits(uint32_t n) {
+        uint32_t ret = 0;
+        for (int i = 0; i < 32; i++) {
+            ret = ret * 2 + n % 2;
+            n /= 2;
+        }
+        return ret;
+    }
     /// <summary>
     /// 224 基础计算器
     /// </summary>
