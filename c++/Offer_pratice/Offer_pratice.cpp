@@ -562,7 +562,25 @@ public:
         }
         return sum;
     }
-
+    /// <summary>
+    /// 118 杨辉三角
+    /// </summary>
+    /// <param name="numRows"></param>
+    /// <returns></returns>
+    vector<vector<int>> generate(int numRows) {
+        vector<vector<int>> ret;
+        ret.resize(numRows, vector<int>());
+        ret[0].push_back(1);
+        for (int i = 1; i < numRows; ++i) {
+            ret[i].resize(i + 1, 0);
+            ret[i][0] = 1;
+            ret[i][i] = 1;
+            for (int j = 1; j < i; ++j) {
+                ret[i][j] = ret[i - 1][j - 1] + ret[i - 1][j];
+            }
+        }
+        return ret;
+    }
     /// <summary>
     /// 150 逆波兰表达式求值
     /// </summary>
