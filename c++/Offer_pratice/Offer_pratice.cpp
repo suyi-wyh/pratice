@@ -390,6 +390,34 @@ public:
         }
     }
 
+    
+     
+	/// <summary>
+	/// 74 搜索二叉树
+	/// </summary>
+	/// <param name="matrix"></param>
+	/// <param name="target"></param>
+	/// <returns></returns>
+	bool searchMatrix(vector<vector<int>>& matrix, int target) {
+		int m = matrix.size(), n = matrix[0].size();
+		int low = 0, high = m * n - 1;
+		while (low <= high) {
+			int mid = (high - low) / 2 + low;
+			int x = matrix[mid / n][mid % n];
+			if (x < target) {
+				low = mid + 1;
+			}
+			else if (x > target) {
+				high = mid - 1;
+			}
+			else {
+				return true;
+			}
+		}
+		return false;
+	}
+
+   
     /// <summary>
     /// 82 删除排序链表中的重复元素
     /// </summary>
