@@ -836,6 +836,41 @@ public:
         return S;
     }
 
+    /// <summary>
+    /// 1006 笨阶乘
+    /// </summary>
+    /// <param name="N"></param>
+    /// <returns></returns>
+    int clumsy(int N) {
+        stack<int> stk;
+        stk.push(N);
+        N--;
+        for (int i = 0; N > 0; i++) {
+            if (i % 4 == 0) {
+                int x = stk.top();
+                stk.pop();
+                stk.push(x * N);
+            }
+            else if (i % 4 == 1) {
+                int x = stk.top();
+                stk.pop();
+                stk.push(x / N);
+            }
+            else if (i % 4 == 2) {
+                stk.push(N);
+            }
+            else
+                stk.push(-N);
+            N--;
+        }
+
+        int ret = 0;
+        while (!stk.empty()) {
+            ret += stk.top();
+            stk.pop();
+        }
+        return ret;
+    }
 	/// <summary>
 	/// 1047 删除字符串中的所有相邻重复项
 	/// </summary>
