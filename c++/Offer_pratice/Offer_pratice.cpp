@@ -919,6 +919,38 @@ public:
     }
 };
 
+
+/// <summary>
+/// 77 组合
+/// </summary>
+class Solution {
+private:
+    vector<int> path;
+    vector<vector<int>> result;
+public:
+
+    void dfs(int n, int k, int curpos) {
+        if (path.size() + n - curpos + 1 < k) {
+            return;
+        }
+
+        if (path.size() == k) {
+            result.push_back(path);
+            return;
+        }
+
+        path.push_back(curpos);
+        dfs(n, k, curpos + 1);
+        path.pop_back();
+        dfs(n, k, curpos + 1);
+
+    }
+    vector<vector<int>> combine(int n, int k) {
+        dfs(n, k, 1);
+        return result;
+    }
+};
+
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
 // 调试程序: F5 或调试 >“开始调试”菜单
 
