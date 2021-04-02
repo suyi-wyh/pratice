@@ -887,6 +887,44 @@ public:
 		}
 		return stk;
 	}
+    
+    /// <summary>
+    /// 面试题17.21
+    /// </summary>
+    /// <param name="height"></param>
+    /// <returns></returns>
+    int trap(vector<int>& height) {
+        int n = height.size();
+        if (n <= 2)
+            return 0;
+        int max = 0;
+        int water = 0;
+        int i = 0;
+        while (i < n) {
+            if (height[i] > max) {
+                max = height[i];
+            }
+            else {
+                water += max - height[i];
+            }
+            ++i;
+        }
+
+        --i;
+        int _max = 0;
+        while (height[i] != max) {
+            if (height[i] >= _max) {
+                _max = height[i];
+                water -= max - height[i];
+            }
+            else {
+                water -= (max - _max);
+            }
+            --i;
+        }
+        return water;
+
+    }
 };
 
 class Solution {
