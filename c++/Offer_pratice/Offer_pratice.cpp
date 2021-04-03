@@ -888,6 +888,27 @@ public:
 		return stk;
 	}
     
+
+    /// <summary>
+    /// 1143 最长公共子序列
+    /// </summary>
+    /// <param name="text1"></param>
+    /// <param name="text2"></param>
+    /// <returns></returns>
+    int longestCommonSubsequence(string text1, string text2) {
+        int m = text1.size();
+        int n = text2.size();
+        vector<vector<int>> nums(m + 1, vector<int>(n + 1));
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (text1[i] == text2[j])
+                    nums[i + 1][j + 1] = nums[i][j] + 1;
+                else
+                    nums[i + 1][j + 1] = max(nums[i][j + 1], nums[i + 1][j]);
+            }
+        }
+        return nums[m][n];
+    }
     /// <summary>
     /// 面试题17.21
     /// </summary>
