@@ -892,10 +892,10 @@ public:
     /// <summary>
     /// 1143 最长公共子序列
     /// </summary>
-    /// <param name="text1"></param>
+    /// <param name="text1"></param>  
     /// <param name="text2"></param>
     /// <returns></returns>
-    int longestCommonSubsequence(string text1, string text2) {
+    int longestCommonSubsequence(string text1, string text2) { 
         int m = text1.size();
         int n = text2.size();
         vector<vector<int>> nums(m + 1, vector<int>(n + 1));
