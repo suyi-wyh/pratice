@@ -815,6 +815,32 @@ public:
         }
         return true;
     }
+
+    /// <summary>
+    /// 781 森林中的兔子
+    /// </summary>
+    /// <param name="answers"></param>
+    /// <returns></returns>
+    int numRabbits(vector<int>& answers) {
+        vector<int> flag(1000, 0);
+        int n = answers.size();
+        int ret = 0;
+        for (int i = 0; i < n; ++i) {
+            if (answers[i] == 0) {
+                ret++;
+            }
+            else if (flag[answers[i]] == 0) {
+                ++flag[answers[i]];
+                ret += answers[i] + 1;
+            }
+            else if (flag[answers[i]] == answers[i]) {
+                flag[answers[i]] = 0;
+            }
+            else
+                flag[answers[i]]++;
+        }
+        return ret;
+    }
     /// <summary>
     /// 917 仅仅翻转字母
     /// </summary>
