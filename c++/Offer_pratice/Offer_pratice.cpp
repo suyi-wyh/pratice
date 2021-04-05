@@ -242,6 +242,35 @@ public:
     }
 
     /// <summary>
+    /// 将字符串转换为整数
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
+    int StrToInt(string str) {
+        int ret = 0;
+        int n = 0;
+        int flag = 1;
+        if (str[0] == '-') {
+            flag = -1;
+            n++;
+        }
+        else if (str[0] == '+')
+            n++;
+        else if (str[0] >= '0' && str[0] <= '9');
+        else
+            return 0;
+
+        while (n < str.size()) {
+            if (str[n] >= '0' && str[n] <= '9') {
+                ret = ret * 10 + (int)(str[n] - '0');
+            }
+            else if (str[n] != ' ')
+                return 0;
+            n++;
+        }
+        return ret * flag;
+    }
+    /// <summary>
     /// 3 无重复字符的最长子串
     /// </summary>
     /// <param name="s"></param>
