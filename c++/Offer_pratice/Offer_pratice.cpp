@@ -839,9 +839,7 @@ public:
         int n = s.size() - 1;
 
         while (i < n) {
-            char tmp = s[i];
-            s[i] = s[n];
-            s[n] = tmp;
+            swap(s[i],s[n]);
             i++; n--;
         }
     }
@@ -888,6 +886,24 @@ public:
         return true;
     }
 
+    /// <summary>
+    /// 541 反转字符串Ⅱ
+    /// </summary>
+    /// <param name="s"></param>
+    /// <param name="k"></param>
+    /// <returns></returns>
+    string reverseStr(string s, int k) {
+        for (int start = 0; start < s.size(); start += 2 * k) {
+            int i = start;
+            int j = fmin(start + k - 1, s.size() - 1);
+            while (i < j) {
+                char tmp = s[i];
+                s[i++] = s[j];
+                s[j--] = tmp;
+            }
+        }
+        return s;
+    }
     /// <summary>
     /// 781 森林中的兔子
     /// </summary>
