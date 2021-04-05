@@ -831,6 +831,21 @@ public:
         return x == 0 && preorder[n - 1] == '#';
     }
     /// <summary>
+    /// 344 反转字符串
+    /// </summary>
+    /// <param name="s"></param>
+    void reverseString(vector<char>& s) {
+        int i = 0;
+        int n = s.size() - 1;
+
+        while (i < n) {
+            char tmp = s[i];
+            s[i] = s[n];
+            s[n] = tmp;
+            i++; n--;
+        }
+    }
+    /// <summary>
     /// 387 字符串中的唯一字符
     /// </summary>
     /// <param name="s"></param>
