@@ -904,6 +904,31 @@ public:
         }
         return s;
     }
+
+
+    /// <summary>
+    /// 557 反转字符串中的单词Ⅲ
+    /// </summary>
+    /// <param name="s"></param>
+    /// <returns></returns>
+    string reverseWords(string s) {
+        for (int start = 0; start < s.size();) {
+            int i = start;
+            int j = start;
+            for (; s[j] != ' ' && j < s.size(); j++);
+            start = j + 1;
+            j--;
+            cout << "i" << i << endl;
+            cout << "j" << j << endl;
+            cout << "star:" << start << endl;
+            while (i < j) {
+                swap(s[i], s[j]);
+                i++;
+                j--;
+            }
+        }
+        return s;
+    }
     /// <summary>
     /// 781 森林中的兔子
     /// </summary>
