@@ -446,7 +446,26 @@ public:
 		return false;
 	}
 
-   
+    /// <summary>
+    /// 80 删除有序数组中的重复项Ⅱ
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    int removeDuplicates(vector<int>& nums) {
+        int n = nums.size();
+        if (n <= 2) {
+            return n;
+        }
+        int slow = 2, fast = 2;
+        while (fast < n) {
+            if (nums[slow - 2] != nums[fast]) {
+                nums[slow] = nums[fast];
+                ++slow;
+            }
+            ++fast;
+        }
+        return slow;
+    }
     /// <summary>
     /// 82 删除排序链表中的重复元素
     /// </summary>
