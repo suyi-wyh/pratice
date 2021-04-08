@@ -729,6 +729,26 @@ public:
 
         return stk.top();
     }
+
+    /// <summary>
+    /// 153 寻找旋转排序数组中的最小值
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    int findMin(vector<int>& nums) {
+        int right = 0;
+        int left = nums.size() - 1;
+        while (right < left) {
+            int mid = (right + left) / 2;
+            if (nums[mid] < nums[left]) {
+                left = mid;
+            }
+            else {
+                right = mid + 1;
+            }
+        }
+        return nums[right];
+    }
     /// <summary>
     /// 190 颠倒二进制位
     /// </summary>
