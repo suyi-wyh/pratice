@@ -749,6 +749,31 @@ public:
         }
         return nums[right];
     }
+
+    /// <summary>
+    /// 154 寻找旋转排序数组中的最小值Ⅱ
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    int findMin(vector<int>& nums) {
+        int right = nums.size();
+        if (right == 1)
+            return nums[0];
+        int left = 0;
+        right--;
+        while (left < right) {
+            int mid = (left + right) / 2;
+
+            if (nums[mid] > nums[right])
+                left = mid + 1;
+            else if (nums[mid] == nums[right])
+                right--;
+            else {
+                right = mid;
+            }
+        }
+        return nums[right];
+    }
     /// <summary>
     /// 190 颠倒二进制位
     /// </summary>
