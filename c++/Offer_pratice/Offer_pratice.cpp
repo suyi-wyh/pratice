@@ -695,6 +695,26 @@ public:
         }
         return ret;
     }
+
+    /// <summary>
+    /// 137 只出现一次的数字
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    int singleNumber(vector<int>& nums) {
+        set<int> num;
+        long num1 = 0;
+        for (int i = 0; i < nums.size(); ++i) {
+            num.insert(nums[i]);
+            num1 += nums[i];
+        }
+
+        long num2 = 0;
+        for (auto it = num.begin(); it != num.end(); ++it)
+            num2 += *it;
+        num2 *= 3;
+        return (num2 - num1) / 2;
+    }
     /// <summary>
     /// 150 逆波兰表达式求值
     /// </summary>
@@ -914,6 +934,7 @@ public:
             n /= 2;
         return n == 1;
     }
+
     /// <summary>
     /// 331 验证二叉树的前序序列化
     /// </summary>
@@ -948,6 +969,8 @@ public:
         }
         return x == 0 && preorder[n - 1] == '#';
     }
+
+
     /// <summary>
     /// 344 反转字符串
     /// </summary>
@@ -961,6 +984,8 @@ public:
             i++; n--;
         }
     }
+
+
     /// <summary>
     /// 387 字符串中的唯一字符
     /// </summary>
