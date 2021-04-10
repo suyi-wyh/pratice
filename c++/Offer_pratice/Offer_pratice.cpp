@@ -897,6 +897,24 @@ public:
     }
 
     /// <summary>
+    /// 263 丑数
+    /// </summary>
+    /// <param name="n"></param>
+    /// <returns></returns>
+    bool isUgly(int n) {
+        if (n == 1)
+            return true;
+        else if (n < 1)
+            return false;
+        while (n % 5 == 0)
+            n /= 5;
+        while (n % 3 == 0)
+            n /= 3;
+        while (n % 2 == 0)
+            n /= 2;
+        return n == 1;
+    }
+    /// <summary>
     /// 331 验证二叉树的前序序列化
     /// </summary>
     /// <param name="preorder"></param>
