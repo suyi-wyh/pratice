@@ -9,6 +9,8 @@
 #include<vector>
 #include <unordered_set>
 #include<algorithm>
+#include<set>
+
 using namespace std;    
 
 struct ListNode {
@@ -935,6 +937,30 @@ public:
         return n == 1;
     }
 
+
+
+    /// <summary>
+    /// 264 丑数Ⅱ
+    /// </summary>
+    /// <param name="n"></param>
+    /// <returns></returns>
+    int nthUglyNumber(int n) {
+        vector<int> dp(n + 1);
+        dp[1] = 1;
+        int dp2 = 1, dp3 = 1, dp5 = 1;
+        for (int i = 2; i <= n; i++) {
+            dp[i] = min(min(2 * dp[dp2], 3 * dp[dp3]), 5 * dp[dp5]);
+            cout << i << ':' << dp[i] << endl;
+            if (dp[i] == 2 * dp[dp2])
+                dp2++;
+            if (dp[i] == 3 * dp[dp3])
+                dp3++;
+            if (dp[i] == 5 * dp[dp5])
+                dp5++;
+        }
+
+        return dp[n];
+    }
     /// <summary>
     /// 331 验证二叉树的前序序列化
     /// </summary>
