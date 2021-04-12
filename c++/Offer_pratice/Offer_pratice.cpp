@@ -796,6 +796,28 @@ public:
         }
         return nums[right];
     }
+
+    /// <summary>
+    /// 179 最大数
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    string largestNumber(vector<int>& nums) {
+        string ret;
+        sort(nums.begin(), nums.end(), [](const int& x, const int& y) {
+            long _x = 10, _y = 10;
+            while (_x <= x)
+                _x *= 10;
+            while (_y <= y)
+                _y *= 10;
+
+            return x * _y + y > y * _x + x;
+            });
+        if (nums[0] == 0)
+            return "0";
+        for (const auto ch : nums) {
+            ret += to_string(ch);
+        }
     /// <summary>
     /// 190 颠倒二进制位
     /// </summary>
@@ -944,7 +966,7 @@ public:
     /// </summary>
     /// <param name="n"></param>
     /// <returns></returns>
-    int nthUglyNumber(int n) {
+    int nthUglyNumber(int n) {    
         vector<int> dp(n + 1);
         dp[1] = 1;
         int dp2 = 1, dp3 = 1, dp5 = 1;
