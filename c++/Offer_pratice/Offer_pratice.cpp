@@ -10,7 +10,7 @@
 #include <unordered_set>
 #include<algorithm>
 #include<set>
-
+#include<string>
 using namespace std;    
 
 struct ListNode {
@@ -1145,6 +1145,33 @@ public:
         }
         return ret;
     }
+	
+	/// <summary>
+	/// 783 二叉搜索树节点最小距离
+	/// </summary>
+	/// <param name="ret"></param>
+	/// <param name="val"></param>
+	/// <param name="root"></param>
+	void InOrder(int& ret, int& val, TreeNode* root) {
+		if (!root)
+			return;
+
+		InOrder(ret, val, root->left);
+		if (val == INT_MAX)
+			val = root->val;
+		else {
+			ret = min(ret, abs(val - root->val));
+			val = root->val;
+		}
+		InOrder(ret, val, root->right);
+	}
+
+	int minDiffInBST(TreeNode* root) {
+		int ret = INT_MAX;
+		int val = INT_MAX;
+		InOrder(ret, val, root);
+		return ret;
+	}
     /// <summary>
     /// 917 仅仅翻转字母
     /// </summary>
