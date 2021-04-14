@@ -70,6 +70,50 @@ public:
 };
 
 /// <summary>
+/// 208 实现Trie(前缀树)
+/// </summary>
+class Trie {
+private:
+	vector<Trie*> tree;
+	bool flag;
+public:
+	/** Initialize your data structure here. */
+	Trie() :tree(26), flag(false) {}
+
+	/** Inserts a word into the trie. */
+	void insert(string word) {
+		Trie* node = this;
+		for (auto ch : word) {
+			if (node->tree[ch - 'a'] == nullptr)
+				node->tree[ch - 'a'] = new Trie();
+			node = node->tree[ch - 'a'];
+		}
+		node->flag = true;
+	}
+
+	/** Returns if the word is in the trie. */
+	bool search(string word) {
+		Trie* node = this;
+		for (auto ch : word) {
+			if (node->tree[ch - 'a'] == nullptr)
+				return false;
+			node = node->tree[ch - 'a'];
+		}
+		return node->flag;
+	}
+
+	/** Returns if there is any word in the trie that starts with the given prefix. */
+	bool startsWith(string prefix) {
+		Trie* node = this;
+		for (auto ch : prefix) {
+			if (node->tree[ch - 'a'] == nullptr)
+				return false;
+			node = node->tree[ch - 'a'];
+		}
+		return true;
+	}
+};
+/// <summary>
 /// 705 设计哈希集合
 /// </summary>
 class MyHashSet {   
