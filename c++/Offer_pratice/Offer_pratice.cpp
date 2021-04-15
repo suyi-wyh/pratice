@@ -875,6 +875,33 @@ public:
         }
         return ret;
     }
+	
+	
+	/// <summary>
+	/// 213 打家劫舍Ⅱ
+	/// </summary>
+	/// <param name="nums"></param>
+	/// <param name="start"></param>
+	/// <param name="end"></param>
+	/// <returns></returns>
+	int dfs(vector<int>& nums, int start, int end) {
+		int first = nums[start], second = max(nums[start], nums[start + 1]);
+		for (int i = start + 2; i < end; i++) {
+			int tmp = second;
+			second = max(second, first + nums[i]);
+			first = tmp;
+		}
+
+		return second;
+	}
+	int rob(vector<int>& nums) {
+		if (nums.size() == 1)
+			return nums[0];
+		else if (nums.size() == 2)
+			return max(nums[0], nums[1]);
+
+		return max(dfs(nums, 0, nums.size() - 1), dfs(nums, 1, nums.size()));
+	}
     /// <summary>
     /// 224 基础计算器
     /// </summary>
