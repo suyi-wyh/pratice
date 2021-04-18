@@ -409,6 +409,31 @@ public:
         }
         return returnNum;
     }
+	
+	/// <summary>
+	/// 26 删除有序数组中的重复项
+	/// </summary>
+	/// <param name="nums"></param>
+	/// <returns></returns>
+	int removeDuplicates(vector<int>& nums) {
+		int n = nums.size();
+		if (n <= 1)
+			return n;
+		auto it = nums.begin();
+		int prev = *it;
+		it++;
+		while (it != nums.end()) {
+			if (*it == prev) {
+				it = nums.erase(it);
+				n--;
+			}
+			else {
+				prev = *it;
+				it++;
+			}
+		}
+		return n;
+	}
     /// <summary>
     /// 54 螺旋矩阵
     /// </summary>
