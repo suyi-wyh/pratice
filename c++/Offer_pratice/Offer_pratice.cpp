@@ -434,6 +434,30 @@ public:
 		}
 		return n;
 	}
+	
+	/// <summary>
+	/// 27 移除元素
+	/// </summary>
+	/// <param name="nums"></param>
+	/// <param name="val"></param>
+	/// <returns></returns>
+	int removeElement(vector<int>& nums, int val) {
+		int n = nums.size();
+		int right = nums.size() - 1;
+		int left = 0;
+		while (left <= right)
+		{
+			if (nums[left] == val) {
+				swap(nums[left], nums[right]);
+				right--;
+				n--;
+			}
+			else {
+				left++;
+			}
+		}
+		return n;
+	}
     /// <summary>
     /// 54 螺旋矩阵
     /// </summary>
