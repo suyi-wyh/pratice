@@ -458,6 +458,39 @@ public:
 		}
 		return n;
 	}  
+	
+	
+	/// <summary>
+	/// 28 strStr
+	/// </summary>
+	/// <param name="haystack"></param>
+	/// <param name="needle"></param>
+	/// <returns></returns>
+	int strStr(string haystack, string needle) {
+		if (needle == "")
+			return 0;
+
+		int i = 0;
+		int j = 0;
+		while (i + needle.size() - 1 < haystack.size())
+		{
+			if (haystack[i] == needle[j]) {
+				int ii = i;
+				int jj = 0;
+				while (ii < haystack.size() && jj < needle.size() && haystack[ii] == needle[jj])
+				{
+					ii++;
+					jj++;
+					//cout<<"ii:"<<ii<<"jj:"<<jj<<endl;
+				}
+				if (jj == needle.size())
+					return i;
+			}
+			i++;
+		}
+		return -1;
+	}
+	
     /// <summary>
     /// 54 螺旋矩阵
     /// </summary>
