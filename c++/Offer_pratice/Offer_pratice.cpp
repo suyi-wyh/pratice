@@ -1346,6 +1346,25 @@ public:
 		}
 		return res;
 	}
+	
+	/// <summary>
+	/// 377 组合总和Ⅳ
+	/// </summary>
+	/// <param name="nums"></param>
+	/// <param name="target"></param>
+	/// <returns></returns>
+	int combinationSum4(vector<int>& nums, int target) {
+		vector<int> dp(target + 1);
+		dp[0] = 1;
+		for (int i = 1; i <= target; i++) {
+			for (int& num : nums) {
+				if (num <= i && dp[i - num] < INT_MAX - dp[i]) {
+					dp[i] += dp[i - num];
+				}
+			}
+		}
+		return dp[target];
+	}
     /// <summary>
     /// 387 字符串中的唯一字符
     /// </summary>
