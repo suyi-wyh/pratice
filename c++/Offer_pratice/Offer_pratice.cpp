@@ -1503,6 +1503,36 @@ public:
 		InOrder(ret, val, root);
 		return ret;
 	}
+	
+		
+	/// <summary>
+	/// 897 递增顺序搜索树
+	/// </summary>
+	/// <param name="root"></param>
+	/// <param name="nums"></param>
+	void InOrder(TreeNode* root, vector<int>& nums) {
+		if (root != nullptr) {
+			InOrder(root->left, nums);
+			nums.push_back(root->val);
+			InOrder(root->right, nums);
+		}
+	}
+	TreeNode* increasingBST(TreeNode* root) {
+		if (!root)
+			return nullptr;
+
+		vector<int> nums;
+		InOrder(root, nums);
+
+		TreeNode* newroot = new TreeNode(nums[0]);
+		TreeNode* pre = newroot;
+		for (int i = 1; i < nums.size(); i++) {
+			TreeNode* tmp = new TreeNode(nums[i]);
+			pre = pre->right = tmp;
+		}
+
+		return newroot;
+	}
     /// <summary>
     /// 917 仅仅翻转字母
     /// </summary>
