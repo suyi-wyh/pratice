@@ -1590,6 +1590,35 @@ public:
         return ret;
     }
 	/// <summary>
+	/// 1011   在D天内送达包裹的能力
+	/// </summary>
+	/// <param name="weights"></param>
+	/// <param name="D"></param>
+	/// <returns></returns>
+	int shipWithinDays(vector<int>& weights, int D) {
+		int left = *max_element(weights.begin(), weights.end());
+		int right = accumulate(weights.begin(), weights.end(), 0);
+		while (left < right) {
+			int mid = (left + right) / 2;
+			int days = 1, weight = 0;
+			for (int it : weights) {
+				weight += it;
+				if (weight > mid) {
+					days++;
+					weight = it;
+				}
+			}
+
+			if (days <= D) {
+				right = mid;
+			}
+			else {
+				left = mid + 1;
+			}
+		}
+		return left;
+	}
+	/// <summary>
 	/// 1047 删除字符串中的所有相邻重复项
 	/// </summary>
 	/// <param name="S"></param>
