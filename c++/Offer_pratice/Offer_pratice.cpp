@@ -1554,6 +1554,28 @@ public:
         return S;
     }
 
+	/// <summary>
+	/// 938 二叉搜索树的范围和
+	/// </summary>
+	/// <param name="root"></param>
+	/// <param name="low"></param>
+	/// <param name="high"></param>
+	/// <param name="sum"></param>
+	void Inorder(TreeNode* root, int low, int high, int& sum) {
+		if (root) {
+			Inorder(root->left, low, high, sum);
+			if (root->val <= high && root->val >= low) {
+				//cout<<"jinlaile"<<endl;
+				sum += root->val;
+			}
+			Inorder(root->right, low, high, sum);
+		}
+	}
+	int rangeSumBST(TreeNode* root, int low, int high) {
+		int sum = 0;
+		Inorder(root, low, high, sum);
+		return sum;
+	}
     /// <summary>
     /// 1006 笨阶乘
     /// </summary>
