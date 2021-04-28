@@ -1451,6 +1451,23 @@ public:
         }
         return s;
     }
+	
+	/// <summary>
+	/// 633 平方数之和
+	/// </summary>
+	/// <param name="c"></param>
+	/// <returns></returns>
+	bool judgeSquareSum(int c) {
+		int gc = sqrt(c);
+		for (int i = 0; i <= gc; i++) {
+			int tmp = c - pow(i, 2);
+			int ttmp = sqrt(tmp);
+			if (ttmp * ttmp == tmp)
+				return true;
+		}
+		return false;
+	}
+	
     /// <summary>
     /// 781 森林中的兔子
     /// </summary>
