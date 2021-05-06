@@ -1748,6 +1748,22 @@ public:
         }
         return nums[m][n];
     }
+	
+	/// <summary>
+	///1720 解码异或后的数组 
+	/// </summary>
+	/// <param name="encoded"></param>
+	/// <param name="first"></param>
+	/// <returns></returns>
+	vector<int> decode(vector<int>& encoded, int first) {
+		int n = encoded.size();
+		vector<int>  arr(n + 1);
+		arr[0] = first;
+		for (int i = 0; i < n; i++) {
+			arr[i + 1] = arr[i] ^ encoded[i];
+		}
+		return arr;
+	}
     /// <summary>
     /// 面试题17.21
     /// </summary>
