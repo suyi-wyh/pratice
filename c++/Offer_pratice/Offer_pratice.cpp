@@ -1750,6 +1750,19 @@ public:
     }
 	
 	/// <summary>
+	/// 1486  数组异或操作
+	/// </summary>
+	/// <param name="n"></param>
+	/// <param name="start"></param>
+	/// <returns></returns>
+	int xorOperation(int n, int start) {
+		int ret = 0;
+		for (int i = 0; i < n; i++) {
+			ret ^= (start + 2 * i);
+		}
+		return ret;
+	}
+	/// <summary>
 	///1720 解码异或后的数组 
 	/// </summary>
 	/// <param name="encoded"></param>
