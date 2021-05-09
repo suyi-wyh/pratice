@@ -1907,6 +1907,27 @@ public:
         return water;
 
     }
+	
+	
+	/// <summary>
+	/// LCP 28 采购方案
+	/// </summary>
+	/// <param name="nums"></param>
+	/// <param name="target"></param>
+	/// <returns></returns>
+	int purchasePlans(vector<int>& nums, int target) {
+		int n = nums.size();
+		int ret = 0;
+		sort(nums.begin(), nums.end());
+		int right = nums.size() - 1;
+		for (int left = 0; left < right && nums[left] < target; left++) {
+			while (right > left && nums[left] + nums[right] > target) {
+				right--;
+			}
+			ret = (ret + right - left) % 1000000007;
+		}
+		return ret;
+	}
 };
 
 class Solution {
