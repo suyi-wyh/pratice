@@ -461,6 +461,25 @@ public:
 	
 	
 	/// <summary>
+	/// 19 删除链表的倒数第N个节点
+	/// </summary>
+	/// <param name="head"></param>
+	/// <param name="n"></param>
+	/// <returns></returns>
+	ListNode* removeNthFromEnd(ListNode* head, int n) {
+		ListNode* tmp = new ListNode(0, head);
+		head = tmp;
+		ListNode* fast = head;
+		for (int i = 0; i < n; i++)
+			fast = fast->next;
+		ListNode* slow = head;
+		for (; fast->next != nullptr; fast = fast->next, slow = slow->next);
+		ListNode* curd = slow->next;
+		slow->next = slow->next->next;
+		delete curd;
+		return tmp->next;
+	}
+	/// <summary>
 	/// 28 strStr
 	/// </summary>
 	/// <param name="haystack"></param>
