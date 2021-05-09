@@ -1748,7 +1748,51 @@ public:
         }
         return nums[m][n];
     }
-	
+
+	/// <summary>
+	/// 1482 制作m数花所需要的最短时间
+	/// </summary>
+	/// <param name="bloomDay"></param>
+	/// <param name="m"></param>
+	/// <param name="k"></param>
+	/// <returns></returns>
+	int minDays(vector<int>& bloomDay, int m, int k) {
+		int n = bloomDay.size();
+		if (n < m * k)
+			return -1;
+		int flowerm = 0;
+
+		int left = 1, right = 1;
+		for (int it : bloomDay)
+			right = max(right, it);
+
+		while (left < right)
+		{
+			int days = (left + right) / 2;
+			int tmp = 0;
+			int flowerk = 0;
+			int i = 0;
+
+			while (i < bloomDay.size()) {
+				while (i < bloomDay.size() && bloomDay[i] <= days) {
+					flowerk++;
+					if (flowerk == k) {
+						tmp++;
+						flowerk = 0;
+					}
+					i++;
+				}
+				flowerk = 0;
+				i++;
+			}
+
+			if (tmp < m)
+				left = days + 1;
+			else
+				right = days;
+		}
+		return left;
+	}	
 	/// <summary>
 	/// 1486  数组异或操作
 	/// </summary>
