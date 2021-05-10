@@ -1593,7 +1593,29 @@ public:
 		return ret;
 	}
 	
-		
+	/// <summary>
+	/// 872 叶子相似的树
+	/// </summary>
+	/// <param name="root"></param>
+	/// <param name="nums"></param>
+	void _InOrder(TreeNode* root, vector<int>& nums) {
+		if (root != nullptr) {
+			InOrder(root->left, nums);
+			if (root->left == nullptr && root->right == nullptr)
+				nums.push_back(root->val);
+			InOrder(root->right, nums);
+		}
+	}
+	bool leafSimilar(TreeNode* root1, TreeNode* root2) {
+		vector<int> nums1;
+		vector<int> nums2;
+
+		_InOrder(root1, nums1);
+		_InOrder(root2, nums2);
+
+		return nums1 == nums2;
+
+	}
 	/// <summary>
 	/// 897 递增顺序搜索树
 	/// </summary>
