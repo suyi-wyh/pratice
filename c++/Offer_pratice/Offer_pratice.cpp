@@ -1926,7 +1926,7 @@ public:
 			//cout<<encoded[i]<<endl;
 			s ^= encoded[i];
 			//cout<<s<<endl<<endl;
-		}
+		}     
 
 		int num = 0;
 		for (int i = 1; i <= (n + 1); ++i)
