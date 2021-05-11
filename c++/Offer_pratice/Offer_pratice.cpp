@@ -1911,6 +1911,35 @@ public:
 		}
 		return l;
 	}
+	
+	
+	/// <summary>
+	/// 1734 解码异或后的排序
+	/// </summary>
+	/// <param name="encoded"></param>
+	/// <returns></returns>
+	vector<int> decode(vector<int>& encoded) {
+		int n = encoded.size();
+		vector<int> ret(n + 1);
+		int s = 0;
+		for (int i = 1; i < n; i += 2) {
+			//cout<<encoded[i]<<endl;
+			s ^= encoded[i];
+			//cout<<s<<endl<<endl;
+		}
+
+		int num = 0;
+		for (int i = 1; i <= (n + 1); ++i)
+			num ^= i;
+
+		ret[0] = num ^ s;
+		for (int i = 1; i < n + 1; i++) {
+			ret[i] = ret[i - 1] ^ encoded[i - 1];
+		}
+
+		return ret;
+
+	}
     /// <summary>
     /// 面试题17.21
     /// </summary>
