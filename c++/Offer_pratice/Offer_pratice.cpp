@@ -1791,6 +1791,25 @@ public:
     }
 
 	/// <summary>
+	/// 1310 子数组异或查询
+	/// </summary>
+	/// <param name="arr"></param>
+	/// <param name="queries"></param>
+	/// <returns></returns>
+	vector<int> xorQueries(vector<int>& arr, vector<vector<int>>& queries) {
+		vector<int> xornum(arr.size() + 1);
+		xornum[0] = 0;
+		for (int i = 1; i < xornum.size(); ++i) {
+			xornum[i] = xornum[i - 1] ^ arr[i - 1];
+		}
+		vector<int> ret;
+		for (int i = 0; i < queries.size(); ++i) {
+			int tmp = xornum[queries[i][0]] ^ xornum[queries[i][1] + 1];
+			ret.push_back(tmp);
+		}
+		return ret;
+	}
+	/// <summary>
 	/// 1482 制作m数花所需要的最短时间
 	/// </summary>
 	/// <param name="bloomDay"></param>
