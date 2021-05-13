@@ -1791,6 +1791,30 @@ public:
     }
 
 	/// <summary>
+	/// 1269 停在原地的方案数
+	/// </summary>
+	/// <param name="steps"></param>
+	/// <param name="arrLen"></param>
+	/// <returns></returns>
+	int numWays(int steps, int arrLen) {
+		const int MODULO = 1000000007;
+		int maxColumn = min(arrLen - 1, steps);
+		vector<vector<int>> dp(steps + 1, vector<int>(maxColumn + 1));
+		dp[0][0] = 1;
+		for (int i = 1; i <= steps; i++) {
+			for (int j = 0; j <= maxColumn; j++) {
+				dp[i][j] = dp[i - 1][j];
+				if (j - 1 >= 0) {
+					dp[i][j] = (dp[i][j] + dp[i - 1][j - 1]) % MODULO;
+				}
+				if (j + 1 <= maxColumn) {
+					dp[i][j] = (dp[i][j] + dp[i - 1][j + 1]) % MODULO;
+				}
+			}
+		}
+		return dp[steps][0];
+	}
+	/// <summary>
 	/// 1310 子数组异或查询
 	/// </summary>
 	/// <param name="arr"></param>
