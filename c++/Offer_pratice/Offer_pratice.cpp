@@ -1796,7 +1796,7 @@ public:
 	/// <param name="steps"></param>
 	/// <param name="arrLen"></param>
 	/// <returns></returns>
-	int numWays(int steps, int arrLen) {
+	int numWays(int steps, int arrLen) {  
 		const int MODULO = 1000000007;
 		int maxColumn = min(arrLen - 1, steps);
 		vector<vector<int>> dp(steps + 1, vector<int>(maxColumn + 1));
