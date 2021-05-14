@@ -409,7 +409,43 @@ public:
         }
         return returnNum;
     }
-	
+	/// <summary>
+	/// 12 整数转罗马数字
+	/// </summary>
+	/// <param name="num"></param>
+	/// <returns></returns>
+	string intToRoman(int num) {
+		int tmp = num;
+		int flag = 0;
+		string ret;
+		string nums1 = "IXCM";
+		string nums5 = "VLDD";
+		while (tmp != 0) {
+			int cur = tmp % 10;
+			tmp /= 10;
+			if (cur == 0);
+			else if (cur <= 3) {
+				for (int i = 0; i < cur; i++)
+					ret.insert(ret.begin(), nums1[flag]);
+			}
+			else if (cur == 4) {
+				ret.insert(ret.begin(), nums5[flag]);
+				ret.insert(ret.begin(), nums1[flag]);
+			}
+			else if (cur == 9) {
+				ret.insert(ret.begin(), nums1[flag + 1]);
+				ret.insert(ret.begin(), nums1[flag]);
+			}
+			else {
+				for (int i = 0; i < cur - 5; i++) {
+					ret.insert(ret.begin(), nums1[flag]);
+				}
+				ret.insert(ret.begin(), nums5[flag]);
+			}
+			flag++;
+		}
+		return ret;
+	}
 	/// <summary>
 	/// 26 删除有序数组中的重复项
 	/// </summary>
