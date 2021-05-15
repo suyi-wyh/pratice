@@ -8,6 +8,7 @@
 #include<StlLock.h>
 #include<vector>
 #include <unordered_set>
+#include<map>
 #include<algorithm>
 #include<set>
 #include<string>
@@ -444,6 +445,27 @@ public:
 			}
 			flag++;
 		}
+		return ret;
+	}
+	/// <summary>
+	/// 13 罗马数字转整数
+	/// </summary>
+	/// <param name="s"></param>
+	/// <returns></returns>
+	int romanToInt(string s) {
+		map<char, int> nums{ {'I',1},{'V',5},{'X',10},{'L',50},{'C',100},{'D',500},{'M',1000} };
+		int n = s.size();
+		int i = 0;
+		int ret = 0;
+		while (i < n - 1) {
+			if (nums[s[i]] < nums[s[i + 1]]) {
+				ret -= nums[s[i]];
+			}
+			else
+				ret += nums[s[i]];
+			i++;
+		}
+		ret += nums[s[i]];
 		return ret;
 	}
 	/// <summary>
