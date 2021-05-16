@@ -1150,6 +1150,29 @@ public:
 
 		return max(dfs(nums, 0, nums.size() - 1), dfs(nums, 1, nums.size()));
 	}
+	/// <summary>
+	/// 二叉树的前序遍历
+	/// </summary>
+	/// <param name="root"></param>
+	/// <returns></returns>
+	vector<int> preorderTraversal(TreeNode* root) {
+		vector<int> ret;
+		if (root == nullptr)
+			return ret;
+		stack<TreeNode*> stk;
+
+		while (!stk.empty() || root != nullptr) {
+			while (root != nullptr) {
+				ret.push_back(root->val);
+				stk.push(root);
+				root = root->left;
+			}
+			root = stk.top();
+			stk.pop();
+			root = root->right;
+		}
+		return ret;
+	}
     /// <summary>
     /// 224 基础计算器
     /// </summary>
