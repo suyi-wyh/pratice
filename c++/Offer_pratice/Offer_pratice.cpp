@@ -928,6 +928,36 @@ public:
 
         return head;
     }
+	
+	/// <summary>
+	/// 105 从前序与中序遍历序列构造二叉树
+	/// </summary>
+	/// <param name="preorder"></param>
+	/// <param name="inorder"></param>
+	/// <param name="pi"></param>
+	/// <param name="ibegin"></param>
+	/// <param name="iend"></param>
+	/// <returns></returns>
+	TreeNode* PreOrder(vector<int>& preorder, vector<int>& inorder, int& pi, int ibegin, int iend) {
+
+		if (pi >= preorder.size() || ibegin > iend)
+			return nullptr;
+
+		int rooti = ibegin;
+		while (rooti <= iend && inorder[rooti] != preorder[pi]) {
+			rooti++;
+		}
+		TreeNode* root = new TreeNode(preorder[pi]);
+		++pi;
+
+		root->left = PreOrder(preorder, inorder, pi, ibegin, rooti - 1);
+		root->right = PreOrder(preorder, inorder, pi, rooti + 1, iend);
+		return root;
+	}
+	TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+		int pi = 0;
+		return PreOrder(preorder, inorder, pi, 0, inorder.size() - 1);
+	}
     /// <summary>
     /// 115 不同的子序列
     /// </summary>
@@ -1151,7 +1181,7 @@ public:
 		return max(dfs(nums, 0, nums.size() - 1), dfs(nums, 1, nums.size()));
 	}
 	/// <summary>
-	/// 二叉树的前序遍历
+	/// 244 二叉树的前序遍历
 	/// </summary>
 	/// <param name="root"></param>
 	/// <returns></returns>
