@@ -1258,7 +1258,40 @@ public:
         }
         return ret;
     }
+	
+	/// <summary>
+	/// 236 二叉树的最近公共祖先
+	/// </summary>
+	/// <param name="root"></param>
+	/// <param name="p"></param>
+	/// <param name="q"></param>
+	/// <returns></returns>
+	TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+		stack<TreeNode*> stkp;
+		stack<TreeNode*> stkq;
 
+		findpath(root, p, stkp);
+		findpath(root, q, stkq);
+
+		int np = stkp.size();
+		int nq = stkq.size();
+
+		if (np > nq) {
+			for (int i = 0; i < np - nq; ++i)
+				stkp.pop();
+		}
+		else if (nq > np) {
+			for (int i = 0; i < nq - np; ++i)
+				stkq.pop();
+		}
+
+		while (stkp.top() != stkq.top()) {
+			stkp.pop();
+			stkq.pop();
+		}
+
+		return stkq.top();
+	}
     /// <summary>
     /// 263 丑数
     /// </summary>
