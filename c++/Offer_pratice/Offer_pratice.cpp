@@ -1062,6 +1062,41 @@ public:
         num2 *= 3;
         return (num2 - num1) / 2;
     }
+	
+	/// <summary>
+	/// 145 二叉树的后序遍历
+	/// </summary>
+	/// <param name="root"></param>
+	/// <returns></returns>
+	vector<int> postorderTraversal(TreeNode* root) {
+		vector<int> ret;
+		if (!root)
+			return ret;
+		stack<TreeNode*> stk;
+
+		TreeNode* pre = nullptr;
+		while (!stk.empty() || root != nullptr) {
+
+			while (root != nullptr) {
+				stk.push(root);
+				root = root->left;
+			}
+
+			root = stk.top();
+			stk.pop();
+
+			if (root->right == nullptr || root->right == pre) {
+				ret.push_back(root->val);
+				pre = root;
+				root = nullptr;
+			}
+			else {
+				stk.push(root);
+				root = root->right;
+			}
+		}
+		return ret;
+	}
     /// <summary>
     /// 150 逆波兰表达式求值
     /// </summary>
