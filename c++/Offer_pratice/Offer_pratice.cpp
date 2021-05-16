@@ -930,6 +930,29 @@ public:
     }
 	
 	/// <summary>
+	/// 94 二叉树的中序遍历
+	/// </summary>
+	/// <param name="root"></param>
+	/// <returns></returns>
+	vector<int> inorderTraversal(TreeNode* root) {
+		vector<int> ret;
+		if (!root)
+			return ret;
+		stack<TreeNode*> stk;
+
+		while (!stk.empty() || root != nullptr) {
+			while (root != nullptr) {
+				stk.push(root);
+				root = root->left;
+			}
+
+			ret.push_back(stk.top()->val);
+			root = stk.top()->right;
+			stk.pop();
+		}
+		return ret;
+	}
+	/// <summary>
 	/// 105 从前序与中序遍历序列构造二叉树
 	/// </summary>
 	/// <param name="preorder"></param>
