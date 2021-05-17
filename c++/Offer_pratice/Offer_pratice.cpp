@@ -1889,6 +1889,68 @@ public:
 		Inorder(root, low, high, sum);
 		return sum;
 	}
+	/// <summary>
+	/// 993 二叉树的堂兄弟节点
+	/// </summary>
+	/// <param name="root"></param>
+	/// <param name="x"></param>
+	/// <param name="y"></param>
+	/// <returns></returns>
+	bool isCousins(TreeNode* root, int x, int y) {
+		if (!root || !root->left || !root->right)
+			return false;
+		vector<TreeNode*> curV;
+		vector<TreeNode*> nextV;
+
+		curV.push_back(root);
+		while (!curV.empty() || !nextV.empty()) {
+			bool flagx = false;
+			bool flagy = false;
+
+			for (int i = 0; i < curV.size(); ++i) {
+				if (!curV[i]->left && !curV[i]->right);
+				else if (!curV[i]->left && curV[i]->right) {
+					nextV.push_back(curV[i]->right);
+					if (curV[i]->right->val == x)
+						flagx = true;
+					else if (curV[i]->right->val == y)
+						flagy = true;
+				}
+
+				else if (curV[i]->left && !curV[i]->right) {
+					nextV.push_back(curV[i]->left);
+					if (curV[i]->left->val == x)
+						flagx = true;
+					else if (curV[i]->left->val == y)
+						flagy = true;
+				}
+
+				else {
+					if (curV[i]->left->val == x && curV[i]->right->val == y)
+						return false;
+					else if (curV[i]->left->val == y && curV[i]->right->val == x)
+						return false;
+
+					if (curV[i]->left->val == x)
+						flagx = true;
+					else if (curV[i]->left->val == y)
+						flagy = true;
+					if (curV[i]->right->val == x)
+						flagx = true;
+					else if (curV[i]->right->val == y)
+						flagy = true;
+					nextV.push_back(curV[i]->left);
+					nextV.push_back(curV[i]->right);
+				}
+			}
+			if (flagx && flagy) {
+				return true;
+			}
+			curV.clear();
+			swap(curV, nextV);
+		}
+		return false;
+	}
     /// <summary>
     /// 1006 笨阶乘
     /// </summary>
