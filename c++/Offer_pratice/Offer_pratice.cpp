@@ -2268,6 +2268,45 @@ public:
 		return ret;
 
 	}
+	/// <summary>
+	/// 1738 找出第K大的异或坐标值
+	/// </summary>
+	/// <param name="matrix"></param>
+	/// <param name="k"></param>
+	/// <returns></returns>
+	int kthLargestValue(vector<vector<int>>& matrix, int k) {
+		int n = matrix.size();
+		int m = matrix[0].size();
+
+		vector<vector<int>> ans(n, vector<int>(m));
+		vector<int> ret;
+		int tmp = 0;
+
+		for (int i = 0; i < m; ++i) {
+			ans[0][i] = tmp = tmp ^ matrix[0][i];
+			ret.push_back(ans[0][i]);
+
+		}
+
+
+		for (int i = 1; i < n; i++) {
+			ans[i][0] = matrix[i][0] ^ ans[i - 1][0];
+			ret.push_back(ans[i][0]);
+
+		}
+
+		for (int i = 1; i < n; i++) {
+			for (int j = 1; j < m; j++) {
+				ans[i][j] = ans[i - 1][j] ^ ans[i][j - 1] ^ ans[i - 1][j - 1] ^ matrix[i][j];
+				ret.push_back(ans[i][j]);
+
+			}
+		}
+
+		sort(ret.begin(), ret.end(), greater<int>());
+
+		return ret[k - 1];
+	}
     /// <summary>
     /// 面试题17.21
     /// </summary>
