@@ -1717,6 +1717,26 @@ public:
 		return false;
 	}
 	/// <summary>
+	/// 692 前k个高频单词
+	/// </summary>
+	/// <param name="words"></param>
+	/// <param name="k"></param>
+	/// <returns></returns>
+	vector<string> topKFrequent(vector<string>& words, int k) {
+		map<string, int> dict;
+		for (string it : words)
+			dict[it]++;
+
+		vector<string> ret;
+		for ( auto it : dict)
+			ret.push_back(it.first);
+
+		sort(ret.begin(), ret.end(), [&](const string& a, const string& b)->bool {
+			return dict[a] == dict[b] ? a<b : dict[a]>dict[b]; });
+		ret.erase(ret.begin() + k, ret.end());
+		return ret;
+	}
+	/// <summary>
 	/// 740 删除并获得点数
 	/// </summary>
 	/// <param name="nums"></param>
