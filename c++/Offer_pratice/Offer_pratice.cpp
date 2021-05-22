@@ -1814,7 +1814,21 @@ public:
 		InOrder(ret, val, root);
 		return ret;
 	}
-	
+	/// <summary>
+	/// 810 黑板异或游戏
+	/// </summary>
+	/// <param name="nums"></param>
+	/// <returns></returns>
+	bool xorGame(vector<int>& nums) {
+		if (nums.size() % 2 == 0) {
+			return true;
+		}
+		int xorsum = 0;
+		for (int num : nums) {
+			xorsum ^= num;
+		}
+		return xorsum == 0;
+	}
 	/// <summary>
 	/// 872 叶子相似的树
 	/// </summary>
