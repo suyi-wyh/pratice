@@ -1097,6 +1097,25 @@ public:
 		}
 		return ret;
 	}
+	
+	/// <summary>
+	/// 141 环形链表
+	/// </summary>
+	/// <param name="head"></param>
+	/// <returns></returns>
+	bool hasCycle(ListNode* head) {
+		ListNode* fast = head;
+		ListNode* slow = head;
+
+		while (fast != nullptr && fast->next != nullptr) {
+			fast = fast->next->next;
+			slow = slow->next;
+			if (fast == slow)
+				return true;
+		}
+
+		return false;
+	}
     /// <summary>
     /// 150 逆波兰表达式求值
     /// </summary>
