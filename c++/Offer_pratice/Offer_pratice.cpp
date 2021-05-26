@@ -2152,7 +2152,32 @@ public:
         }
         return nums[m][n];
     }
+	/// <summary>
+	/// 1190 反转每对括号间的子串
+	/// </summary>
+	/// <param name="s"></param>
+	/// <returns></returns>
+	string reverseParentheses(string s) {
+		string ret;
+		if (s.size() == 0)
+			return ret;
 
+		stack<string> stk;
+		for (char it : s) {
+			if (it == '(') {
+				stk.push(ret);
+				ret.clear();
+			}
+			else if (it == ')') {
+				reverse(ret.begin(), ret.end());
+				ret = stk.top() + ret;
+				stk.pop();
+			}
+			else
+				ret.push_back(it);
+		}
+		return ret;
+	}
 	/// <summary>
 	/// 1269 停在原地的方案数
 	/// </summary>
