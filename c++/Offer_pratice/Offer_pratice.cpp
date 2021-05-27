@@ -1621,7 +1621,21 @@ public:
                 return i;
         return -1;
     }
-
+	
+	/// <summary>
+	/// 461 汉明距离
+	/// </summary>
+	/// <param name="x"></param>
+	/// <param name="y"></param>
+	/// <returns></returns>
+	int hammingDistance(int x, int y) {
+		int ret = 0, s = x ^ y;
+		while (s) {
+			s = s & (s - 1);
+			ret++;
+		}
+		return ret;
+	}
     /// <summary>
     /// 456 132模式
     /// </summary>
