@@ -1622,45 +1622,8 @@ public:
         return -1;
     }
 	
-	/// <summary>
-	/// 461 汉明距离
-	/// </summary>
-	/// <param name="x"></param>
-	/// <param name="y"></param>
-	/// <returns></returns>
-	int hammingDistance(int x, int y) {
-		int ret = 0, s = x ^ y;
-		while (s) {
-			s = s & (s - 1);
-			ret++;
-		}
-		return ret;
-	}
-    /// <summary>
-    /// 456 132模式
-    /// </summary>
-    /// <param name="nums"></param>
-    /// <returns></returns>
-    bool find132pattern(vector<int>& nums) {
-        int n = nums.size();
-            stack<int> stk;
-        stk.push(nums[n - 1]);
-        int max_2 = INT_MIN;
+	
 
-        for (int i = n - 2; i >= 0; i--) {
-            if (nums[i] < max_2)
-                return true;
-
-            while (!stk.empty() && nums[i] > stk.top()) {
-                max_2 = stk.top();
-                stk.pop();
-            }
-
-            if (nums[i] > max_2)
-                stk.push(nums[i]);
-        }
-        return true;
-    }
 
 	/// <summary>
 	/// 403 青蛙过河
@@ -1689,6 +1652,63 @@ public:
 			}
 		}
 		return false;
+	}
+	/// <summary>
+    /// 456 132模式
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    bool find132pattern(vector<int>& nums) {
+        int n = nums.size();
+            stack<int> stk;
+        stk.push(nums[n - 1]);
+        int max_2 = INT_MIN;
+
+        for (int i = n - 2; i >= 0; i--) {
+            if (nums[i] < max_2)
+                return true;
+
+            while (!stk.empty() && nums[i] > stk.top()) {
+                max_2 = stk.top();
+                stk.pop();
+            }
+
+            if (nums[i] > max_2)
+                stk.push(nums[i]);
+        }
+        return true;
+    }
+	
+	/// <summary>
+	/// 461 汉明距离
+	/// </summary>
+	/// <param name="x"></param>
+	/// <param name="y"></param>
+	/// <returns></returns>
+	int hammingDistance(int x, int y) {
+		int ret = 0, s = x ^ y;
+		while (s) {
+			s = s & (s - 1);
+			ret++;
+		}
+		return ret;
+	}
+	/// <summary>
+	/// 477 汉明距离总和
+	/// </summary>
+	/// <param name="nums"></param>
+	/// <returns></returns>
+	int totalHammingDistance(vector<int>& nums) {
+		int ret = 0;
+		int n = nums.size();
+		for (int i = 0; i < 30; ++i) {
+			int tmp = 0;
+			for (int it : nums) {
+				tmp += (it >> i) & 1;
+			}
+			ret += tmp * (n - tmp);
+		}
+		return ret;
 	}
     /// <summary>
     /// 541 反转字符串Ⅱ
