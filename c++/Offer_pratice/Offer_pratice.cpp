@@ -1390,6 +1390,15 @@ public:
     }
 	
 	/// <summary>
+	/// 231 2的幂
+	/// </summary>
+	/// <param name="n"></param>
+	/// <returns></returns>
+	bool isPowerOfTwo(int n) {
+		return n > 0 && (n & -n) == n;
+	}
+	
+	/// <summary>
 	/// 236 二叉树的最近公共祖先
 	/// </summary>
 	/// <param name="root"></param>
