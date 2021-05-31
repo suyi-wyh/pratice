@@ -1537,7 +1537,14 @@ public:
         }
         return x == 0 && preorder[n - 1] == '#';
     }
-
+	/// <summary>
+	/// 342 4的幂
+	/// </summary>
+	/// <param name="n"></param>
+	/// <returns></returns>
+	bool isPowerOfFour(int n) {
+		return n > 0 && (n & (n - 1)) == 0 && n % 3 == 1;
+	}
 
     /// <summary>
     /// 344 反转字符串
