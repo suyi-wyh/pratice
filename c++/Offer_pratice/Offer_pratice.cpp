@@ -2543,6 +2543,40 @@ public:
 
 		return ret[k - 1];
 	}
+	/// <summary>
+	/// 1744 你能在你最喜欢的哪天吃到最喜欢的糖果吗
+	/// </summary>
+	/// <param name="csum"></param>
+	/// <param name="day"></param>
+	/// <param name="daily"></param>
+	/// <returns></returns>
+	bool func(long long csum, int day, int daily) {
+		long long dayNum = (long long)(day + 1) * (long long)(daily);
+		return csum < dayNum;
+	}
+
+	vector<bool> canEat(vector<int>& candiesCount, vector<vector<int>>& queries) {
+		vector<long long> candiesNum(candiesCount.size());
+		vector<bool>  answer;
+
+		candiesNum[0] = candiesCount[0];
+
+		for (int i = 1; i < candiesNum.size(); ++i) {
+			candiesNum[i] = candiesNum[i - 1] + candiesCount[i];
+		}
+
+		for (auto& it : queries) {
+			int type = it[0];
+			int day = it[1];
+			int daily = it[2];
+
+			long long sum = candiesNum[type];
+			long long csum = candiesNum[type] - candiesCount[type];
+			// cout<<"sum"<<sum<<"csum"<<csum<<endl;
+			answer.push_back(sum > day && func(csum, day, daily));
+		}
+		return answer;
+	}
     /// <summary>
     /// 面试题17.21
     /// </summary>
