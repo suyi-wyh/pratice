@@ -1755,6 +1755,40 @@ public:
 		}
 		return ret;
 	}
+	
+	/// <summary>
+	/// 523 连续的子数组和
+	/// </summary>
+	/// <param name="nums"></param>
+	/// <param name="k"></param>
+	/// <returns></returns>
+	bool checkSubarraySum(vector<int>& nums, int k) {
+		int n = nums.size();
+		if (n < 2)
+			return false;
+
+		vector<int> sums(n + 1);
+		sums[0] = 0;
+		for (int i = 1; i < sums.size(); ++i) {
+			sums[i] = sums[i - 1] + nums[i - 1];
+		}
+
+		unordered_map<int, int> mod;
+		for (int i = 1; i < sums.size(); ++i) {
+			int m = sums[i] % k;
+			if (i >= 2 && !m)
+				return true;
+			if (mod.count(m)) {
+				int ii = mod[m];
+				if (i - ii >= 2)
+					return true;
+			}
+			else
+				mod.insert(make_pair(m, i));
+		}
+
+		return false;
+	}
     /// <summary>
     /// 541 反转字符串Ⅱ
     /// </summary>
