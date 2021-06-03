@@ -1789,6 +1789,37 @@ public:
 
 		return false;
 	}
+	/// <summary>
+	/// 525 连续数组
+	/// </summary>
+	/// <param name="nums"></param>
+	/// <returns></returns>
+	int findMaxLength(vector<int>& nums) {
+		if (nums.size() == 1) {
+			return  0;
+		}
+		int ret = 0;
+
+		// 前缀和 之前一共有多少个1
+		vector<int> sum(nums.size() + 1);
+		sum[0] = 0;
+		for (int i = 1; i < sum.size(); ++i)
+			sum[i] = sum[i - 1] + nums[i - 1];
+		unordered_map<int, int> mp;
+
+		for (int i = 0; i < sum.size(); ++i) {
+			if (i - sum[i] == sum[i])
+				ret = max(ret, i);
+			//i-sum[i]是0的个数 -sum[i]   0比1 多几个  i 前面一共有几个数
+			else {
+				if (mp.count(i - sum[i] * 2))
+					ret = max(ret, i - mp[i - sum[i] * 2]);
+				else
+					mp.insert(make_pair(i - sum[i] - sum[i], i));
+			}
+		}
+		return ret;
+	}
     /// <summary>
     /// 541 反转字符串Ⅱ
     /// </summary>
