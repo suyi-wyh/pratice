@@ -1196,6 +1196,43 @@ public:
         return nums[right];
     }
 
+	/// <summary>
+	/// 160 相交链表
+	/// </summary>
+	/// <param name="headA"></param>
+	/// <param name="headB"></param>
+	/// <returns></returns>
+	ListNode* getIntersectionNode(ListNode* headA, ListNode* headB) {
+		int Alength = 0;
+		int Blength = 0;
+		ListNode* A = headA;
+		ListNode* B = headB;
+		while (A != nullptr) {
+			Alength++;
+			A = A->next;
+		}
+		while (B != nullptr) {
+			Blength++;
+			B = B->next;
+		}
+
+		if (Alength > Blength) {
+			for (int i = 0; i < Alength - Blength; ++i)
+				headA = headA->next;
+		}
+		else {
+			for (int i = 0; i < Blength - Alength; ++i)
+				headB = headB->next;
+		}
+
+		while (headA != nullptr && headB != nullptr) {
+			if (headA == headB)
+				return headB;
+			headA = headA->next;
+			headB = headB->next;
+		}
+		return nullptr;
+	}
     /// <summary>
     /// 179 最大数
     /// </summary>
