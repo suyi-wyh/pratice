@@ -1267,7 +1267,29 @@ public:
         }
         return ret;
     }
-	
+	/// <summary>
+	/// 203 移除链表元素
+	/// </summary>
+	/// <param name="head"></param>
+	/// <param name="val"></param>
+	/// <returns></returns>
+	ListNode* removeElements(ListNode* head, int val) {
+		ListNode* pre = new ListNode(-1, head);
+		ListNode* cur = head;
+		head = pre;
+		while (cur != nullptr) {
+			if (cur->val == val) {
+				pre->next = cur->next;
+				delete cur;
+				cur = pre->next;
+			}
+			else {
+				pre = cur;
+				cur = cur->next;
+			}
+		}
+		return head->next;
+	}
 	
 	/// <summary>
 	/// 213 打家劫舍Ⅱ
