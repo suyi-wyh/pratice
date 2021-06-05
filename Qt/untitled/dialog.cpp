@@ -18,6 +18,13 @@ Dialog::~Dialog()
 void Dialog::on_denglun_clicked()
 {
     this->close();
-    gameMainWindow* GW=new gameMainWindow;
+    gameMainWindow* GW=new gameMainWindow(0,2);
+    GW->show();
+}
+
+void Dialog::on_pushButton_clicked()
+{
+    this->close();
+    gameMainWindow* GW=new gameMainWindow(0,1);
     GW->show();
 }

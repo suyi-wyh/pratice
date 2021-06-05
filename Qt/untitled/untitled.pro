@@ -26,12 +26,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         dialog.cpp \
-    gamemainwindow.cpp
+    gamemainwindow.cpp \
+    game.cpp \
+    gameover.cpp
 
 HEADERS += \
         dialog.h \
-    gamemainwindow.h
+    gamemainwindow.h \
+    game.h \
+    gameover.h
 
 FORMS += \
         dialog.ui \
-    gamemainwindow.ui
+    gamemainwindow.ui \
+    gameover.ui

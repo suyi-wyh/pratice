@@ -10,6 +10,9 @@
     <height>448</height>
    </rect>
   </property>
+  <property name="mouseTracking">
+   <bool>true</bool>
+  </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
@@ -43,6 +46,20 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
+     <widget class="QPushButton" name="pushButton">
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>单人游戏</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QPushButton" name="denglun">
       <property name="font">
        <font>
@@ -55,7 +72,7 @@
        <bool>true</bool>
       </property>
       <property name="text">
-       <string>开始游戏</string>
+       <string>双人游戏</string>
       </property>
      </widget>
     </item>

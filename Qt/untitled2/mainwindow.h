@@ -15,6 +15,15 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+private slots:
+    void on_checkBox_2_clicked(bool checked);
+
+    void on_checkBox_clicked(bool checked);
+
+    void on_color_clicked();
+
+    void setline2color();
+
 private:
     Ui::MainWindow *ui;
 };
