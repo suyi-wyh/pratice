@@ -2759,6 +2759,37 @@ public:
 		}
 		return ret;
 	}
+	
+	/// <summary>
+	/// 牛客 两个字符串间的距离
+	/// </summary>
+	/// <param name="str1"></param>
+	/// <param name="str2"></param>
+	/// <returns></returns>
+	int minDistance(const string& str1, const string& str2) {
+		if (str1.empty() || str2.empty())
+			return max(str1.size(), str2.size());
+		int n1 = str1.size();
+		int n2 = str2.size();
+		vector<vector<int>> f(n1 + 1, vector<int>(n2 + 1));
+		for (int i = 0; i < f.size(); ++i)
+			f[i][0] = i;
+
+		for (int i = 0; i < f[0].size(); ++i)
+			f[0][i] = i;
+		for (int i = 1; i < f.size(); ++i) {
+			for (int j = 1; j < f[0].size(); ++j) {
+				f[i][j] = min(f[i - 1][j], f[i][j - 1]) + 1;
+				if (str1[i - 1] == str2[j - 1]) {
+					f[i][j] = min(f[i][j], f[i - 1][j - 1]);
+				}
+				else
+					f[i][j] = min(f[i][j], f[i - 1][j - 1] + 1);
+			}
+		}
+		return f[n1][n2];
+
+	}
 };
 
 class Solution {
