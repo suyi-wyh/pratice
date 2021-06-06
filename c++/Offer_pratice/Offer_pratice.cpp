@@ -452,6 +452,57 @@ public:
 		return s.substr(begin, maxlen);
 	}
 	/// <summary>
+	/// 10 正则表达式匹配
+	/// </summary>
+	/// <param name="s"></param>
+	/// <param name="p"></param>
+	/// <returns></returns>
+	bool isMatch(string s, string p) {
+		int m = s.size();
+		int n = p.size();
+		if (n == 0 && m == 0)
+			return true;
+
+		if (n == 0)
+			return false;
+
+		vector< vector<bool> > flag(m + 1, vector<bool>(n + 1));
+
+		// 初始化
+		flag[0][0] = true;
+		for (int i = 1; i <= n; ++i) {
+			if (p[i - 1] == '*') {
+				flag[0][i] = flag[0][i - 2];
+			}
+			else
+				flag[0][i] = false;
+		}
+
+		for (int i = 1; i <= m; ++i)
+			flag[i][0] = false;
+
+		for (int i = 1; i <= m; ++i) {
+			for (int j = 1; j <= n; ++j) {
+				if (s[i - 1] == p[j - 1] || p[j - 1] == '.') {
+					flag[i][j] = flag[i - 1][j - 1];
+
+				}
+				else if (p[j - 1] == '*') {
+					flag[i][j] = flag[i][j - 2] || flag[i][j - 1]
+						|| (s[i - 1] == p[j - 2] || p[j - 2] == '.') && (flag[i - 1][j - 1] || flag[i - 1][j]);
+				}
+				else
+					flag[i][j] = false;
+			}
+		}
+		for (int i = 0; i <= m; ++i) {
+			for (int j = 0; j <= n; ++j)
+				cout << flag[i][j] << "  ";
+			cout << "xiayihang" << endl;
+		}
+		return flag[m][n];
+	}
+	/// <summary>
 	/// 12 整数转罗马数字
 	/// </summary>
 	/// <param name="num"></param>
