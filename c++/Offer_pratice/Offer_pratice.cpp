@@ -411,6 +411,47 @@ public:
         return returnNum;
     }
 	/// <summary>
+	/// 5 最长回文子串
+	/// </summary>
+	/// <param name="s"></param>
+	/// <returns></returns>
+	string longestPalindrome(string s) {
+		int n = s.size();
+		if (n < 2)
+			return s;
+
+		int begin = 0;
+		int maxlen = 1;
+
+		vector< vector<bool> > flag(n, vector<bool>(n));
+		for (int i = 0; i < n; ++i)
+			flag[i][i] = true;
+
+		for (int len = 2; len <= n; ++len) { //长度
+			for (int i = 0; i < n; ++i) { //左边界
+				int j = i + len - 1;          //计算右边界
+
+				if (j >= n)
+					break;
+
+				if (s[i] != s[j])
+					flag[i][j] = false;
+				else {
+					if (len > 2)
+						flag[i][j] = flag[i + 1][j - 1];
+					else
+						flag[i][j] = true;
+				}
+
+				if (flag[i][j] && j - i + 1 > maxlen) {
+					begin = i;
+					maxlen = j - i + 1;
+				}
+			}
+		}
+		return s.substr(begin, maxlen);
+	}
+	/// <summary>
 	/// 12 整数转罗马数字
 	/// </summary>
 	/// <param name="num"></param>
