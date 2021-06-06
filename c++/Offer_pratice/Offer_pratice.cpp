@@ -1798,6 +1798,44 @@ public:
 		return ret;
 	}
 	/// <summary>
+	/// 474 0和1
+	/// </summary>
+	/// <param name="strs"></param>
+	/// <param name="m"></param>
+	/// <param name="n"></param>
+	/// <returns></returns>
+	int findMaxForm(vector<string>& strs, int m, int n) {
+		vector< vector<int> >  flag(strs.size(), vector<int>(2));
+		//统计0和1
+		for (int i = 0; i < strs.size(); ++i) {
+			int zerom = 0;
+			int onen = 0;
+			for (char it : strs[i]) {
+				if (it == '0')
+					zerom++;
+				else
+					onen++;
+			}
+			flag[i][0] = zerom;
+			flag[i][1] = onen;
+		}
+		
+		vector< vector< vector<int> > > bag(strs.size() + 1, vector<vector<int>>(m + 1, vector<int>(n + 1)));
+		for (int i = 1; i <= strs.size(); ++i) {
+			int zeros = flag[i - 1][0];
+			int ones = flag[i - 1][1];
+			for (int j = 0; j <= m; ++j) {
+				for (int k = 0; k <= n; ++k) {
+					bag[i][j][k] = bag[i - 1][j][k];
+					if (j >= zeros && k >= ones) {
+						bag[i][j][k] = max(bag[i][j][k], bag[i - 1][j - zeros][k - ones] + 1);
+					}
+				}
+			}
+		}
+		return bag[strs.size()][m][n];
+	}
+	/// <summary>
 	/// 477 汉明距离总和
 	/// </summary>
 	/// <param name="nums"></param>
