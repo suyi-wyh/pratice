@@ -1944,7 +1944,37 @@ public:
 		}
 		return ret;
 	}
-	
+	/// <summary>
+	/// 494 目标和
+	/// </summary>
+	/// <param name="nums"></param>
+	/// <param name="target"></param>
+	/// <param name="curtarget"></param>
+	/// <param name="i"></param>
+	/// <param name="ret"></param>
+	/// <param name="flag"></param>
+	void func(const vector<int>& nums, int target, int curtarget, int i, int& ret, bool flag) {
+		if (flag && curtarget == target) {
+			ret++;
+		}
+		if (i >= nums.size())
+			return;
+		flag = true;
+		func(nums, target, curtarget - 2 * nums[i], i + 1, ret, flag);
+		flag = false;
+		func(nums, target, curtarget, i + 1, ret, flag);
+	}
+	int findTargetSumWays(vector<int>& nums, int target) {
+		int ret = 0;
+		int curtarget = 0;
+		int i = 0;
+		bool flag = true;
+		for (int it : nums)
+			curtarget += it;
+
+		func(nums, target, curtarget, i, ret, flag);
+		return ret;
+	}
 	/// <summary>
 	/// 523 连续的子数组和
 	/// </summary>
