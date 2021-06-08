@@ -2493,7 +2493,39 @@ public:
 		}
 		return stk;
 	}
-    
+    /// <summary>
+	/// 1049  最后一块石头的重量Ⅱ
+	/// </summary>
+	/// <param name="stones"></param>
+	/// <returns></returns>
+	int lastStoneWeightII(vector<int>& stones) {
+		int n = stones.size();
+		int sum = accumulate(stones.begin(), stones.end(), 0);
+
+		vector<vector<bool>> bag(n + 1, vector<bool>(sum / 2 + 1));
+
+		// 初始化
+		bag[0][0] = true;
+		for (int i = 1; i <= sum / 2; ++i)
+			bag[0][i] = false;
+
+		for (int i = 1; i <= n; ++i) {
+			for (int j = 0; j <= sum / 2; ++j) {
+				if (j < stones[i - 1]) {
+					bag[i][j] = bag[i - 1][j];
+				}
+				else {
+					bag[i][j] = bag[i - 1][j] || bag[i - 1][j - stones[i - 1]];
+				}
+			}
+		}
+
+		for (int i = sum / 2; i >= 0; --i) {
+			if (bag[n][i])
+				return sum - i * 2;
+		}
+		return 0;
+	}
 	/// <summary>
 	/// 1074 元素和为目标值的子矩阵数量
 	/// </summary>
