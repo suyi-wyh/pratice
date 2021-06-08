@@ -2494,7 +2494,7 @@ public:
 		return stk;
 	}
     /// <summary>
-	/// 1049  最后一块石头的重量Ⅱ
+	/// 1049  最后一块石头的重量Ⅱ  
 	/// </summary>
 	/// <param name="stones"></param>
 	/// <returns></returns>
