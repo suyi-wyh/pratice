@@ -1654,6 +1654,27 @@ public:
 
         return dp[n];
     }
+	/// <summary>
+	/// 279 完全平方数
+	/// </summary>
+	/// <param name="n"></param>
+	/// <returns></returns>
+	int numSquares(int n) {
+
+		vector<int> num(n + 1);
+
+		for (int i = 0; i <= n; ++i) {
+			num[i] = i;
+		}
+
+		for (int i = 1; i <= sqrt(n); ++i) {
+			for (int j = i * i; j <= n; ++j) {
+				num[j] = min(num[j], num[j - i * i] + 1);
+			}
+		}
+
+		return num[n];
+	}
     /// <summary>
     /// 331 验证二叉树的前序序列化
     /// </summary>
