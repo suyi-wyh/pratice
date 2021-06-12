@@ -1655,6 +1655,20 @@ public:
         return dp[n];
     }
 	/// <summary>
+	/// 278 第一个错误的版本
+	/// </summary>
+	/// <param name="n"></param>
+	/// <returns></returns>
+	int firstBadVersion(int n) {
+		int left = 1;
+		int right = n;
+		while (left < right) {
+			int mid = left + (right - left) / 2;
+			isBadVersion(mid) ? right = mid : left = mid + 1;
+		}
+		return right;
+	}
+	/// <summary>
 	/// 279 完全平方数
 	/// </summary>
 	/// <param name="n"></param>
