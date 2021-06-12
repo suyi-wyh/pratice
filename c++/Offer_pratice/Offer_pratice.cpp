@@ -1342,6 +1342,26 @@ public:
 		}
 		return nullptr;
 	}
+	/// <summary>
+	/// 169 多数元素
+	/// </summary>
+	/// <param name="nums"></param>
+	/// <returns></returns>
+	int majorityElement(vector<int>& nums) {
+		int n = nums.size();
+		int cur = nums[0];
+		int curn = 1;
+		for (int i = 1; i < n; ++i) {
+			nums[i] == cur ? curn++ : curn--;
+			if (curn < 0) {
+				cur = nums[i];
+				curn = 1;
+			}
+
+		}
+		return cur;
+
+	}
     /// <summary>
     /// 179 最大数
     /// </summary>
