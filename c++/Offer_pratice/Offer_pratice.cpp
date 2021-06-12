@@ -1134,7 +1134,24 @@ public:
         }
         return ret;
     }
+	/// <summary>
+	/// 121 买卖股票的最佳时机
+	/// </summary>
+	/// <param name="prices"></param>
+	/// <returns></returns>
+	int maxProfit(vector<int>& prices) {
+		int n = prices.size();
+		vector<int> dp(n);
+		dp[0] = 0;
+		int curm = prices[0];
+		for (int i = 1; i < n; ++i) {
+			dp[i] = max(dp[i - 1], prices[i] - curm);
+			if (prices[i] < curm)
+				curm = prices[i];
+		}
 
+		return dp[n - 1];
+	}
     /// <summary>
     /// 137 只出现一次的数字
     /// </summary>
