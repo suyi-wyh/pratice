@@ -1854,7 +1854,28 @@ public:
 		}
 		return res;
 	}
-	
+	/// <summary>
+	/// 374 猜数字大小
+	/// </summary>
+	/// <param name="n"></param>
+	/// <returns></returns>
+	int guessNumber(int n) {
+		int left = 0;
+		int right = n;
+		while (left < right) {
+			int mid = left + (right - left) / 2;
+			int flag = guess(mid);
+			if (flag == 0)
+				return mid;
+			else {
+				if (flag == 1)
+					left = mid + 1;
+				else
+					right = mid - 1;
+			}
+		}
+		return left + (right - left) / 2;
+	}
 	/// <summary>
 	/// 377 组合总和Ⅳ
 	/// </summary>
