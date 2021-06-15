@@ -8,10 +8,12 @@
 #include<StlLock.h>
 #include<vector>
 #include <unordered_set>
+#include<unordered_map>
 #include<map>
 #include<algorithm>
 #include<set>
 #include<string>
+#include<stdint.h>
 using namespace std;    
 
 struct ListNode {
@@ -1367,22 +1369,23 @@ public:
     /// </summary>
     /// <param name="nums"></param>
     /// <returns></returns>
-    string largestNumber(vector<int>& nums) {
-        string ret;
-        sort(nums.begin(), nums.end(), [](const int& x, const int& y) {
-            long _x = 10, _y = 10;
-            while (_x <= x)
-                _x *= 10;
-            while (_y <= y)
-                _y *= 10;
+	string largestNumber(vector<int>& nums) {
+		string ret;
+		sort(nums.begin(), nums.end(), [](const int& x, const int& y) {
+			long _x = 10, _y = 10;
+			while (_x <= x)
+				_x *= 10;
+			while (_y <= y)
+				_y *= 10;
 
-            return x * _y + y > y * _x + x;
-            });
-        if (nums[0] == 0)
-            return "0";
-        for (const auto ch : nums) {
-            ret += to_string(ch);
-        }
+			return x * _y + y > y * _x + x;
+			});
+		if (nums[0] == 0)
+			return "0";
+		for (const auto ch : nums) {
+			ret += to_string(ch);
+		}
+	}
     /// <summary>
     /// 190 颠倒二进制位
     /// </summary>
@@ -2389,6 +2392,14 @@ public:
 
 		return nums1 == nums2;
 
+	}
+	/// <summary>
+	/// 877 石子游戏
+	/// </summary>
+	/// <param name="piles"></param>
+	/// <returns></returns>
+	bool stoneGame(vector<int>& piles) {
+		return 1;
 	}
 	/// <summary>
 	///  879 盈利计划
