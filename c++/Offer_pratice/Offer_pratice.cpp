@@ -2347,6 +2347,27 @@ public:
 		return xorsum == 0;
 	}
 	/// <summary>
+	/// 852 山脉数组的峰顶索引
+	/// </summary>
+	/// <param name="arr"></param>
+	/// <returns></returns>
+	int peakIndexInMountainArray(vector<int>& arr) {
+		int left = 0;
+		int right = arr.size() - 1;
+
+		while (left < right) {
+			int mid = left + (right - left) / 2;
+			if (arr[mid] > arr[mid + 1] && arr[mid] > arr[mid - 1])
+				return mid;
+
+			if (arr[mid] < arr[mid + 1])
+				left = mid + 1;
+			else
+				right = mid;
+		}
+		return right;
+	}
+	/// <summary>
 	/// 872 叶子相似的树
 	/// </summary>
 	/// <param name="root"></param>
