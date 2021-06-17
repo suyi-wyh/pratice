@@ -742,6 +742,19 @@ public:
         tmp->next = nullptr;
         return head;
     }
+	/// <summary>
+	/// 65 有效数字
+	/// </summary>
+	/// <param name="s"></param>
+	/// <returns></returns>
+	bool isNumber(string s) {
+		char c = s.back();
+		if (c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z' || c == '+' || c == '-') return false;
+		if (s.size() > 1 && s[0] == '0' && s[1] == 'x') return false;
+		double d;
+		char buf[20];
+		return sscanf(s.c_str(), "%f%s", &d, buf) == 1;
+	}
     /// <summary>
     /// 73 矩阵置零
     /// </summary>
