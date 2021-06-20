@@ -3438,6 +3438,47 @@ public:
 		return f[0];
 	}
 };
+
+/// <summary>
+/// 1600 皇位继承顺序
+/// </summary>
+class ThroneInheritance {
+private:
+	string cur;
+	set<string> death_InheritanceOrder;
+	map<string, vector<string>> curorder;
+
+public:
+	ThroneInheritance(string kingName) :cur(kingName) {
+	}
+
+	void birth(string parentName, string childName) {
+		curorder[parentName].push_back(childName);
+	}
+
+	void death(string name) {
+		death_InheritanceOrder.insert(name);
+	}
+
+	vector<string> getInheritanceOrder() {
+		vector<string> ret;
+		function< void(const string&) >  dfs = [&](const string& str) {
+			if (!death_InheritanceOrder.count(str)) {
+				ret.push_back(str);
+			}
+
+			if (curorder.count(str)) {
+				for (const string& it : curorder[str])
+					dfs(it);
+			}
+		};
+
+		dfs(cur);
+		return ret;
+	}
+};
+
+
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
 // 调试程序: F5 或调试 >“开始调试”菜单
 
