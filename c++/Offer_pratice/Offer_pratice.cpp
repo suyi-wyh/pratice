@@ -1929,7 +1929,22 @@ public:
 	
 	
 
-
+	/// <summary>
+	/// 401 二进制手表
+	/// </summary>
+	/// <param name="turnedOn"></param>
+	/// <returns></returns>
+	vector<string> readBinaryWatch(int turnedOn) {
+		vector<string> ret;
+		for (int i = 0; i < 12; ++i) {
+			for (int j = 0; j < 60; ++j) {
+				if (__builtin_popcount(i) + __builtin_popcount(j) == turnedOn) {
+					ret.push_back(to_string(i) + ":" + (j >= 10 ? "" : "0") + to_string(j));
+				}
+			}
+		}
+		return ret;
+	}
 	/// <summary>
 	/// 403 青蛙过河
 	/// </summary>
