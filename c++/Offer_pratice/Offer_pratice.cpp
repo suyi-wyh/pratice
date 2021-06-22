@@ -388,6 +388,42 @@ public:
         }
         return ret * flag;
     }
+	/// <summary>
+	///  剑指offer 38 字符串的排列
+	/// </summary>
+	/// <param name="s"></param>
+	/// <param name="i"></param>
+	/// <param name="ret"></param>
+	/// <param name="flag"></param>
+	/// <param name="curstr"></param>
+	void backtrack(const string& s, const int i, vector<string>& ret, vector<int>& flag, string& curstr)
+	{
+		if (i == s.size()) {
+			ret.push_back(curstr);
+			return;
+		}
+
+		for (int j = 0; j < s.size(); ++j) {
+			if (flag[j] || (j > 0 && !flag[j - 1] && s[j - 1] == s[j])) {
+				continue;
+			}
+
+			flag[j] = true;
+			curstr.push_back(s[j]);
+			backtrack(s, i + 1, ret, flag, curstr);
+			curstr.pop_back();
+			flag[j] = false;
+		}
+	}
+
+	vector<string> permutation(string s) {
+		vector<string> ret;
+		vector<int> flag(s.size(), 0);
+		string curstr;
+		sort(s.begin(), s.end());
+		backtrack(s, 0, ret, flag, curstr);
+		return ret;
+	}
     /// <summary>
     /// 3 无重复字符的最长子串
     /// </summary>
