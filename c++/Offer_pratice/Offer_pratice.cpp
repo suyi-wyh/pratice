@@ -348,6 +348,19 @@ public:
         }
         return c % 1000000007;
     }
+	/// <summary>
+	/// Offer 15 二进制中1的个数
+	/// </summary>
+	/// <param name="n"></param>
+	/// <returns></returns>
+	int hammingWeight(uint32_t n) {
+		int ret = 0;
+		while (n) {
+			n = n & (n - 1);
+			ret++;
+		}
+		return ret;
+	}
     /// <summary>   
     /// Offer 64
     /// </summary>
