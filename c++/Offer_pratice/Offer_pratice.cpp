@@ -2316,8 +2316,30 @@ public:
         }
         return s;
     }
+	
+	/// <summary>
+	/// 543  二叉树的直径
+	/// </summary>
+	/// <param name="root"></param>
+	/// <param name="maxN"></param>
+	/// <returns></returns>
+	int Order(TreeNode* root, int& maxN) {
+		if (root == nullptr)
+			return 0;
 
+		int left = Order(root->left, maxN);
+		int right = Order(root->right, maxN);
 
+		maxN = max(maxN, left + right + 1);
+
+		return max(left, right) + 1;
+
+	}
+	int diameterOfBinaryTree(TreeNode* root) {
+		int ret = 0;
+		Order(root, ret);
+		return ret - 1;
+	}
     /// <summary>
     /// 557 反转字符串中的单词Ⅲ
     /// </summary>
