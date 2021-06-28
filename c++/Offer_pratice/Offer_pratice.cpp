@@ -2575,6 +2575,55 @@ public:
 		return xorsum == 0;
 	}
 	/// <summary>
+	/// 815 公交路线
+	/// </summary>
+	/// <param name="routes"></param>
+	/// <param name="source"></param>
+	/// <param name="target"></param>
+	/// <returns></returns>
+	int numBusesToDestination(vector<vector<int>>& routes, int source, int target) {
+		if (source == target) {
+			return 0;
+		}
+
+		int n = routes.size();
+		vector<vector<int>> edge(n, vector<int>(n));
+		unordered_map<int, vector<int>> rec;
+		for (int i = 0; i < n; i++) {
+			for (int site : routes[i]) {
+				for (int j : rec[site]) {
+					edge[i][j] = edge[j][i] = true;
+				}
+				rec[site].push_back(i);
+			}
+		}
+
+		vector<int> dis(n, -1);
+		queue<int> que;
+		for (int bus : rec[source]) {
+			dis[bus] = 1;
+			que.push(bus);
+		}
+		while (!que.empty()) {
+			int x = que.front();
+			que.pop();
+			for (int y = 0; y < n; y++) {
+				if (edge[x][y] && dis[y] == -1) {
+					dis[y] = dis[x] + 1;
+					que.push(y);
+				}
+			}
+		}
+
+		int ret = INT_MAX;
+		for (int bus : rec[target]) {
+			if (dis[bus] != -1) {
+				ret = min(ret, dis[bus]);
+			}
+		}
+		return ret == INT_MAX ? -1 : ret;
+	}
+	/// <summary>
 	/// 852 山脉数组的峰顶索引
 	/// </summary>
 	/// <param name="arr"></param>
