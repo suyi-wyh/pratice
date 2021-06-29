@@ -1455,6 +1455,22 @@ public:
 		return nullptr;
 	}
 	/// <summary>
+	/// 168 excel列表名称
+	/// </summary>
+	/// <param name="columnNumber"></param>
+	/// <returns></returns>
+	string convertToTitle(int columnNumber) {
+		string ret;
+		while (columnNumber) {
+			columnNumber--;
+			int tmp = columnNumber % 26;
+			ret.push_back(('A' + tmp));
+			columnNumber /= 26;
+		}
+		reverse(ret.begin(), ret.end());
+		return ret;
+	}
+	/// <summary>
 	/// 169 多数元素
 	/// </summary>
 	/// <param name="nums"></param>
