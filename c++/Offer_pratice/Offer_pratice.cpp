@@ -554,6 +554,25 @@ public:
 		return flag[m][n];
 	}
 	/// <summary>
+	/// 11 盛最多谁的容器
+	/// </summary>
+	/// <param name="height"></param>
+	/// <returns></returns>
+	int maxArea(vector<int>& height) {
+		int right = height.size() - 1;
+		int left = 0;
+		int ret = 0;
+		while (right > left) {
+			int tmp = min(height[right], height[left]) * (right - left);
+			ret = max(ret, tmp);
+			if (height[right] > height[left])
+				left++;
+			else
+				right--;
+		}
+		return ret;
+	}
+	/// <summary>
 	/// 12 整数转罗马数字
 	/// </summary>
 	/// <param name="num"></param>
