@@ -3589,7 +3589,35 @@ public:
 
     }
 	
-	
+	/// <summary>
+	/// LCP 07 传递信息
+	/// </summary>
+	/// <param name="n"></param>
+	/// <param name="relation"></param>
+	/// <param name="k"></param>
+	/// <returns></returns>
+	int numWays(int n, vector<vector<int>>& relation, int k) {
+		vector<vector<int>> edges(n);
+		for (auto& edge : relation) {
+			int src = edge[0], dst = edge[1];
+			edges[src].push_back(dst);
+		}
+
+		int ways = 0;
+		function<void(int, int)> dfs = [&](int index, int steps) {
+			if (steps == k) {
+				if (index == n - 1) {
+					++ways;
+				}
+				return;
+			}
+			for (int to : edges[index]) {
+				dfs(to, steps + 1);
+			}
+		};
+		dfs(0, 0);
+		return ways;
+	}
 	/// <summary>
 	/// LCP 28 采购方案
 	/// </summary>
