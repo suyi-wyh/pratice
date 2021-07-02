@@ -3551,6 +3551,26 @@ public:
 		}
 		return answer;
 	}
+	/// <summary>
+	/// 1833 雪糕的最大数量
+	/// </summary>
+	/// <param name="costs"></param>
+	/// <param name="coins"></param>
+	/// <returns></returns>
+	int maxIceCream(vector<int>& costs, int coins) {
+
+
+		sort(costs.begin(), costs.end());
+		int sum = 0;
+		for (int i = 0; i < costs.size(); ++i) {
+			sum += costs[i];
+			if (sum == coins)
+				return i + 1;
+			else if (sum > coins)
+				return i;
+		}
+		return costs.size();
+	}
     /// <summary>
     /// 面试题17.21
     /// </summary>
