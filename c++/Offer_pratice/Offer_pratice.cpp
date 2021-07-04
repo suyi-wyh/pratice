@@ -2529,6 +2529,29 @@ public:
 		return false;
 	}
 	/// <summary>
+	/// 645 错误的集合
+	/// </summary>
+	/// <param name="nums"></param>
+	/// <returns></returns>
+	vector<int> findErrorNums(vector<int>& nums) {
+		int n = nums.size();
+		sort(nums.begin(), nums.end());
+		vector<int> flag(n, 0);
+		for (int it : nums) {
+			flag[it - 1]++;
+		}
+
+		vector<int> ret(2);
+		for (int i = 0; i < n; i++) {
+			if (flag[i] == 0) {
+				ret[1] = i + 1;
+			}
+			if (flag[i] == 2)
+				ret[0] = i + 1;
+		}
+		return ret;
+	}
+	/// <summary>
 	/// 664 奇怪的打印机
 	/// </summary>
 	/// <param name="s"></param>
