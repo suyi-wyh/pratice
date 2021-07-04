@@ -2529,7 +2529,7 @@ public:
 		return false;
 	}
 	/// <summary>
-	/// 645 错误的集合
+	/// 645 错误的集合  
 	/// </summary>
 	/// <param name="nums"></param>
 	/// <returns></returns>
