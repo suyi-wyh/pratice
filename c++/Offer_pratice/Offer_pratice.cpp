@@ -3582,6 +3582,25 @@ public:
 		return ret;
 	}
 	/// <summary>
+	/// 1711 大餐计数
+	/// </summary>
+	/// <param name="deliciousness"></param>
+	/// <returns></returns>
+	int countPairs(vector<int>& deliciousness) {
+		unordered_map<int, int> flag;
+		int ret = 0;
+		int maxNum = *max_element(deliciousness.begin(), deliciousness.end());
+		int maxSum = maxNum << 1;
+		for (int it : deliciousness) {
+			for (int i = 1; i <= maxSum; i = i << 1) {
+				int tmp = flag.count(i - it) ? flag[i - it] : 0;
+				ret = (ret + tmp) % 1000000007;
+			}
+			flag[it]++;
+		}
+		return ret;
+	}
+	/// <summary>
 	///1720 解码异或后的数组 
 	/// </summary>
 	/// <param name="encoded"></param>
