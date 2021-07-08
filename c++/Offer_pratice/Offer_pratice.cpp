@@ -3035,7 +3035,23 @@ public:
         }
         return S;
     }
-
+	/// <summary>
+	/// 930 和相同的二元子数组
+	/// </summary>
+	/// <param name="nums"></param>
+	/// <param name="goal"></param>
+	/// <returns></returns>
+	int numSubarraysWithSum(vector<int>& nums, int goal) {
+		unordered_map<int, int> flag;
+		int cur = 0;
+		int ret = 0;
+		for (int it : nums) {
+			flag[cur]++;
+			cur += it;
+			ret += flag[cur - goal];
+		}
+		return ret;
+	}
 	/// <summary>
 	/// 938 二叉搜索树的范围和
 	/// </summary>
