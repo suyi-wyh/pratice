@@ -3802,6 +3802,42 @@ public:
 		}
 		return costs.size();
 	}
+	/// <summary>
+	///  面试题17.10  主要元素
+	/// </summary>
+	/// <param name="nums"></param>
+	/// <returns></returns>
+	int majorityElement(vector<int>& nums) {
+		if (nums.size() == 0)
+			return -1;
+
+		int tmp = nums[0];
+		int flag = 1;
+		for (int i = 1; i < nums.size(); ++i) {
+			if (tmp == nums[i]) {
+				flag++;
+			}
+			else {
+				flag--;
+				if (flag < 0) {
+					tmp = nums[i];
+					flag++;
+				}
+			}
+		}
+
+		flag = 0;
+		for (int it : nums) {
+			if (it == tmp) {
+				flag++;
+			}
+		}
+
+		if (flag * 2 >= nums.size())
+			return tmp;
+		else
+			return -1;
+	}
     /// <summary>
     /// 面试题17.21
     /// </summary>
