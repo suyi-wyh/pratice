@@ -4018,6 +4018,31 @@ public:
         return result;
     }
 };
+/// <summary>
+/// 981 基于时间的键值存储
+/// </summary>
+class TimeMap {
+	unordered_map<string, vector<pair<int, string>>> mp;
+public:
+	/** Initialize your data structure here. */
+	TimeMap() {
+
+	}
+
+	void set(string key, string value, int timestamp) {
+		mp[key].push_back(make_pair(timestamp, value));
+	}
+
+	string get(string key, int timestamp) {
+		auto& pairs = mp[key];
+		pair<int, string> p = { timestamp, string({127}) };
+		auto i = upper_bound(pairs.begin(), pairs.end(), p);
+		if (i != pairs.begin()) {
+			return (i - 1)->second;
+		}
+		return "";
+	}
+};
 
 /// <summary>
 /// 1707 与数组中元素的最大异或值
