@@ -1928,6 +1928,20 @@ public:
         return dp[n];
     }
 	/// <summary>
+	/// H指数
+	/// </summary>
+	/// <param name="citations"></param>
+	/// <returns></returns>
+	int hIndex(vector<int>& citations) {
+		sort(citations.begin(), citations.end());
+		int h = 0, i = citations.size() - 1;
+		while (i >= 0 && citations[i] > h) {
+			h++;
+			i--;
+		}
+		return h;
+	}
+	/// <summary>
 	/// 278 第一个错误的版本
 	/// </summary>
 	/// <param name="n"></param>
