@@ -1959,6 +1959,28 @@ public:
 		}
 		return h;
 	}
+	
+	/// <summary>
+	/// 275 H指数Ⅱ
+	/// </summary>
+	/// <param name="citations"></param>
+	/// <returns></returns>
+	int hIndex(vector<int>& citations) {
+		int n = citations.size();
+		int left = 0;
+		int right = n - 1;
+		while (left <= right) {
+
+			int mid = left + (right - left) / 2;
+
+			if (citations[mid] >= n - mid)
+				right = mid - 1;
+			else
+				left = mid + 1;
+
+		}
+		return n - left;
+	}
 	/// <summary>
 	/// 278 第一个错误的版本
 	/// </summary>
