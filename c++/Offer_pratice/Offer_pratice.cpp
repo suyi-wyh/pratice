@@ -3917,6 +3917,20 @@ public:
 		return costs.size();
 	}
 	/// <summary>
+	/// 1846 减小和重新排列数组后的最大元素
+	/// </summary>
+	/// <param name="arr"></param>
+	/// <returns></returns>
+	int maximumElementAfterDecrementingAndRearranging(vector<int>& arr) {
+		int n = arr.size();
+		sort(arr.begin(), arr.end());
+		arr[0] = 1;
+		for (int i = 1; i < n; ++i) {
+			arr[i] = min(arr[i], arr[i - 1] + 1);
+		}
+		return arr.back();
+	}
+	/// <summary>
 	///  面试题17.10  主要元素
 	/// </summary>
 	/// <param name="nums"></param>
