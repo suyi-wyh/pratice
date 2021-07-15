@@ -490,6 +490,41 @@ public:
 		backtrack(s, 0, ret, flag, curstr);
 		return ret;
 	}
+	/// <summary>
+	/// 剑指offer 53 统计一个数字在排序数组中出现的次数
+	/// </summary>
+	/// <param name="nums"></param>
+	/// <param name="target"></param>
+	/// <returns></returns>
+	int search(vector<int>& nums, int target) {
+		if (nums.size() == 0)
+			return 0;
+		int ret = 0;
+		int left = 0;
+		int right = nums.size() - 1;
+		int mid = left + (right - left) / 2;
+		while (left <= right) {
+			mid = left + (right - left) / 2;
+			if (nums[mid] < target)
+				left = mid + 1;
+			else if (nums[mid] > target)
+				right = mid - 1;
+			else
+				break;
+		}
+
+		int cur = mid + 1;
+		while (mid >= 0 && nums[mid] == target) {
+			ret++;
+			mid--;
+		}
+
+		while (cur < nums.size() && nums[cur] == target) {
+			ret++;
+			cur++;
+		}
+		return ret;
+	}
     /// <summary>
     /// 3 无重复字符的最长子串
     /// </summary>
