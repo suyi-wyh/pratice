@@ -490,6 +490,21 @@ public:
 		backtrack(s, 0, ret, flag, curstr);
 		return ret;
 	}
+		/// <summary>
+	/// 剑指offer 42 连续子数组的最大和
+	/// </summary>
+	/// <param name="nums"></param>
+	/// <returns></returns>
+	int maxSubArray(vector<int>& nums) {
+		int pre = 0;
+		int ret = nums[0];
+		for (int it : nums)
+		{
+			pre = max(pre + it, it);
+			ret = max(ret, pre);
+		}
+		return ret;
+	}
 	/// <summary>
 	/// 剑指offer 53 统计一个数字在排序数组中出现的次数
 	/// </summary>
