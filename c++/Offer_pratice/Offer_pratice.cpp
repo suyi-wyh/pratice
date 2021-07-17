@@ -3981,6 +3981,25 @@ public:
 		return arr.back();
 	}
 	/// <summary>
+	/// 面试题 10.02  变位词组
+	/// </summary>
+	/// <param name="strs"></param>
+	/// <returns></returns>
+	vector<vector<string>> groupAnagrams(vector<string>& strs) {
+		vector<vector<string> > ret;
+		unordered_map<string, vector<string>> flag;
+		for (const string& str : strs) {
+			string tmp = str;
+			sort(tmp.begin(), tmp.end());
+			flag[tmp].push_back(str);
+		}
+
+		for (auto& it : flag) {
+			ret.push_back(it.second);
+		}
+		return ret;
+	}
+	/// <summary>
 	///  面试题17.10  主要元素
 	/// </summary>
 	/// <param name="nums"></param>
