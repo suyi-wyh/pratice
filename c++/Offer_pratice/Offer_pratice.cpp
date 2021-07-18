@@ -3967,6 +3967,29 @@ public:
 		return costs.size();
 	}
 	/// <summary>
+	/// 1838 最高频元素的频数
+	/// </summary>
+	/// <param name="nums"></param>
+	/// <param name="k"></param>
+	/// <returns></returns>
+	int maxFrequency(vector<int>& nums, int k) {
+		int left = 0;
+		int right = 1;
+		sort(nums.begin(), nums.end());
+		long long flag = 0;
+		int ret = 1;
+		while (right < nums.size()) {
+			flag += (long long)(nums[right] - nums[right - 1]) * (right - left);
+			while (flag > k) {
+				flag -= (nums[right] - nums[left]);
+				left++;
+			}
+			ret = max(ret, right - left + 1);
+			right++;
+		}
+		return ret;
+	}
+	/// <summary>
 	/// 1846 减小和重新排列数组后的最大元素
 	/// </summary>
 	/// <param name="arr"></param>
