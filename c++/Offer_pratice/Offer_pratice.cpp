@@ -4004,6 +4004,23 @@ public:
 		return arr.back();
 	}
 	/// <summary>
+	/// 1877 数组中最大数对和的最小值
+	/// </summary>
+	/// <param name="nums"></param>
+	/// <returns></returns>
+	int minPairSum(vector<int>& nums) {
+		sort(nums.begin(), nums.end());
+		int ret = 0;
+		int left = 0;
+		int right = nums.size() - 1;
+		while (left < right) {
+			ret = max(ret, nums[left] + nums[right]);
+			left++;
+			right--;
+		}
+		return ret;
+	}
+	/// <summary>
 	/// 面试题 10.02  变位词组
 	/// </summary>
 	/// <param name="strs"></param>
