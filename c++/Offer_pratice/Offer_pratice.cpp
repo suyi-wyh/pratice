@@ -506,6 +506,41 @@ public:
 		return ret;
 	}
 	/// <summary>
+	/// offer 52 两个链表的第一个相交节点
+	/// </summary>
+	/// <param name="headA"></param>
+	/// <param name="headB"></param>
+	/// <returns></returns>
+	ListNode* getIntersectionNode(ListNode* headA, ListNode* headB) {
+		int Anum = 0;
+		int Bnum = 0;
+		for (ListNode* tmp = headA; tmp != nullptr; tmp = tmp->next)
+			Anum++;
+
+		for (ListNode* tmp = headB; tmp != nullptr; tmp = tmp->next)
+			Bnum++;
+
+		ListNode* curA = headA;
+		ListNode* curB = headB;
+		if (Anum > Bnum) {
+			for (int i = 0; i < Anum - Bnum; ++i)
+				curA = curA->next;
+		}
+		else
+			for (int i = 0; i < Bnum - Anum; ++i)
+				curB = curB->next;
+
+
+		while (curB != nullptr && curB != nullptr) {
+			if (curA == curB)
+				return curB;
+
+			curA = curA->next;
+			curB = curB->next;
+		}
+		return nullptr;
+	}
+	/// <summary>
 	/// 剑指offer 53 统计一个数字在排序数组中出现的次数
 	/// </summary>
 	/// <param name="nums"></param>
