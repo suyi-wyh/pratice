@@ -4056,6 +4056,26 @@ public:
 		return ret;
 	}
 	/// <summary>
+	/// 1893 检查是否区域内所有整数都被覆盖
+	/// </summary>
+	/// <param name="ranges"></param>
+	/// <param name="left"></param>
+	/// <param name="right"></param>
+	/// <returns></returns>
+	bool isCovered(vector<vector<int>>& ranges, int left, int right) {
+		vector<int> flag(51, 0);
+		for (int i = left; i <= right; ++i) {
+			flag[i] = -1;
+		}
+
+		for (auto range : ranges) {
+			for (int i = range[0]; i <= range[1]; ++i)
+				flag[i] = 1;
+		}
+
+		return *min_element(flag.begin(), flag.end()) != -1;
+	}
+	/// <summary>
 	/// 面试题 10.02  变位词组
 	/// </summary>
 	/// <param name="strs"></param>
