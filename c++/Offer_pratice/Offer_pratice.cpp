@@ -3951,6 +3951,37 @@ public:
 		return ret[k - 1];
 	}
 	/// <summary>
+	/// 1743 从相邻元素对还原数组
+	/// </summary>
+	/// <param name="adjacentPairs"></param>
+	/// <returns></returns>
+	vector<int> restoreArray(vector<vector<int>>& adjacentPairs) {
+		unordered_map< int, vector<int> > flag;
+
+		for (auto it : adjacentPairs) {
+			flag[it[0]].push_back(it[1]);
+			flag[it[1]].push_back(it[0]);
+		}
+
+		vector<int> ret;
+		int tmp;
+		for (auto& it : flag) {
+			if ((it.second).size() == 1) {
+				tmp = it.first;
+				break;
+			}
+		}
+
+		ret.push_back(tmp);
+		ret.push_back(flag[tmp][0]);
+
+		for (int i = 2; i < adjacentPairs.size() + 1; ++i) {
+			vector<int>& it = flag[ret[i - 1]];
+			ret.push_back(ret[i - 2] == it[0] ? it[1] : it[0]);
+		}
+		return ret;
+	}
+	/// <summary>
 	/// 1744 你能在你最喜欢的哪天吃到最喜欢的糖果吗
 	/// </summary>
 	/// <param name="csum"></param>
