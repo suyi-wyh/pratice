@@ -3790,6 +3790,34 @@ public:
 		return ret;
 	}
 	/// <summary>
+	/// 1713 得到子序列的最少操作次数
+	/// </summary>
+	/// <param name="target"></param>
+	/// <param name="arr"></param>
+	/// <returns></returns>
+	int minOperations(vector<int>& target, vector<int>& arr) {
+		int tn = target.size();
+		int an = arr.size();
+
+		unordered_map<int, int> flag;
+		for (int i = 0; i < target.size(); ++i) {
+			flag[target[i]] = i;
+		}
+
+		vector<int>  ret;
+
+		for (int it : arr) {
+			if (flag.count(it)) {
+				vector<int>::iterator p = lower_bound(ret.begin(), ret.end(), flag[it]);
+				if (p != ret.end())
+					*p = flag[it];
+				else
+					ret.push_back(flag[it]);
+			}
+		}
+		return tn - ret.size();
+	}
+	/// <summary>
 	///1720 解码异或后的数组 
 	/// </summary>
 	/// <param name="encoded"></param>
