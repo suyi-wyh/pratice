@@ -1700,6 +1700,19 @@ public:
 		return cur;
 
 	}
+	/// <summary>
+	/// 171 Excel 表格序号
+	/// </summary>
+	/// <param name="columnTitle"></param>
+	/// <returns></returns>
+	int titleToNumber(string columnTitle) {
+		int len = columnTitle.size();
+		int ret = 0;
+		for (int i = len; i > 0; i--) {
+			ret += (int)(columnTitle[i - 1] - 'A' + 1) * pow(26, len - i);
+		}
+		return ret;
+	}
     /// <summary>
     /// 179 最大数
     /// </summary>
