@@ -4514,6 +4514,42 @@ public:
 };
 
 /// <summary>
+/// 987二叉树的重序遍历
+/// </summary>
+class Solution {
+	// col                 cow  val
+	map<int, vector< pair<int, int> > > ans;
+
+public:
+	void InOrder(TreeNode* root, int row, int col) {
+		if (root == nullptr)
+			return;
+
+		ans[col].push_back(make_pair(row, root->val));
+		InOrder(root->left, row + 1, col - 1);
+		InOrder(root->right, row + 1, col + 1);
+	}
+	vector<vector<int>> verticalTraversal(TreeNode* root) {
+
+		InOrder(root, 0, 0);
+		vector<vector<int>> ret;
+		int i = 0;
+		for (auto it : ans) {
+			sort(it.second.begin(), it.second.end(), [&](pair<int, int> a, pair<int, int> b)->bool {
+				if (a.first == b.first)
+					return a.second < b.second;
+				return a.first < b.first;
+				});
+			vector<int> tmp;
+			for (auto [cow, val] : it.second) {
+				tmp.push_back(val);
+			}
+			ret.emplace_back(move(tmp));
+		}
+		return ret;
+	}
+};
+/// <summary>
 /// 1707 与数组中元素的最大异或值
 /// </summary>
 class Trie {
