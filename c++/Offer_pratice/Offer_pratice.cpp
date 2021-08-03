@@ -2698,7 +2698,25 @@ public:
         }
         return s;
     }
-	
+	/// <summary>
+	/// 581 最短无序连续子数组
+	/// </summary>
+	/// <param name="nums"></param>
+	/// <returns></returns>
+	int findUnsortedSubarray(vector<int>& nums) {
+		vector<int> flag(nums.begin(), nums.end());
+		sort(flag.begin(), flag.end());
+
+		int left = 0;
+		int right = nums.size() - 1;
+
+		while (left < right && nums[left] == flag[left])
+			left++;
+		while (right > left && nums[right] == flag[right])
+			right--;
+
+		return right > left ? right - left + 1 : 0;
+	}
 	/// <summary>
 	/// 633 平方数之和
 	/// </summary>
