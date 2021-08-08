@@ -3599,6 +3599,24 @@ public:
 		}
 		return ans;
 	}
+	
+	/// <summary>
+	/// 1137 第N个泰波那契树
+	/// </summary>
+	/// <param name="n"></param>
+	/// <returns></returns>
+	int tribonacci(int n) {
+		vector<int> nums(38);
+		nums[0] = 0;
+		nums[1] = 1;
+		nums[2] = 1;
+		nums[3] = 2;
+		for (int i = 4; i <= n; ++i) {
+			nums[i] = nums[i - 1] + nums[i - 2] + nums[i - 3];
+		}
+		return nums[n];
+
+	}
     /// <summary>
     /// 1143 最长公共子序列
     /// </summary>
