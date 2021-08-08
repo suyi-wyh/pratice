@@ -1874,7 +1874,34 @@ public:
         }
         return ret;
     }
+	/// <summary>
+	/// 199 二叉树的右视图
+	/// </summary>
+	/// <param name="root"></param>
+	/// <returns></returns>
+	vector<int> rightSideView(TreeNode* root) {
+		vector<int> ret;
+		if (root == nullptr)
+			return ret;
+		queue<TreeNode*> curq;
+		queue<TreeNode*> nextq;
+		curq.push(root);
+		while (!curq.empty()) {
+			TreeNode* tmp = curq.front();
+			if (tmp->left != nullptr)
+				nextq.push(tmp->left);
+			if (tmp->right != nullptr)
+				nextq.push(tmp->right);
 
+			curq.pop();
+			if (curq.empty()) {
+				curq.swap(nextq);
+				ret.push_back(tmp->val);
+			}
+
+		}
+		return ret;
+	}
 	/// <summary>
 	/// 200 岛屿数量
 	/// </summary>
