@@ -2026,7 +2026,7 @@ public:
 	/// <returns></returns>
 	bool isPowerOfTwo(int n) {
 		return n > 0 && (n & -n) == n;
-	}
+	} 
 	/// <summary>
 	/// 233 数字1的个数
 	/// </summary>
